@@ -14,17 +14,18 @@ const Ring = styled.div`
   display: inline-block;
 `
 
-const Sector = styled.div`
+const Sector = styled.div<{ inverse?: boolean }>`
   box-sizing: border-box;
   display: block;
   position: absolute;
   width: calc(100% - 16px);
   height: calc(100% - 16px);
   margin: 8px;
-  border: 2px solid ${({ theme }) => theme.colors.primaryText};
+  border: 2px solid ${props => (props.inverse ? props.theme.colors.white : props.theme.colors.primaryText)};
   border-radius: 50%;
   animation: ${animation} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: ${({ theme }) => theme.colors.primaryText} transparent transparent transparent;
+  border-color: ${props => (props.inverse ? props.theme.colors.white : props.theme.colors.primaryText)}
+    transparent transparent transparent;
 `
 const First = styled(Sector)``
 const Second = styled(Sector)`

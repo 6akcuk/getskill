@@ -1,14 +1,16 @@
-import React from 'react'
-import { StyledButton, Wrapper } from './Button.styles'
+import React, { useMemo } from 'react'
+import { ButtonSpinner, StyledButton, Wrapper } from './Button.styles'
 import { ButtonProps } from './types'
 
 function Button(props: ButtonProps) {
-  const { look, children, block, ...rest } = props
+  const { look, children, block, showSpinner, ...rest } = props
+
+  const inverse = useMemo(() => ['primary'].includes(look), [look])
 
   return (
     <Wrapper block={block}>
       <StyledButton look={look} {...rest}>
-        {children}
+        {showSpinner ? <ButtonSpinner inverse={inverse} /> : children}
       </StyledButton>
     </Wrapper>
   )

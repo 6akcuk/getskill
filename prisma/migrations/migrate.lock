@@ -1,0 +1,4 @@
+# Prisma Migrate lockfile v1
+
+20200810003304-init
+20200816232037-make-contacts-nullable

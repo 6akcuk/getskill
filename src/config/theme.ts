@@ -8,8 +8,12 @@ export const theme: DefaultTheme = {
     secondaryText: '#6b7280',
     danger: '#e02424',
     backdrop: 'rgba(107,114,128,0.75)', // #6b7280
+    background: '#f4f5f7',
     border: '#d2d6dc',
     white: '#fff',
+    sidebarPrimary: '#161e2e',
+    sidebarBackground: '#252f3f',
+    sidebarLight: '#374151',
   },
   sizes: {
     radius: {

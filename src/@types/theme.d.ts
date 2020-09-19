@@ -9,8 +9,12 @@ declare module 'styled-components' {
       secondaryText: string
       danger: string
       backdrop: string
+      background: string
       border: string
       white: string
+      sidebarPrimary: string
+      sidebarBackground: string
+      sidebarLight: string
     }
     sizes: {
       radius: {

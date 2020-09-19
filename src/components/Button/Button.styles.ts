@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import { StyledButtonProps } from './types'
 import { lighten, darken } from 'polished'
+import { Spinner } from '../Spinner'
 
 const primary = css`
   background: ${({ theme }) => theme.colors.primary};
@@ -93,10 +94,17 @@ const StyledButton = styled.button<StyledButtonProps>`
   }
 `
 
+const ButtonSpinner = styled(Spinner)`
+  width: 36px;
+  height: 36px;
+  margin: -9px 0 -13px;
+`
+
 const Wrapper = styled.span<{ block?: boolean }>`
+  position: relative;
   display: ${({ block }) => (block ? 'block' : 'inline-block')};
   border-radius: ${({ theme }) => theme.sizes.radius.md};
   box-shadow: ${({ theme }) => theme.shadow.sm};
 `
 
-export { StyledButton, Wrapper }
+export { ButtonSpinner, StyledButton, Wrapper }

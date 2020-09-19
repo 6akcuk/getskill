@@ -9,5 +9,6 @@ export interface StyledButtonProps {
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
   StyledButtonProps & {
     block?: boolean
+    showSpinner?: boolean
     children: ReactNode
   }
