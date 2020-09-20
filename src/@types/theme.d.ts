@@ -23,7 +23,9 @@ declare module 'styled-components' {
       }
     }
     shadow: {
+      xs: string
       sm: string
+      lg: string
       xl: string
       outline: {
         primary: string

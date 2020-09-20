@@ -58,6 +58,10 @@ const white = css`
   }
 `
 
+const text = css`
+  background: transparent;
+`
+
 const look = (props: StyledButtonProps) => {
   switch (props.look) {
     case 'primary':
@@ -69,12 +73,15 @@ const look = (props: StyledButtonProps) => {
     case 'white':
       return white
 
+    case 'text':
+      return text
+
     default:
       return primary
   }
 }
 
-const StyledButton = styled.button<StyledButtonProps>`
+const StyledButton = styled.button<StyledButtonProps & { block?: boolean }>`
   cursor: pointer;
   padding: 0.5rem 1rem;
   line-height: 1.25rem;
@@ -84,6 +91,11 @@ const StyledButton = styled.button<StyledButtonProps>`
   border: 1px solid transparent;
   ${look}
   width: 100%;
+
+  position: relative;
+  display: ${({ block }) => (block ? 'block' : 'inline-block')};
+  border-radius: ${({ theme }) => theme.sizes.radius.md};
+  box-shadow: ${({ theme }) => theme.shadow.sm};
 
   transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -100,11 +112,4 @@ const ButtonSpinner = styled(Spinner)`
   margin: -9px 0 -13px;
 `
 
-const Wrapper = styled.span<{ block?: boolean }>`
-  position: relative;
-  display: ${({ block }) => (block ? 'block' : 'inline-block')};
-  border-radius: ${({ theme }) => theme.sizes.radius.md};
-  box-shadow: ${({ theme }) => theme.shadow.sm};
-`
-
-export { ButtonSpinner, StyledButton, Wrapper }
+export { ButtonSpinner, StyledButton }

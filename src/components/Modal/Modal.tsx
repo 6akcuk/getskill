@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom'
 import { useNavigateBack } from '../../hooks'
 
 interface ModalProps {
+  className?: string
   backdrop?: boolean
   children: ReactNode
 }
@@ -19,7 +20,7 @@ function Modal(props: ModalProps) {
   return createPortal(
     <Wrapper>
       {backdrop && <Backdrop onClick={handleBackdropClick} />}
-      <Content>{children}</Content>
+      <Content className={props.className}>{children}</Content>
     </Wrapper>,
     document.getElementById('modal')!,
   )

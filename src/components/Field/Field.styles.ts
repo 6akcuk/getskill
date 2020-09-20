@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  position: relative;
+`
 
 const Label = styled.label`
   display: block;
@@ -17,6 +19,15 @@ const Hint = styled.p`
 `
 
 const Error = styled(Hint)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+
   color: ${({ theme }) => theme.colors.danger};
 `
 
