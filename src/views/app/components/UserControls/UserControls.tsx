@@ -24,7 +24,12 @@ function UserControls(props: UserControlsProps) {
           {t('button.sign_in')}
         </S.LoginButton>
       )}
-      {isLoggedIn && <S.UserBlock />}
+      {isLoggedIn && (
+        <S.UserControls>
+          <S.PublishDropdownButton />
+          <S.UserBlock />
+        </S.UserControls>
+      )}
     </S.Wrapper>
   )
 }

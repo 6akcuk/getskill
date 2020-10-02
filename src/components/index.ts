@@ -1,6 +1,7 @@
 export * from './Button'
 export * from './Divider'
 export * from './Dropdown'
+export * from './DropdownButton'
 export * from './Field'
 export * from './Icons'
 export * from './Input'

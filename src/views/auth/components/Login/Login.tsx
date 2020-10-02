@@ -5,7 +5,7 @@ import { useSetRecoilState } from 'recoil'
 import { Modal } from '../../../../components'
 import { LoginForm } from '..'
 import { LoginFormSchema } from '../LoginForm/useLoginForm'
-import { postLogin } from '../../../../api'
+import { useLogin } from '../../../../api'
 import { authTokenState } from '../../atoms'
 import { useIsLoggedIn } from '../../../../hooks'
 import * as S from './Login.styles'
@@ -15,6 +15,7 @@ function Login() {
   const isLoggedIn = useIsLoggedIn()
   const history = useHistory()
   const { t } = useTranslation('auth')
+  const [, login] = useLogin()
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -24,10 +25,13 @@ function Login() {
 
   const handleSubmit = useCallback(
     async (values: LoginFormSchema) => {
-      const response = await postLogin({
-        username: values.username,
-        password: values.password,
-      })
+      const response = await login(
+        {},
+        {
+          username: values.username,
+          password: values.password,
+        },
+      )
 
       setAuthToken(response.token)
     },

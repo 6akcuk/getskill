@@ -1,7 +1,32 @@
-import axios, { AxiosRequestConfig } from 'axios'
+import axios, { AxiosRequestConfig, AxiosInstance } from 'axios'
+import qs from 'qs'
+import * as auth from './auth/endpoints'
+import { combineEndpoints } from './utils'
+
+interface CreateAPIOptions {
+  baseURL?: string
+  client?: AxiosInstance
+}
+
+function createAPI(options: CreateAPIOptions) {
+  const { baseURL, client = axios.create({ baseURL }) } = options
+
+  axios.defaults.paramsSerializer = params => qs.stringify(params, { arrayFormat: 'comma' })
+
+  return combineEndpoints(client, {
+    ...auth,
+  })
+}
+
+type APIInstance = ReturnType<typeof createAPI>
 
 function createClient() {
-  return axios.create()
+  const baseClient = axios.create()
+  const apiClient = createAPI({ client: baseClient })
+
+  Object.assign(baseClient, apiClient)
+
+  return baseClient as typeof baseClient & typeof apiClient
 }
 
 const client = createClient()
@@ -26,3 +51,4 @@ client.interceptors.request.use(onRequest)
 
 export { client }
 export default client
+export type { APIInstance }

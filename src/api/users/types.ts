@@ -5,6 +5,8 @@ interface User {
   role: string
   avatar: string
   publicName: string
+  isEmailVerified: boolean
+  isPhoneVerified: boolean
 }
 
 export type { User }

@@ -7,5 +7,5 @@ declare module 'recoil' {
     persistence_UNSTABLE?: { type: string }
   }
 
-  export function atom<T>(options: AtomOptions<T>): RecoilState
+  export function atom<T>(options: AtomOptions<T>): RecoilState<T>
 }

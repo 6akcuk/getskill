@@ -5,7 +5,11 @@ import { useCurrentUser } from '../../../../hooks'
 import { authTokenState } from '../../../auth/atoms'
 import * as S from './UserBlock.styles'
 
-function UserBlock() {
+interface UserBlockProps {
+  className?: string
+}
+
+function UserBlock(props: UserBlockProps) {
   const user = useCurrentUser()
   const { t } = useTranslation('auth')
   const setAuthToken = useSetRecoilState(authTokenState)
@@ -16,6 +20,7 @@ function UserBlock() {
 
   return (
     <S.Dropdown
+      className={props.className}
       items={[
         <S.SignedInBlock key={0}>
           <S.SignedInAs>{t('label.signed_in_as')}</S.SignedInAs>
@@ -23,9 +28,7 @@ function UserBlock() {
         </S.SignedInBlock>,
         <S.MenuDivider key={1} />,
         <S.MenuGroup key={2}>
-          <S.MenuItem key={2} onClick={handleSignOut}>
-            {t('button.sign_out')}
-          </S.MenuItem>
+          <S.MenuItem onClick={handleSignOut}>{t('button.sign_out')}</S.MenuItem>
         </S.MenuGroup>,
       ]}>
       <S.UserButton>
@@ -37,3 +40,4 @@ function UserBlock() {
 
 export default UserBlock
 export { UserBlock }
+export type { UserBlockProps }

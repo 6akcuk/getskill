@@ -12,6 +12,7 @@ interface OverlayProps {
   position?: OverlayPosition
   overlay: ReactNode
   children: ReactNode
+  className?: string
 }
 
 function Overlay(props: OverlayProps) {
@@ -24,7 +25,7 @@ function Overlay(props: OverlayProps) {
   }, ref)
 
   return (
-    <S.Wrapper ref={ref} onClick={() => toggleMenu(true)}>
+    <S.Wrapper ref={ref} onClick={() => toggleMenu(true)} className={props.className}>
       {props.children}
       <S.OverlayWrapper isVisible={showMenu} position={position}>
         {props.overlay}

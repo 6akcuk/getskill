@@ -1,7 +1,7 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 import { PrismaClient } from '@prisma/client'
 import argon2 from 'argon2'
-import { generateToken, IPToNumber } from '../utils'
+import { generateToken, IPToNumber, responseErrorObject } from '../utils'
 
 interface RegisterRequestBody {
   email: string
@@ -16,6 +16,26 @@ export default async (req: NowRequest, res: NowResponse) => {
   const { email, phone, publicName, password } = req.body as RegisterRequestBody
 
   const passwordHash = await argon2.hash(password)
+
+  const hasEmailExist = await prisma.user.findOne({
+    where: {
+      email,
+    },
+  })
+
+  if (hasEmailExist) {
+    return res.status(500).json(responseErrorObject('Почтовый адрес уже используется', 500))
+  }
+
+  const hasPhoneExist = await prisma.user.findOne({
+    where: {
+      phone,
+    },
+  })
+
+  if (hasPhoneExist) {
+    return res.status(500).json(responseErrorObject('Номер телефона уже используется', 500))
+  }
 
   const user = await prisma.user.create({
     data: {

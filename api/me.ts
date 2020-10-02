@@ -22,6 +22,8 @@ async function me(req: NowRequest, res: NowResponse) {
     role: user.role,
     avatar: user.profile.avatar,
     publicName: user.profile.publicName,
+    isEmailVerified: user.isEmailVerified,
+    isPhoneVerified: user.isPhoneVerified,
   })
 }
 

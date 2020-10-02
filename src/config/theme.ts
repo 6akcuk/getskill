@@ -34,5 +34,6 @@ export const theme: DefaultTheme = {
   },
   zIndex: {
     modal: 1000,
+    notification: 1001,
   },
 }

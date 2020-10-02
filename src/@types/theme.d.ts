@@ -34,6 +34,7 @@ declare module 'styled-components' {
     }
     zIndex: {
       modal: number
+      notification: number
     }
   }
 }

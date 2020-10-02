@@ -9,6 +9,7 @@ import Routes from './views/Routes'
 import { SWRProvider, AppLayout } from './views/app/components'
 import { RecoilRoot } from 'recoil'
 import recoilPersist from 'recoil-persist'
+import { NotificationsProvider } from './views/app/views/notifications'
 
 const { RecoilPersist, updateState } = recoilPersist()
 
@@ -19,6 +20,7 @@ function App() {
         <RecoilRoot initializeState={updateState}>
           <SWRProvider>
             <RecoilPersist />
+            <NotificationsProvider />
             <AppLayout>
               <AuthRouterProvider>
                 <Routes />
