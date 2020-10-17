@@ -8,7 +8,7 @@ function generateToken(user: User) {
       email: user.email,
       role: user.role,
     },
-    process.env.JWT_SIGNATURE,
+    process.env.JWT_SIGNATURE!,
     { expiresIn: '6h' },
   )
 }

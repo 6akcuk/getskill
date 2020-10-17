@@ -1,7 +1,7 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 import { PrismaClient } from '@prisma/client'
 import argon2 from 'argon2'
-import { generateToken, IPToNumber } from '../utils'
+import { generateToken, IPToNumber, apiResponseErrorBody } from '../apiSrc'
 
 interface LoginRequestBody {
   username: string
@@ -21,9 +21,7 @@ export default async (req: NowRequest, res: NowResponse) => {
   })
 
   if (!user || (user && !(await argon2.verify(user.password, password)))) {
-    return res.status(401).send({
-      message: 'Неверные имя пользователя/пароль',
-    })
+    return res.status(401).send(apiResponseErrorBody('Неверные имя пользователя/пароль', 401))
   }
 
   const token = generateToken(user)

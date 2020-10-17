@@ -22,3 +22,4 @@ function useAsyncRequestStatus(status: AsyncRequestStatus | undefined): AsyncReq
 
 export default useAsyncRequestStatus
 export { useAsyncRequestStatus }
+export type { AsyncRequestStatusObject }

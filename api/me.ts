@@ -1,6 +1,6 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 import { PrismaClient } from '@prisma/client'
-import { withAuth, getUserPayloadFromToken } from '../utils'
+import { withAuth, getUserPayloadFromToken } from '../apiSrc'
 
 const prisma = new PrismaClient()
 

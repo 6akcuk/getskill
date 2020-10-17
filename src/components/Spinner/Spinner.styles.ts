@@ -12,6 +12,8 @@ const animation = keyframes`
 const Ring = styled.div`
   position: relative;
   display: inline-block;
+  width: 48px;
+  height: 48px;
 `
 
 const Sector = styled.div<{ inverse?: boolean }>`

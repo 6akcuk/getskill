@@ -12,11 +12,13 @@ function AuthRouterProvider(props: AuthRouterProviderProps) {
   useCurrentUser()
 
   return (
-    <Switch>
-      <Route path="/login" component={Login} />
-      <Route path="/register" component={Register} />
+    <>
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+      </Switch>
       {props.children}
-    </Switch>
+    </>
   )
 }
 

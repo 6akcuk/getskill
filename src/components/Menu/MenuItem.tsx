@@ -9,7 +9,7 @@ interface MenuItemProps {
 
 function MenuItem(props: MenuItemProps) {
   return (
-    <S.MenuItem href="#" className={props.className} onClick={props.onClick}>
+    <S.MenuItem className={props.className} onClick={props.onClick}>
       {props.children}
     </S.MenuItem>
   )

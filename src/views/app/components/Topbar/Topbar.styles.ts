@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import BaseSearchBar from '../SearchBar'
 import BaseUserControls from '../UserControls'
+import { Spinner } from '../../../../components'
 
 const Wrapper = styled.div`
   display: flex;
@@ -27,4 +28,9 @@ const UserControls = styled(BaseUserControls)`
   margin-left: 1.5rem;
 `
 
-export { Content, SearchBar, UserControls, Wrapper }
+const SuspenseSpinner = styled(Spinner)`
+  width: 48px;
+  height: 48px;
+`
+
+export { Content, SearchBar, SuspenseSpinner, UserControls, Wrapper }

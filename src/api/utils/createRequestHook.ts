@@ -20,10 +20,14 @@ enum AsyncRequestStatus {
   FAILURE = 'failure',
 }
 
+interface UseRequestHookProps {
+  suspense?: boolean
+}
+
 function createRequestHook<RequestParams, RequestBody, ResponseBody>(
   apiCall: (api: APIInstance) => ApiCallFunction<RequestParams, RequestBody, ResponseBody>,
 ) {
-  return function useRequestHook() {
+  return function useRequestHook(props?: UseRequestHookProps) {
     const [status, setStatus] = useState<AsyncRequestStatus>(AsyncRequestStatus.IDLE)
     const asyncRequestStatus = useAsyncRequestStatus(status)
     const setNotifications = useSetRecoilState(notificationsState)
@@ -52,6 +56,10 @@ function createRequestHook<RequestParams, RequestBody, ResponseBody>(
         throw e
       }
     }, [])
+
+    if (Boolean(props?.suspense) && asyncRequestStatus.pending) {
+      throw Promise.resolve()
+    }
 
     return [asyncRequestStatus, requestCallback] as [typeof asyncRequestStatus, typeof requestCallback]
   }

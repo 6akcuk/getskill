@@ -1,12 +1,13 @@
 import React, { ReactNode } from 'react'
 import { Wrapper, Label, Error } from './Field.styles'
 import { useTranslation } from 'react-i18next'
+import { FormikErrors } from 'formik'
 
 interface FieldErrorWithValues {
   key: string
   values: any[]
 }
-type FieldError = string | FieldErrorWithValues
+type FieldError = string | FieldErrorWithValues | FormikErrors<any>
 
 interface FieldProps {
   id: string

@@ -5,6 +5,7 @@ export const theme: DefaultTheme = {
     primary: '#5850ec',
     secondary: '#e5edff',
     primaryText: '#374151',
+    secondaryAccentText: '#4b5563',
     secondaryText: '#6b7280',
     danger: '#e02424',
     backdrop: 'rgba(107,114,128,0.75)', // #6b7280

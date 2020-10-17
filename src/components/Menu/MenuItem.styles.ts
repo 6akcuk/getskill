@@ -7,6 +7,7 @@ const MenuItem = styled.a`
   font-size: 0.875rem;
   text-decoration: inherit;
   color: ${props => props.theme.colors.primaryText};
+  cursor: pointer;
 
   &:hover,
   &:focus {

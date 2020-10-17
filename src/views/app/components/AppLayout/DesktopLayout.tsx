@@ -8,17 +8,17 @@ interface DesktopLayoutProps {
 
 function DesktopLayout(props: DesktopLayoutProps) {
   return (
-    <Suspense fallback={<Spinner />}>
-      <S.Wrapper>
-        <S.SidebarColumn>
-          <S.StyledSidebar />
-        </S.SidebarColumn>
-        <S.MainColumn>
-          <S.TopBar />
+    <S.Wrapper>
+      <S.SidebarColumn>
+        <S.StyledSidebar />
+      </S.SidebarColumn>
+      <S.MainColumn>
+        <S.TopBar />
+        <Suspense fallback={<Spinner />}>
           <S.Main>{props.children}</S.Main>
-        </S.MainColumn>
-      </S.Wrapper>
-    </Suspense>
+        </Suspense>
+      </S.MainColumn>
+    </S.Wrapper>
   )
 }
 

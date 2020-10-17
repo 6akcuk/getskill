@@ -1,6 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosInstance } from 'axios'
 import qs from 'qs'
 import * as auth from './auth/endpoints'
+import * as draft from './draft/endpoints'
+import * as videoLesson from './videoLesson/endpoints'
 import { combineEndpoints } from './utils'
 
 interface CreateAPIOptions {
@@ -15,6 +17,8 @@ function createAPI(options: CreateAPIOptions) {
 
   return combineEndpoints(client, {
     ...auth,
+    ...draft,
+    ...videoLesson,
   })
 }
 

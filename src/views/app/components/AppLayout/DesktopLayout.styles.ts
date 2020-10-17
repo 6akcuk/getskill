@@ -32,6 +32,7 @@ const Main = styled.main`
   overflow-y: auto;
   flex: 1 1 0%;
   z-index: 0;
+  padding: 1.5rem;
 `
 
 const TopBar = styled(Topbar)``
