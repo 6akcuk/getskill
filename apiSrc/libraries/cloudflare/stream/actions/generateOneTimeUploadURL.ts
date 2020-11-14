@@ -5,7 +5,7 @@ type GenerateOneTimeUploadURLParams = Pick<PostStreamDirectUploadRequestBody, 'm
 async function generateOneTimeUploadURL(params: GenerateOneTimeUploadURLParams) {
   const response = await postStreamDirectUpload(
     {
-      account_id: '',
+      account_id: process.env.CLOUDFLARE_STREAM_ACCOUNT_ID!,
     },
     {
       maxDurationSeconds: params.maxDurationSeconds,

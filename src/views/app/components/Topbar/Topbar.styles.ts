@@ -2,14 +2,16 @@ import styled from 'styled-components'
 import BaseSearchBar from '../SearchBar'
 import BaseUserControls from '../UserControls'
 import { Spinner } from '../../../../components'
+import { Link } from 'react-router-dom'
+import BaseNavBar from '../NavBar'
 
 const Wrapper = styled.div`
   display: flex;
   flex-shrink: 0;
+  justify-content: center;
   position: relative;
   height: 4rem;
   z-index: 10;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   background: ${props => props.theme.colors.white};
 `
 
@@ -17,12 +19,20 @@ const Content = styled.div`
   display: flex;
   flex: 1 1 0%;
   justify-content: space-between;
-  padding: 0 1rem;
+  align-items: center;
+  padding: 0 2rem;
+  max-width: 70rem;
 `
 
-const SearchBar = styled(BaseSearchBar)`
-  flex: 1 1 0%;
+const Logo = styled(Link)`
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: ${props => props.theme.colors.primaryText};
+  margin-right: 3rem;
 `
+
+const SearchBar = styled(BaseSearchBar)``
 
 const UserControls = styled(BaseUserControls)`
   margin-left: 1.5rem;
@@ -33,4 +43,8 @@ const SuspenseSpinner = styled(Spinner)`
   height: 48px;
 `
 
-export { Content, SearchBar, SuspenseSpinner, UserControls, Wrapper }
+const NavBar = styled(BaseNavBar)`
+  flex: 1 1 0%;
+`
+
+export { Content, Logo, NavBar, SearchBar, SuspenseSpinner, UserControls, Wrapper }

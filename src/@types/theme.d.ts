@@ -5,11 +5,13 @@ declare module 'styled-components' {
     colors: {
       primary: string
       secondary: string
+      primaryAccentText: string
       primaryText: string
       secondaryAccentText: string
       secondaryText: string
       danger: string
       backdrop: string
+      inverseBackdrop: string
       background: string
       border: string
       white: string

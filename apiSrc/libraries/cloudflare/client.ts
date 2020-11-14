@@ -4,9 +4,8 @@ function createClient() {
   const baseClient = axios.create({
     baseURL: 'https://api.cloudflare.com/client',
     headers: {
-      // TODO environment variables
-      'X-Auth-Key': '',
-      'X-Auth-Email': '',
+      'X-Auth-Key': process.env.CLOUDFLARE_STREAM_AUTH_KEY!,
+      'X-Auth-Email': process.env.CLOUDFLARE_STREAM_AUTH_EMAIL!,
     },
   })
 

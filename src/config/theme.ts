@@ -4,11 +4,13 @@ export const theme: DefaultTheme = {
   colors: {
     primary: '#5850ec',
     secondary: '#e5edff',
+    primaryAccentText: '#161e2e',
     primaryText: '#374151',
     secondaryAccentText: '#4b5563',
     secondaryText: '#6b7280',
     danger: '#e02424',
     backdrop: 'rgba(107,114,128,0.75)', // #6b7280
+    inverseBackdrop: 'rgba(255,255,255,0.90)',
     background: '#f4f5f7',
     border: '#d2d6dc',
     white: '#fff',

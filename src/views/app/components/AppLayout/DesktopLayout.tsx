@@ -9,13 +9,12 @@ interface DesktopLayoutProps {
 function DesktopLayout(props: DesktopLayoutProps) {
   return (
     <S.Wrapper>
-      <S.SidebarColumn>
-        <S.StyledSidebar />
-      </S.SidebarColumn>
       <S.MainColumn>
         <S.TopBar />
         <Suspense fallback={<Spinner />}>
-          <S.Main>{props.children}</S.Main>
+          <S.Main>
+            <S.MainContainer>{props.children}</S.MainContainer>
+          </S.Main>
         </Suspense>
       </S.MainColumn>
     </S.Wrapper>

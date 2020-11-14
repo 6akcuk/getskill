@@ -1,5 +1,7 @@
 import { VideoLesson, PrismaClient } from '@prisma/client'
 import { ApiResponse, ApiRequestWithAuth } from '../types'
+import { DateTime } from 'luxon'
+import { getVideoDetails } from '../../libraries'
 
 interface CreateVideoLessonRequestBody {
   name: string
@@ -16,8 +18,13 @@ async function createVideoLesson(request: CreateVideoLessonRequest, response: Cr
     where: {
       isDraft: true,
       userId: Number(request.user.id),
+      createdAt: {
+        gte: DateTime.local().minus({ minutes: 30 }).toJSDate(),
+      },
     },
   })
+
+  const videoDetails = await getVideoDetails({ id: videoLesson.uid })
 
   return response.json(
     await prisma.videoLesson.update({
@@ -28,6 +35,8 @@ async function createVideoLesson(request: CreateVideoLessonRequest, response: Cr
         isDraft: false,
         name: request.body.name,
         description: request.body.description,
+        isUploaded: true,
+        duration: Number(videoDetails.duration.toFixed(0)),
       },
     }),
   )

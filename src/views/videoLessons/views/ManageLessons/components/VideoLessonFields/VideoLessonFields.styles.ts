@@ -1,3 +1,4 @@
+import { Stream } from '@cloudflare/stream-react'
 import styled from 'styled-components'
 import {
   Field as BaseField,
@@ -24,5 +25,17 @@ const HelperText = styled.p`
 const Input = styled(BaseInput)``
 const TextArea = styled(BaseTextArea)``
 const VideoUploader = styled(BaseVideoUploader)``
+const VideoPlayer = styled(Stream)``
 
-export { Field, HelperText, Input, TextArea, VideoUploader, Wrapper }
+const VideoProcessing = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10rem;
+  background: ${props => props.theme.colors.background};
+  font-size: 0.875rem;
+  color: ${props => props.theme.colors.secondaryText};
+  text-align: center;
+`
+
+export { Field, HelperText, Input, TextArea, VideoPlayer, VideoProcessing, VideoUploader, Wrapper }

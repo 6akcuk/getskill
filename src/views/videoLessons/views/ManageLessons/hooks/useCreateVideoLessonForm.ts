@@ -6,7 +6,8 @@ import { mutate } from 'swr'
 
 interface CreateVideoLessonFormValues {
   name: string
-  file: File
+  uploaded: boolean
+  videoReady: boolean
   uid?: string
   uploadUrl?: string
   description?: string
@@ -14,7 +15,8 @@ interface CreateVideoLessonFormValues {
 
 const createVideoLessonFormSchema = yup.object<CreateVideoLessonFormValues>({
   name: yup.string().required().default(''),
-  file: yup.mixed<File>().required(),
+  uploaded: yup.boolean().required().default(undefined),
+  videoReady: yup.boolean().required().default(false),
   description: yup.string().default(''),
 })
 
@@ -41,6 +43,7 @@ function useCreateVideoLessonForm(config: CreateVideoLessonFormConfig) {
             description: config.videoLesson.description || '',
             uploadUrl: config.videoLesson.uploadUrl,
             uid: config.videoLesson.uid,
+            videoReady: config.videoLesson.isReady,
           }
         : {}),
     },

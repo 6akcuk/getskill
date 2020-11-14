@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Spinner } from '../../../../components'
+import VideoLessonPreview from '../VideoLessonPreview'
 
 const Wrapper = styled.div`
   display: flex;
@@ -11,7 +12,7 @@ const Loading = styled(Spinner)`
   height: 40px;
 `
 
-const VideoLesson = styled.div`
+const VideoLesson = styled(VideoLessonPreview)`
   width: 20rem;
   margin-right: 1.5rem;
 

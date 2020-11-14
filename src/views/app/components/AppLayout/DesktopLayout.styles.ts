@@ -1,21 +1,12 @@
 import styled from 'styled-components'
-import Sidebar from '../Sidebar'
 import Topbar from '../Topbar'
+import BaseNavBar from '../NavBar'
 
 const Wrapper = styled.div`
   display: flex;
   height: 100vh;
   overflow: hidden;
-  background: ${props => props.theme.colors.background};
-`
-
-const SidebarColumn = styled.div`
-  display: flex;
-  flex-shrink: 0;
-`
-
-const StyledSidebar = styled(Sidebar)`
-  width: 16rem;
+  background: ${props => props.theme.colors.white};
 `
 
 const MainColumn = styled.div`
@@ -24,17 +15,25 @@ const MainColumn = styled.div`
   width: 0;
   overflow: hidden;
   flex: 1 1 0%;
+  justify-content: center;
 `
 
 const Main = styled.main`
-  display: block;
+  display: flex;
+  justify-content: center;
   position: relative;
   overflow-y: auto;
   flex: 1 1 0%;
+  background: ${props => props.theme.colors.background};
+`
+const MainContainer = styled.div`
+  flex: 1;
   z-index: 0;
   padding: 1.5rem;
+  max-width: 70rem;
 `
 
 const TopBar = styled(Topbar)``
+const NavBar = styled(BaseNavBar)``
 
-export { Main, MainColumn, SidebarColumn, StyledSidebar, TopBar, Wrapper }
+export { Main, MainColumn, MainContainer, NavBar, TopBar, Wrapper }

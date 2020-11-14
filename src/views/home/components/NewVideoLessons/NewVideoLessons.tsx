@@ -9,8 +9,7 @@ function NewVideoLessons() {
   return (
     <S.Wrapper>
       {isValidating && <S.Loading />}
-      {data &&
-        data.map(videoLesson => <S.VideoLesson key={videoLesson.id}>{videoLesson.name}</S.VideoLesson>)}
+      {data && data.map(videoLesson => <S.VideoLesson key={videoLesson.id} videoLesson={videoLesson} />)}
     </S.Wrapper>
   )
 }

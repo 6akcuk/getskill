@@ -6,6 +6,8 @@ function Topbar() {
     <S.Wrapper>
       <S.Content>
         <Suspense fallback={<S.SuspenseSpinner />}>
+          <S.Logo to="/">Get-Skill</S.Logo>
+          <S.NavBar />
           <S.SearchBar />
           <S.UserControls />
         </Suspense>

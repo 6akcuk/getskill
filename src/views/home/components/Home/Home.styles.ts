@@ -1,13 +1,13 @@
 import styled from 'styled-components'
-import { darken } from 'polished'
 import { Spinner } from '../../../../components'
 
 const Title = styled.h2`
-  font-size: 1.125rem;
-  font-weight: 500;
+  font-size: 1.875rem;
+  font-weight: 700;
   line-height: 1.5rem;
-  color: ${props => darken(0.15, props.theme.colors.primaryText)};
+  color: ${props => props.theme.colors.primaryAccentText};
   margin: 0;
+  margin-bottom: 2rem;
 `
 
 const Wrapper = styled.div``

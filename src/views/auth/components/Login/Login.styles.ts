@@ -8,6 +8,7 @@ const Header = styled.h1`
   font-weight: 800;
   line-height: 2.25rem;
   color: ${({ theme }) => theme.colors.primaryText};
+  margin: 0 0 1.5rem;
 `
 
 const Spinner = styled(BaseSpinner)`

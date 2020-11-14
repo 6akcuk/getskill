@@ -11,6 +11,7 @@ async function latestVideolessons(req: ApiRequest, res: ApiResponse<VideoLesson[
       },
       where: {
         isDraft: false,
+        isReady: true,
       },
       take: 6,
     }),

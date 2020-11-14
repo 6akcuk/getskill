@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -51,12 +51,9 @@ model VideoLesson {
   id Int @default(autoincrement()) @id
   userId Int
   isDraft Boolean @default(true)
-  isUploaded Boolean @default(false)
-  isReady Boolean @default(false)
-  duration Int @default(0)
-  poster String?
   uid String
   uploadUrl String
+  uploaded Boolean @default(false)
   name String
   description String?
   tags Tag[]

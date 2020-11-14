@@ -1,18 +1,4 @@
-interface Error {
-  code: number
-  message: string
-}
+// eslint-disable-next-line @typescript-eslint/ban-types
+type VoidArgument = undefined | null | {}
 
-interface Message {
-  code: number
-  message: string
-}
-
-interface StreamResponseBody<Result> {
-  result: Result
-  success: boolean
-  errors: Error[]
-  messages: Message[]
-}
-
-export type { StreamResponseBody }
+export type { VoidArgument }

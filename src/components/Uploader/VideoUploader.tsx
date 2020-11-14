@@ -1,37 +1,42 @@
-import React, { ReactNode, useCallback, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import * as S from './VideoUploader.styles'
 import { useTranslation } from 'react-i18next'
 
 type FileProps = File
 
 interface VideoUploaderProps {
-  video?: string
+  uploadUrl?: string
   className?: string
   maxSize?: number
-  onChange: (video: File | null) => void
+  onSuccess: (video?: File) => void
 }
 
 function VideoUploader(props: VideoUploaderProps) {
   const { t } = useTranslation('app')
-  const [video, setVideo] = useState<FileProps | string | null>(() => props.video ?? null)
+  const [video, setVideo] = useState<FileProps>()
 
-  const { onChange } = props
+  const { onSuccess } = props
   const maxSize = props.maxSize ?? 1024 * 1024 * 1024 // 1Gb
   const handleDrop = useCallback(
     acceptedFiles => {
-      setVideo({ ...acceptedFiles[0] })
-      onChange(acceptedFiles[0])
+      setVideo(acceptedFiles[0])
     },
-    [onChange],
+    [onSuccess],
   )
   const handleRemove = useCallback(() => {
-    setVideo(null)
-    onChange(null)
-  }, [onChange])
+    setVideo(undefined)
+    onSuccess(undefined)
+  }, [onSuccess])
 
   return (
     <S.Wrapper className={props.className}>
-      <S.Dropzone maxSize={maxSize} onDrop={handleDrop}>
+      <S.UploadHandler
+        uploadUrl={props.uploadUrl}
+        file={video}
+        onSuccess={() => props.onSuccess(video)}
+        onFailure={handleRemove}
+      />
+      <S.Dropzone accept="video/*" maxSize={maxSize} onDrop={handleDrop}>
         <S.Content>
           <S.UploadIcon>
             <S.FilmIcon />
