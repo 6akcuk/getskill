@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useCallback } from 'react'
+import { useHistory } from 'react-router-dom'
 import { VideoLesson } from '../../../../api'
 import * as S from './VideoLessonPreview.styles'
 
@@ -14,9 +15,14 @@ function VideoLessonPreview(props: VideoLessonPreviewProps) {
 
     return `${minutes}:${seconds}`
   }, [props.videoLesson.duration])
+  const history = useHistory()
+
+  const handleClick = useCallback(() => {
+    history.push(`/watch/videolessons/${props.videoLesson.id}`)
+  }, [history, props.videoLesson.id])
 
   return (
-    <S.Wrapper className={props.className}>
+    <S.Wrapper className={props.className} onClick={handleClick}>
       <S.Poster src={`https://videodelivery.net/${props.videoLesson.uid}/thumbnails/thumbnail.jpg`}>
         <S.Duration>{duration}</S.Duration>
       </S.Poster>

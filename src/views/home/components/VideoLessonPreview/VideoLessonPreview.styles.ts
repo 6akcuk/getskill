@@ -31,6 +31,8 @@ const Duration = styled.div`
 const Name = styled.h4`
   margin: 1rem 0 0;
   font-weight: 400;
+  text-decoration: none;
+  color: ${props => props.theme.colors.primaryText};
 `
 
 export { Duration, Name, Poster, Wrapper }

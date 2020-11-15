@@ -27,3 +27,4 @@ function Modal(props: ModalProps) {
 }
 
 export default Modal
+export { Modal }

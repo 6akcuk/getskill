@@ -1,4 +1,4 @@
-import { VideoLessonRequest, VideoLessonResponse, videoLessonHandler, withAuth } from '../apiSrc'
+import { VideoLessonRequest, VideoLessonResponse, videoLessonHandler } from '../apiSrc'
 
 async function videolesson(req: VideoLessonRequest, res: VideoLessonResponse) {
   return videoLessonHandler({
@@ -7,4 +7,4 @@ async function videolesson(req: VideoLessonRequest, res: VideoLessonResponse) {
   })
 }
 
-export default withAuth(videolesson)
+export default videolesson
