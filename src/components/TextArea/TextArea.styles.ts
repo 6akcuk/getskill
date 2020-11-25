@@ -17,6 +17,7 @@ const TextArea = styled(TextareaAutosize)`
   border-width: 1px;
   border-radius: ${({ theme }) => theme.sizes.radius.md};
   padding: 0.5rem 0.75rem;
+  font-family: Arial;
   font-size: 0.875rem;
   line-height: 1.25rem;
   width: 100%;

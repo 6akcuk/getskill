@@ -1,15 +1,37 @@
 import axios, { AxiosError } from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
-import * as S from './UploadHandler.styles'
 import { notificationsState, NotificationType } from '../../views/app/views/notifications/atoms'
+import * as S from './UploadHandler.styles'
 
 import 'react-circular-progressbar/dist/styles.css'
+
+interface UploadResponse {
+  asset_id: string
+  bytes: number
+  created_at: string
+  etag: string
+  format: string
+  height: number
+  original_extension: string
+  original_filename: string
+  placeholder: boolean
+  public_id: string
+  resource_type: string
+  secure_url: string
+  signature: string
+  tags: string[]
+  type: string
+  url: string
+  version: number
+  version_id: string
+  width: number
+}
 
 interface UploadHandlerProps {
   uploadUrl?: string
   file?: File
-  onSuccess: () => void
+  onSuccess: (response: UploadResponse) => void
   onFailure: () => void
 }
 
@@ -19,37 +41,18 @@ function UploadHandler(props: UploadHandlerProps) {
 
   useEffect(() => {
     if (props.uploadUrl && props.file && percentage === 0) {
-      /* const upload = new tus.Upload(props.file, {
-        endpoint: props.uploadUrl,
-        // Callback for errors which cannot be fixed using retries
-        onError(error) {
-          console.log(`Failed because: ${error}`)
-        },
-        // Callback for reporting upload progress
-        onProgress(bytesUploaded, bytesTotal) {
-          setPercentage(Number(((bytesUploaded / bytesTotal) * 100).toFixed(2)))
-        },
-        // Callback for once the upload is completed
-        onSuccess() {},
-      })
-
-      upload.start()*/
       const formData = new FormData()
 
       formData.append('file', props.file)
 
       axios
-        .post(props.uploadUrl, formData, {
+        .post<UploadResponse>(props.uploadUrl, formData, {
           onUploadProgress: (progressEvent: ProgressEvent) => {
             setPercentage(Number(((progressEvent.loaded / progressEvent.total) * 100).toFixed(0)))
           },
         })
-        .then(() => props.onSuccess())
+        .then(response => props.onSuccess(response.data))
         .catch(e => {
-          if ((e as AxiosError).response?.data === 'Video already uploaded') {
-            props.onSuccess()
-          }
-
           setNotifications(oldNotifications => [
             ...oldNotifications,
             {
@@ -77,4 +80,4 @@ function UploadHandler(props: UploadHandlerProps) {
 
 export default UploadHandler
 export { UploadHandler }
-export type { UploadHandlerProps }
+export type { UploadHandlerProps, UploadResponse }

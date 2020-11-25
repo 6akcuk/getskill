@@ -10,6 +10,7 @@ import { SWRProvider, AppLayout } from './views/app/components'
 import { RecoilRoot } from 'recoil'
 import recoilPersist from 'recoil-persist'
 import { NotificationsProvider } from './views/app/views/notifications'
+import { CloudinaryContext } from 'cloudinary-react'
 
 const { RecoilPersist, updateState } = recoilPersist()
 
@@ -21,11 +22,13 @@ function App() {
           <SWRProvider>
             <RecoilPersist />
             <NotificationsProvider />
-            <AppLayout>
-              <AuthRouterProvider>
-                <Routes />
-              </AuthRouterProvider>
-            </AppLayout>
+            <CloudinaryContext cloudName={process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}>
+              <AppLayout>
+                <AuthRouterProvider>
+                  <Routes />
+                </AuthRouterProvider>
+              </AppLayout>
+            </CloudinaryContext>
           </SWRProvider>
         </RecoilRoot>
       </Router>

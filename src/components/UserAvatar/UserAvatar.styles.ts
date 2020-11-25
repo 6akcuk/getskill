@@ -17,6 +17,26 @@ const size = (props: UserAvatarStyleProps) => {
         height: 2rem;
         font-size: 0.875rem;
       `
+
+    case 'md':
+      return css`
+        width: 2.5rem;
+        height: 2.5rem;
+      `
+
+    case 'lg':
+      return css`
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.125rem;
+      `
+
+    case 'xl':
+      return css`
+        width: 3.5rem;
+        height: 3.5rem;
+        font-size: 1.25rem;
+      `
   }
 }
 
@@ -26,6 +46,7 @@ const Wrapper = styled.span<UserAvatarStyleProps>`
   align-items: center;
   border-radius: 9999px;
   background: ${props => props.theme.colors.secondaryText};
+  overflow: hidden;
   ${size}
 `
 

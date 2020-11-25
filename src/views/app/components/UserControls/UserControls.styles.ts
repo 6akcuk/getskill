@@ -8,7 +8,10 @@ const Wrapper = styled.div`
   align-items: center;
 `
 
-const UserControls = styled.div``
+const UserControls = styled.div`
+  display: flex;
+  align-items: center;
+`
 const PublishDropdownButton = styled(PublishDropdown)``
 const LoginButton = styled(Button)``
 const UserBlock = styled(BaseUserBlock)`

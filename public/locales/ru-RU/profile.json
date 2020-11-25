@@ -1,0 +1,36 @@
+{
+  "form": {
+    "contacts": {
+      "add": "Добавить",
+      "label": {
+        "add": "Добавить новый контакт"
+      },
+      "placeholder": {
+        "select_resource": "Выберите сайт",
+        "type_address": "Укажите ссылку или имя профиля"
+      },
+      "resource": {
+        "facebook": "Facebook",
+        "instagram": "Instagram",
+        "twitter": "Twitter",
+        "vkontakte": "ВКонтакте"
+      },
+      "subtitle": "Контактная информация, чтобы с вами могли связаться клиенты",
+      "title": "Контакты"
+    },
+    "profile": {
+      "label": {
+        "about": "Обо мне",
+        "avatar": "Фотография",
+        "change_avatar": "Сменить фотографию",
+        "public_name": "Отображаемое имя"
+      },
+      "subtitle": "Информация в этой форме является общедоступной",
+      "title": "Профиль"
+    }
+  },
+  "nav": {
+    "account": "Аккаунт",
+    "contacts": "Контакты"
+  }
+}

@@ -18,3 +18,4 @@ function Spinner(props: SpinnerProps) {
 }
 
 export default Spinner
+export { Spinner }

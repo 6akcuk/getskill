@@ -4,6 +4,9 @@ export * from './draft/endpoints'
 export * from './draft/hooks'
 export * from './videoLesson/endpoints'
 export * from './videoLesson/hooks'
+export * from './user/endpoints'
+export * from './user/hooks'
+export * from './user/transformations'
 
 // Client
 export { default } from './client'

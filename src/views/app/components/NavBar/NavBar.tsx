@@ -12,9 +12,7 @@ function NavBar(props: NavBarProps) {
   return (
     <S.Wrapper className={props.className}>
       <S.Content>
-        <S.NavLink to="/videolessons" active={false}>
-          {t('navbar.videolessons')}
-        </S.NavLink>
+        <S.NavLink to="/videolessons">{t('navbar.videolessons')}</S.NavLink>
       </S.Content>
     </S.Wrapper>
   )

@@ -1,4 +1,5 @@
 export * from './draft'
+export * from './profile'
 export * from './videolesson'
 
 // Common types

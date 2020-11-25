@@ -9,6 +9,7 @@ import {
 } from '../../../../components'
 
 const UserButton = styled(BaseButton).attrs({ look: 'text' })`
+  display: flex;
   border: 2px solid transparent;
   border-radius: 9999px;
   padding: 0;

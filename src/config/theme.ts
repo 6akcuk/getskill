@@ -12,6 +12,7 @@ export const theme: DefaultTheme = {
     backdrop: 'rgba(107,114,128,0.75)', // #6b7280
     inverseBackdrop: 'rgba(255,255,255,0.90)',
     background: '#f4f5f7',
+    lightBackground: '#f9fafb',
     border: '#d2d6dc',
     white: '#fff',
     sidebarPrimary: '#161e2e',
@@ -27,15 +28,18 @@ export const theme: DefaultTheme = {
   shadow: {
     xs: '0 0 0 1px rgba(0,0,0,.05)',
     sm: '0 1px 2px 0 rgba(0,0,0,.05)',
+    md: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
     lg: '0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05)',
     xl: '0 20px 25px -5px rgba(0,0,0,.1), 0 10px 10px -5px rgba(0,0,0,.04)',
 
     outline: {
       primary: '0 0 0 3px rgba(180,198,252,.45)',
       secondary: '0 0 0 3px rgba(164,202,254,.45)',
+      danger: '0 0 0 3px rgba(164,202,254,.45)', // FIXME
     },
   },
   zIndex: {
+    dropdown: 1002,
     modal: 1000,
     notification: 1001,
   },

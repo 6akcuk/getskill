@@ -13,6 +13,7 @@ declare module 'styled-components' {
       backdrop: string
       inverseBackdrop: string
       background: string
+      lightBackground: string
       border: string
       white: string
       sidebarPrimary: string
@@ -28,14 +29,17 @@ declare module 'styled-components' {
     shadow: {
       xs: string
       sm: string
+      md: string
       lg: string
       xl: string
       outline: {
         primary: string
         secondary: string
+        danger: string
       }
     }
     zIndex: {
+      dropdown: number
       modal: number
       notification: number
     }

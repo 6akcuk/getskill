@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { NavLink as BaseNavLink } from 'react-router-dom'
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ const Content = styled.div`
   align-items: center;
 `
 
-const NavLink = styled(Link)<{ active?: boolean }>`
+const NavLink = styled(BaseNavLink)`
   display: inline-flex;
   align-items: center;
   font-size: 0.875rem;
@@ -26,10 +26,14 @@ const NavLink = styled(Link)<{ active?: boolean }>`
   color: ${props => props.theme.colors.secondaryText};
   text-decoration: none;
 
-  background: ${props => (props.active ? props.theme.colors.background : 'transparent')};
+  background: transparent;
 
   &:hover {
     color: ${props => props.theme.colors.primaryText};
+  }
+
+  &.active {
+    background: ${props => props.theme.colors.background};
   }
 `
 

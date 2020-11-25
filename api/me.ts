@@ -20,8 +20,12 @@ async function me(req: NowRequest, res: NowResponse) {
     email: user.email,
     phone: user.phone,
     role: user.role,
-    avatar: user.profile.avatar,
-    publicName: user.profile.publicName,
+    profile: {
+      avatar: user.profile.avatar,
+      publicName: user.profile.publicName,
+      about: user.profile.about,
+      contacts: user.profile.contacts,
+    },
     isEmailVerified: user.isEmailVerified,
     isPhoneVerified: user.isPhoneVerified,
   })

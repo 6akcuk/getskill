@@ -62,11 +62,26 @@ const text = css`
   background: transparent;
 `
 
+const danger = css`
+  background: ${({ theme }) => theme.colors.danger};
+  color: ${({ theme }) => theme.colors.white};
+
+  &:hover {
+    background: ${({ theme }) => lighten(0.04, theme.colors.danger)};
+  }
+
+  &:focus {
+    border-color: ${({ theme }) => darken(0.04, theme.colors.danger)};
+    box-shadow: ${({ theme }) => theme.shadow.outline.danger};
+  }
+
+  &:active {
+    background: ${({ theme }) => darken(0.04, theme.colors.danger)};
+  }
+`
+
 const look = (props: StyledButtonProps) => {
   switch (props.look) {
-    case 'primary':
-      return primary
-
     case 'secondary':
       return secondary
 
@@ -76,6 +91,10 @@ const look = (props: StyledButtonProps) => {
     case 'text':
       return text
 
+    case 'danger':
+      return danger
+
+    case 'primary':
     default:
       return primary
   }
@@ -90,7 +109,6 @@ const StyledButton = styled.button<StyledButtonProps & { block?: boolean }>`
   border-radius: ${({ theme }) => theme.sizes.radius.md};
   border: 1px solid transparent;
   ${look}
-  width: 100%;
 
   position: relative;
   display: ${({ block }) => (block ? 'block' : 'inline-block')};
