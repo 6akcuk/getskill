@@ -16,6 +16,10 @@ function UserBlock(props: UserBlockProps) {
   const setAuthToken = useSetRecoilState(authTokenState)
   const history = useHistory()
 
+  const handleNavigateToProfile = useCallback(() => {
+    history.push(`/user/${user?.id}`)
+  }, [history, user])
+
   const handleNavigateToSettings = useCallback(() => {
     history.push('/settings')
   }, [history])
@@ -34,7 +38,7 @@ function UserBlock(props: UserBlockProps) {
         </S.SignedInBlock>,
         <S.MenuDivider key={1} />,
         <S.MenuGroup key={2}>
-          <S.MenuItem>{t('button.profile')}</S.MenuItem>
+          <S.MenuItem onClick={handleNavigateToProfile}>{t('button.profile')}</S.MenuItem>
           <S.MenuItem onClick={handleNavigateToSettings}>{t('button.settings')}</S.MenuItem>
           <S.MenuItem onClick={handleSignOut}>{t('button.sign_out')}</S.MenuItem>
         </S.MenuGroup>,

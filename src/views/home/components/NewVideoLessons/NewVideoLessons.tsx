@@ -1,17 +1,11 @@
 import React from 'react'
-import useSWR from 'swr'
-import { VideoLesson } from '../../../../api'
+import { useVideoLessons } from '../../../../hooks'
 import * as S from './NewVideoLessons.styles'
 
 function NewVideoLessons() {
-  const { data, isValidating } = useSWR<VideoLesson[]>('/api/latest_videolessons')
+  const { data } = useVideoLessons()
 
-  return (
-    <S.Wrapper>
-      {isValidating && <S.Loading />}
-      {data && data.map(videoLesson => <S.VideoLesson key={videoLesson.id} videoLesson={videoLesson} />)}
-    </S.Wrapper>
-  )
+  return <S.List items={data} />
 }
 
 export default NewVideoLessons

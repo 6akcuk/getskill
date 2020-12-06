@@ -1,9 +1,9 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import GetDraftVideoLessonForm from './GetDraftVideoLessonForm'
-import { useDraft, DraftResourceType } from '../../../../../../api'
-import { AsyncRequestConsumer, ErrorBoundary } from '../../../../../../components'
+import { ErrorBoundary, AsyncRequestConsumer } from '../../../../../../components'
 import * as S from './CreateVideoLesson.styles'
+import GetVideoLessonForm from './GetVideoLessonForm'
+import { useDraft, DraftResourceType } from '../../../../../../api'
 
 function CreateVideoLesson() {
   const { t } = useTranslation('videolesson')
@@ -16,7 +16,7 @@ function CreateVideoLesson() {
           params={{}}
           body={{ resourceType: DraftResourceType.VIDEOLESSON }}>
           {videoLesson => (
-            <GetDraftVideoLessonForm videoLesson={videoLesson}>
+            <GetVideoLessonForm videolesson={videoLesson}>
               {form => (
                 <>
                   <S.Header>{t('create.modal.title')}</S.Header>
@@ -32,7 +32,7 @@ function CreateVideoLesson() {
                   </S.Form>
                 </>
               )}
-            </GetDraftVideoLessonForm>
+            </GetVideoLessonForm>
           )}
         </AsyncRequestConsumer>
       </ErrorBoundary>

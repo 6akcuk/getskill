@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import useSWR from 'swr'
 import { VideoLesson } from '../../../../api'
 import * as S from './WatchLesson.styles'
+import { Transformation } from 'cloudinary-react'
 
 interface WatchLessonParams {
   id: string
@@ -17,7 +18,13 @@ function WatchLesson() {
       {isValidating && <S.Loading />}
       {data && (
         <>
-          <S.Player src={data.uid} controls={true} />
+          <S.Player
+            publicId={data.publicId ?? undefined}
+            version={`${data.version}`}
+            controls={true}
+            sourceTypes="hls">
+            <Transformation streamingProfile="hd_lean" />
+          </S.Player>
           <S.Title>{data.name}</S.Title>
           <S.Description>{data.description}</S.Description>
         </>

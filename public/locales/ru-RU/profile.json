@@ -29,8 +29,12 @@
       "title": "Профиль"
     }
   },
+  "view": {
+      "contacts_title": "Контактная информация"
+  },
   "nav": {
     "account": "Аккаунт",
-    "contacts": "Контакты"
+    "contacts": "Контакты",
+    "videolessons": "Видеоуроки"
   }
 }

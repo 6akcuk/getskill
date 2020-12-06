@@ -7,7 +7,7 @@ import { LoginForm } from '..'
 import { LoginFormSchema } from '../LoginForm/useLoginForm'
 import { useLogin } from '../../../../api'
 import { authTokenState } from '../../atoms'
-import { useIsLoggedIn } from '../../../../hooks'
+import { useIsLoggedIn, useNavigateBack, useOpenModalCallback } from '../../../../hooks'
 import * as S from './Login.styles'
 
 function Login() {
@@ -16,10 +16,12 @@ function Login() {
   const history = useHistory()
   const { t } = useTranslation('auth')
   const [, login] = useLogin()
+  const navigateBack = useNavigateBack()
+  const openModal = useOpenModalCallback()
 
   useEffect(() => {
     if (isLoggedIn) {
-      history.push('/')
+      navigateBack()
     }
   }, [isLoggedIn, history])
 
@@ -39,8 +41,8 @@ function Login() {
   )
 
   const handleSignUpClick = useCallback(() => {
-    history.push('/register')
-  }, [history])
+    openModal('/register')
+  }, [openModal])
 
   return (
     <Modal>

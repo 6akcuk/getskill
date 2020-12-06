@@ -9,6 +9,7 @@ import 'react-circular-progressbar/dist/styles.css'
 interface UploadResponse {
   asset_id: string
   bytes: number
+  duration: number
   created_at: string
   etag: string
   format: string
@@ -57,7 +58,7 @@ function UploadHandler(props: UploadHandlerProps) {
             ...oldNotifications,
             {
               title: 'Ошибка',
-              text: (e as AxiosError).response?.data.message,
+              text: (e as AxiosError).response?.data.error.message,
               type: NotificationType.ERROR,
             },
           ])

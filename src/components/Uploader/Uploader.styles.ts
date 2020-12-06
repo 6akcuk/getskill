@@ -4,7 +4,9 @@ import BaseUploadHandler from './UploadHandler'
 import BaseSpinner from '../Spinner'
 
 const UploadWrapper = styled.div``
-const Dropzone = styled(BaseDropzone)``
+const Dropzone = styled(BaseDropzone)`
+  position: relative;
+`
 const UploadHandler = styled(BaseUploadHandler)``
 const Wrapper = styled.div``
 

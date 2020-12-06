@@ -124,10 +124,29 @@ const StyledButton = styled.button<StyledButtonProps & { block?: boolean }>`
   }
 `
 
+const Content = styled.div<{ showSpinner?: boolean }>`
+  visibility: ${props => props.showSpinner ? 'hidden' : 'visible'};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+`
+
+const SpinnerWrapper = styled.div`
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+`
+
 const ButtonSpinner = styled(Spinner)`
   width: 36px;
   height: 36px;
-  margin: -9px 0 -13px;
 `
 
-export { ButtonSpinner, StyledButton }
+export { ButtonSpinner, Content, SpinnerWrapper, StyledButton }

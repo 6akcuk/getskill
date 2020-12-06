@@ -1,19 +1,23 @@
 import styled from 'styled-components'
+import { UserAvatar } from '../../../../components'
+import { Link } from 'react-router-dom'
+import { Image } from 'cloudinary-react'
 
 const Wrapper = styled.div`
   cursor: pointer;
 `
 
-const Poster = styled.div<{ src: string }>`
+const PosterWrapper = styled.div`
   position: relative;
   width: 20rem;
-  height: 11.29rem;
-  background-image: url(${props => props.src});
-  background-size: cover;
+  height: 11.25rem;
   border-radius: ${props => props.theme.sizes.radius.md};
   box-shadow: ${props => props.theme.shadow.lg};
-
+  overflow: hidden;
+`
+const Poster = styled(Image)`
   &:hover {
+    transformation: scale(1.1);
   }
 `
 
@@ -35,4 +39,17 @@ const Name = styled.h4`
   color: ${props => props.theme.colors.primaryText};
 `
 
-export { Duration, Name, Poster, Wrapper }
+const Author = styled(Link)`
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+  text-decoration: none;
+`
+const AuthorAvatar = styled(UserAvatar)``
+const AuthorName = styled.div`
+  margin-left: 0.75rem;
+  color: ${props => props.theme.colors.secondaryText};
+`
+
+export { Author, AuthorAvatar, AuthorName, Duration, Name, Poster, PosterWrapper, Wrapper }

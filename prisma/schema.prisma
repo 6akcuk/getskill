@@ -56,10 +56,11 @@ model VideoLesson {
   isUploaded Boolean @default(false)
   isReady Boolean @default(false)
   duration Int @default(0)
-  poster String?
-  uid String
-  uploadUrl String
   name String
+  poster String?
+  publicId String?
+  version Int?
+  uploadUrl String?
   description String?
   tags Tag[]
   user User @relation(fields: [userId], references: [id])

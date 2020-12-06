@@ -15,7 +15,7 @@
   "video": {
     "drag_drop": {
       "browse": "Загрузите файл",
-      "info": "MOV, AVI, MP4 до 200 Мб",
+      "info": "MOV, AVI, MP4",
       "title": "или перетащите видео"
     }
   }

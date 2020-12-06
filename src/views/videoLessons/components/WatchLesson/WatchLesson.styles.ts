@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Stream } from '@cloudflare/stream-react'
+import { Video } from 'cloudinary-react'
 import { Modal, Spinner } from '../../../../components'
 
 const WatchModal = styled(Modal)`
@@ -9,7 +9,7 @@ const WatchModal = styled(Modal)`
 
 const Loading = styled(Spinner)``
 
-const Player = styled(Stream)``
+const Player = styled(Video)``
 const Title = styled.h3`
   font-size: 1.125rem;
   font-weight: 500;

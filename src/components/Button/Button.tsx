@@ -9,7 +9,10 @@ function Button(props: ButtonProps) {
 
   return (
     <S.StyledButton look={look} {...rest}>
-      {showSpinner ? <S.ButtonSpinner inverse={inverse} /> : children}
+      {showSpinner ? <S.SpinnerWrapper><S.ButtonSpinner inverse={inverse} /></S.SpinnerWrapper> : null}
+      <S.Content showSpinner={showSpinner}>
+        {children}
+      </S.Content>
     </S.StyledButton>
   )
 }

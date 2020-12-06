@@ -1,6 +1,6 @@
 import { NowRequestBody, NowRequestQuery } from '@vercel/node'
 import { ApiResponse, ApiRequestWithAuth, ApiRequest } from '../endpoints/types'
-import { authorizeRequest } from './withAuth'
+import { authorizeRequest, addAuthorizedUserToRequestObject } from './withAuth'
 
 type ApiHandler<Request extends ApiRequest = ApiRequest, Response extends ApiResponse = ApiResponse> = (
   request: Request,
@@ -20,7 +20,7 @@ function withAuthHandler<
       )
     }
 
-    return handler(req, res)
+    return handler(addAuthorizedUserToRequestObject(req), res)
   }
 }
 

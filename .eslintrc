@@ -19,7 +19,8 @@
   },
   "plugins": [
     "@typescript-eslint",
-    "react"
+    "react",
+    "react-hooks"
   ],
   "parserOptions": {
     "ecmaFeatures": {

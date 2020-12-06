@@ -7,6 +7,12 @@ const userAssetTransformations: ResourceAssetTransformations = {
     crop: 'thumb',
     gravity: 'face',
   },
+  profile: {
+    width: 280,
+    height: 280,
+    crop: 'thumb',
+    gravity: 'face',
+  },
 }
 
 export default userAssetTransformations

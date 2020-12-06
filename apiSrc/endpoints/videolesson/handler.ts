@@ -1,18 +1,20 @@
 import createVideoLesson, { CreateVideoLessonRequest, CreateVideoLessonResponse } from './createVideolesson'
 import { withAuthHandler, ApiHandler } from '../../utils/withAuthHandler'
+import getVideoLessons, { GetVideoLessonsRequest, GetVideoLessonsResponse } from './getVideoLessons'
 
 interface HandlerParams {
-  request: VideoLessonRequest
-  response: VideoLessonResponse
+  request: VideoLessonsRequest
+  response: VideoLessonsResponse
 }
 
-type VideoLessonRequest = CreateVideoLessonRequest
-type VideoLessonResponse = CreateVideoLessonResponse
+type VideoLessonsRequest = CreateVideoLessonRequest | GetVideoLessonsRequest
+type VideoLessonsResponse = CreateVideoLessonResponse | GetVideoLessonsResponse
 
-type Handler = ApiHandler<VideoLessonRequest, VideoLessonResponse>
+type Handler = ApiHandler<VideoLessonsRequest, VideoLessonsResponse>
 
 function handler(params: HandlerParams) {
   const handlers: Record<string, Handler> = {
+    ['GET']: getVideoLessons,
     ['POST']: withAuthHandler(createVideoLesson),
   }
 
@@ -20,5 +22,5 @@ function handler(params: HandlerParams) {
 }
 
 export default handler
-export { handler as videoLessonHandler }
-export type { VideoLessonRequest, VideoLessonResponse }
+export { handler as videoLessonsHandler }
+export type { VideoLessonsRequest, VideoLessonsResponse }

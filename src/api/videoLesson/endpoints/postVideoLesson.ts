@@ -5,6 +5,9 @@ import { VideoLesson } from '../../videoLesson/types'
 type PostVideoLessonRequestParams = VoidArgument
 interface PostVideoLessonRequestBody {
   name: string
+  publicId: string
+  version: number
+  duration: number
   description?: string
 }
 type PostVideoLessonResponseBody = VideoLesson
@@ -16,7 +19,7 @@ const postVideoLesson = defineEndpoint<
 >(({ client, body }) =>
   client.request({
     method: 'POST',
-    url: '/api/videolesson',
+    url: '/api/videolessons',
     data: body,
   }),
 )

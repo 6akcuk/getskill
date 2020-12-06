@@ -4,10 +4,12 @@ interface Asset {
 }
 
 interface AssetTransformation {
-  width: number
-  height: number
-  crop: 'fill' | 'crop' | 'thumb'
+  width?: number
+  height?: number
+  crop?: 'fill' | 'crop' | 'thumb'
   gravity?: 'face'
+  streaming_profile?: 'hd' | 'full_hd' | 'hd_lean'
+  format?: 'm3u8'
 }
 
 interface ResourceAssetTransformations {

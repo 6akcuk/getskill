@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
-import { useIsLoggedIn } from '../../../../hooks'
+import { useIsLoggedIn, useOpenModalCallback } from '../../../../hooks'
 import * as S from './UserControls.styles'
 
 interface UserControlsProps {
@@ -11,11 +10,11 @@ interface UserControlsProps {
 function UserControls(props: UserControlsProps) {
   const isLoggedIn = useIsLoggedIn()
   const { t } = useTranslation('auth')
-  const history = useHistory()
+  const openModal = useOpenModalCallback()
 
   const handleSignIn = useCallback(() => {
-    history.push('/login')
-  }, [history])
+    openModal('/login')
+  }, [openModal])
 
   return (
     <S.Wrapper className={props.className}>

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import BaseDropzone from './Dropzone'
+import BaseUploader from './Uploader'
 import { IconPlus, IconFilm } from '../Icons'
-import BaseUploadHandler from './UploadHandler'
 
 const Wrapper = styled.div`
   position: relative;
@@ -58,7 +58,7 @@ const Title = styled.div`
   color: ${props => props.theme.colors.secondaryAccentText};
 `
 
-const UploadHandler = styled(BaseUploadHandler)``
+const Uploader = styled(BaseUploader)``
 
 export {
   Browse,
@@ -70,7 +70,7 @@ export {
   PlusWrapper,
   Title,
   UploadIcon,
-  UploadHandler,
   UploadWrapper,
+  Uploader,
   Wrapper,
 }
