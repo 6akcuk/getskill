@@ -5,11 +5,12 @@ import { Image } from 'cloudinary-react'
 
 const Wrapper = styled.div`
   cursor: pointer;
+  overflow: hidden;
 `
 
 const PosterWrapper = styled.div`
   position: relative;
-  max-height: 11.81rem;
+  height: 14rem;
   border-radius: ${props => props.theme.sizes.radius.md};
   box-shadow: ${props => props.theme.shadow.lg};
   overflow: hidden;

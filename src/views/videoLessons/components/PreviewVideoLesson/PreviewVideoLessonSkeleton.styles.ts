@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import Skeleton from 'react-loading-skeleton'
 
 const Wrapper = styled.div``
-const Poster = styled(Skeleton).attrs({ width: '22.5rem', height: '11.81rem' })``
+const Poster = styled(Skeleton).attrs({ width: '100%', height: '14rem' })``
 const Author = styled.div`
   display: flex;
   align-items: center;

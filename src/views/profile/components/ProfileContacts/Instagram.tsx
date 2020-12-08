@@ -19,7 +19,7 @@ function Instagram(props: InstagramProps) {
     <a
       href={`https://instagram.com/${profileName}`}
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer"
       className={props.className}>
       <InstagramIcon />
       <span>

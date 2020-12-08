@@ -6,6 +6,7 @@ import { Transformation } from 'cloudinary-react'
 
 interface VideoLessonPreviewProps {
   videoLesson: VideoLesson
+  hideAuthor?: boolean
   className?: string
 }
 
@@ -37,10 +38,12 @@ function PreviewVideoLesson(props: VideoLessonPreviewProps) {
         </S.Poster>
         <S.Duration>{duration}</S.Duration>
       </S.PosterWrapper>
-      <S.Author to={`/user/${props.videoLesson.userId}`} onClick={e => e.stopPropagation()}>
-        <S.AuthorAvatar size="xs" user={props.videoLesson.user} />
-        <S.AuthorName>{props.videoLesson.user.profile.publicName}</S.AuthorName>
-      </S.Author>
+      {!props.hideAuthor && (
+        <S.Author to={`/user/${props.videoLesson.userId}`} onClick={e => e.stopPropagation()}>
+          <S.AuthorAvatar size="xs" user={props.videoLesson.user} />
+          <S.AuthorName>{props.videoLesson.user.profile.publicName}</S.AuthorName>
+        </S.Author>
+      )}
       <S.Name>{props.videoLesson.name}</S.Name>
     </S.Wrapper>
   )

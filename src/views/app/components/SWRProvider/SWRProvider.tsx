@@ -17,6 +17,7 @@ function SWRProvider(props: SWRProviderProps) {
       value={{
         fetcher,
         revalidateOnFocus: false,
+        suspense: true,
         onError: (err: AxiosError) => {
           // Clear auth token
           if (err.response?.status === 401) {

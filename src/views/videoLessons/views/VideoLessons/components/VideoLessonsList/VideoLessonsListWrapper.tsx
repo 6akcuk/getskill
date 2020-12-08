@@ -1,12 +1,19 @@
-import React, { Suspense, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import VideoLessonsListErrorBoundary from './VideoLessonsListErrorBoundary'
 import { PreviewVideoLessonSkeleton } from '../../../../components'
+import { Suspense } from '../../../../../../components'
 import * as S from './VideoLessonsListWrapper.styles'
 
 function VideoLessonsListWrapper() {
   const { t } = useTranslation('videolesson')
-  const fallback = useMemo(() => Array(3).map((_, index) => <PreviewVideoLessonSkeleton key={index} />), [])
+  const fallback = useMemo(
+    () =>
+      Array(3)
+        .fill(0)
+        .map((_, index) => <PreviewVideoLessonSkeleton key={index} />),
+    [],
+  )
 
   return (
     <S.Wrapper>

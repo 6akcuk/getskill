@@ -1,2 +1,2 @@
-export { default } from './ProfileOverview'
-export * from './ProfileOverview'
+export { default } from './ProfileOverviewWrapper'
+export { ProfileOverviewWrapper as ProfileOverview } from './ProfileOverviewWrapper'

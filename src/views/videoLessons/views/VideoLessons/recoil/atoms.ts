@@ -2,7 +2,7 @@ import { atom } from 'recoil'
 
 const offsetState = atom({
   key: 'videoLessonsOffset',
-  default: 1,
+  default: 0,
 })
 
 export { offsetState }

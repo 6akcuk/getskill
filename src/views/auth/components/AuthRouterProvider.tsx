@@ -15,7 +15,7 @@ function AuthRouterProvider(props: AuthRouterProviderProps) {
     <>
       <Switch>
         <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
+        <Route path="/login/register" component={Register} />
       </Switch>
       {props.children}
     </>

@@ -11,8 +11,8 @@ const videoLessonAssetTransformations: ResourceAssetTransformations = {
 
 const videoLessonPosterTransformations: ResourceAssetTransformations = {
   poster: {
-    width: 360,
-    height: 189,
+    width: 400,
+    height: 224,
     crop: 'thumb',
   },
 }

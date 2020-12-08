@@ -11,7 +11,7 @@ import { VideoLessons } from './videoLessons/views/VideoLessons'
 
 function Routes() {
   const location = useLocation()
-  const previousLocation = usePrevious(location, (prev, next) => prev !== next && !prev?.state?.modal)
+  const previousLocation = usePrevious(location, (prev, next) => prev !== next)
   const isModal = useMemo(() => location.state && location.state.modal && location !== previousLocation, [
     location,
     previousLocation,

@@ -16,7 +16,11 @@ function Vkontakte(props: VkontakteProps) {
   const prefix = profileName.match(/^id/) ? '' : '@'
 
   return (
-    <a href={`https://vk.com/${profileName}`} target="_blank" rel="noreferrer" className={props.className}>
+    <a
+      href={`https://vk.com/${profileName}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={props.className}>
       <VkIcon />
       <span>
         {prefix}

@@ -1,8 +1,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useRouteMatch, Switch, Route } from 'react-router-dom'
+import { VideoLessons } from './components/VideoLessons'
 import * as S from './ProfileFeed.styles'
-import VideoLessons from './VideoLessons'
 
 interface ProfileFeedProps {
   userId: string

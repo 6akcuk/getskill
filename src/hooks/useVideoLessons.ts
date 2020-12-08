@@ -11,7 +11,7 @@ interface UseVideoLessonsProps extends ParsedUrlQueryInput {
 function useVideoLessons(props?: UseVideoLessonsProps) {
   const params = qs.stringify(props ?? {})
 
-  return useSWR<VideoLesson[]>(`/api/videolessons?${params}`, { suspense: true })
+  return useSWR<VideoLesson[]>(`/api/videolessons?${params}`)
 }
 
 export default useVideoLessons

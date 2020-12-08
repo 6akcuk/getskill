@@ -27,3 +27,4 @@ function ProfileOverview(props: ProfileOverviewProps) {
 
 export default ProfileOverview
 export { ProfileOverview }
+export type { ProfileOverviewProps }
