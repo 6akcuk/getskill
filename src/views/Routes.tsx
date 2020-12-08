@@ -7,6 +7,7 @@ import { ProfileSettings } from './profile/views/profileSettings'
 import { ProfileView } from './profile'
 import { usePrevious } from 'ahooks'
 import { useLocation } from '../hooks'
+import { VideoLessons } from './videoLessons/views/VideoLessons'
 
 function Routes() {
   const location = useLocation()
@@ -22,6 +23,7 @@ function Routes() {
       <VideoLessonsModalRoutes />
       <Switch location={isModal ? previousLocation : location}>
         <Route path="/" exact={true} component={Home} />
+        <Route path="/videolessons" component={VideoLessons} />
         <Route path="/user/:userId" component={ProfileView} />
         <Route path="/settings" component={ProfileSettings} />
       </Switch>

@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
 import { ErrorDisplay } from './ErrorDisplay'
+import styled from 'styled-components'
 
 interface ErrorBoundaryProps {
   children?: ReactNode
@@ -10,6 +11,8 @@ interface ErrorBoundaryState {
   hasError: false
 }
 
+const Wrapper = styled.div``
+
 class ErrorBoundary extends React.PureComponent<ErrorBoundaryProps, ErrorBoundaryState> {
   state: ErrorBoundaryState = { hasError: false }
 
@@ -18,7 +21,13 @@ class ErrorBoundary extends React.PureComponent<ErrorBoundaryProps, ErrorBoundar
   }
 
   render() {
-    return this.state.hasError ? this.props.error ?? <ErrorDisplay /> : this.props.children
+    return this.state.hasError ? (
+      <Wrapper onClick={() => this.setState({ hasError: false })}>
+        {this.props.error ?? <ErrorDisplay />}
+      </Wrapper>
+    ) : (
+      this.props.children
+    )
   }
 }
 

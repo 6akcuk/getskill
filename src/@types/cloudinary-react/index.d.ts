@@ -148,7 +148,7 @@ declare module 'cloudinary-react' {
     | 'full_hd_lean'
     | 'hd_lean'
 
-  import { HTMLProps } from 'react'
+  import { HTMLProps, MutableRefObject } from 'react'
 
   export interface CloudinaryComponentProps extends HTMLProps<any> {
     angle?: Angle
@@ -182,6 +182,7 @@ declare module 'cloudinary-react' {
     htmlHeight?: string
     htmlWidth?: string
     if?: string
+    innerRef?: MutableRefObject<HTMLVideoElement | null>
     keyframeInterval?: number
     offset?: string
     opacity?: number | string

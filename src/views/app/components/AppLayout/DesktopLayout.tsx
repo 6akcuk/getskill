@@ -11,11 +11,11 @@ function DesktopLayout(props: DesktopLayoutProps) {
     <S.Wrapper>
       <S.MainColumn>
         <S.TopBar />
-        <Suspense fallback={<Spinner />}>
-          <S.Main>
-            <S.MainContainer>{props.children}</S.MainContainer>
-          </S.Main>
-        </Suspense>
+        <S.Main>
+          <S.MainContainer>
+            <Suspense fallback={<Spinner />}>{props.children}</Suspense>
+          </S.MainContainer>
+        </S.Main>
       </S.MainColumn>
     </S.Wrapper>
   )

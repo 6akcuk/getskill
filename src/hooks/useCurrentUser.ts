@@ -7,7 +7,7 @@ import { User } from '../api/types'
 function useCurrentUser() {
   const authToken = useRecoilValue<string | null>(authTokenState)
   const setCurrentUser = useSetRecoilState(currentUserState)
-  const { data } = useSWR<User>(authToken ? '/api/me' : null)
+  const { data } = useSWR<User>(authToken ? '/api/me' : null, { suspense: false })
 
   useEffect(() => {
     if (authToken) {

@@ -22,7 +22,7 @@ function ErrorDisplay(props: ErrorDisplayProps) {
   }, [history])
 
   return (
-    <S.Wrapper className={props.className}>
+    <S.Wrapper className={props.className} onClick={e => e.stopPropagation()}>
       <S.MessageContainer>
         <S.Title>{props.title ?? t('common.generic_error.title')}</S.Title>
         <S.Text>{props.text ?? t('common.generic_error.text')}</S.Text>

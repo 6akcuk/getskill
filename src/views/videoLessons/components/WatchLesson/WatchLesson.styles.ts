@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Video } from 'cloudinary-react'
 import { Modal, Spinner } from '../../../../components'
 
 const WatchModal = styled(Modal)`
@@ -9,7 +8,6 @@ const WatchModal = styled(Modal)`
 
 const Loading = styled(Spinner)``
 
-const Player = styled(Video)``
 const Title = styled.h3`
   font-size: 1.125rem;
   font-weight: 500;
@@ -23,4 +21,4 @@ const Description = styled.div`
   font-size: 0.875rem;
 `
 
-export { Description, Loading, Player, Title, WatchModal }
+export { Description, Loading, Title, WatchModal }

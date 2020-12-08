@@ -1,5 +1,6 @@
 import useSWR from 'swr'
 import qs, { ParsedUrlQueryInput } from 'querystring'
+import { VideoLesson } from '../api'
 
 interface UseVideoLessonsProps extends ParsedUrlQueryInput {
   userId?: string
@@ -10,7 +11,7 @@ interface UseVideoLessonsProps extends ParsedUrlQueryInput {
 function useVideoLessons(props?: UseVideoLessonsProps) {
   const params = qs.stringify(props ?? {})
 
-  return useSWR(`/api/videolessons?${params}`)
+  return useSWR<VideoLesson[]>(`/api/videolessons?${params}`, { suspense: true })
 }
 
 export default useVideoLessons

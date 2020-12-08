@@ -9,8 +9,7 @@ const Wrapper = styled.div`
 
 const PosterWrapper = styled.div`
   position: relative;
-  width: 20rem;
-  height: 11.25rem;
+  max-height: 11.81rem;
   border-radius: ${props => props.theme.sizes.radius.md};
   box-shadow: ${props => props.theme.shadow.lg};
   overflow: hidden;
