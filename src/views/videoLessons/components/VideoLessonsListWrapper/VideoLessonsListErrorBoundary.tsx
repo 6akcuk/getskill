@@ -1,17 +1,20 @@
 import React, { ReactNode, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ErrorBoundary } from '../../../../../../components'
-import { PreviewVideoLessonSkeleton } from '../../../../components'
+import { ErrorBoundary } from '../../../../components'
+import { PreviewVideoLessonSkeleton } from '../PreviewVideoLesson'
 import * as S from './VideoLessonsListErrorBoundary.styles'
 
 interface VideoLessonsListErrorBoundaryProps {
   children: ReactNode
+  onRefresh?: () => void
 }
 
 function VideoLessonsListErrorBoundary(props: VideoLessonsListErrorBoundaryProps) {
   const { t } = useTranslation('videolesson')
 
-  const handleRefresh = useCallback(() => {}, [])
+  const handleRefresh = useCallback(() => {
+    props.onRefresh?.()
+  }, [props.onRefresh])
 
   return (
     <ErrorBoundary

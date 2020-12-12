@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { ErrorDisplay } from '../../../../../../components'
+import { ErrorDisplay } from '../../../../components'
 
 const Wrapper = styled.div`
   position: relative;

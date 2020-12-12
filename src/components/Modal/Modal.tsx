@@ -2,6 +2,7 @@ import React, { ReactNode, useCallback } from 'react'
 import { Wrapper, Backdrop, Content } from './Modal.styles'
 import { createPortal } from 'react-dom'
 import { useNavigateBack } from '../../hooks'
+import Suspense from '../Suspense'
 
 interface ModalProps {
   className?: string
@@ -20,7 +21,9 @@ function Modal(props: ModalProps) {
   return createPortal(
     <Wrapper>
       {backdrop && <Backdrop onClick={handleBackdropClick} />}
-      <Content className={props.className}>{children}</Content>
+      <Content className={props.className}>
+        <Suspense>{children}</Suspense>
+      </Content>
     </Wrapper>,
     document.getElementById('modal')!,
   )

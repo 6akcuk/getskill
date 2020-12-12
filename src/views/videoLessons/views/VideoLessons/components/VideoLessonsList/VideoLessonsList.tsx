@@ -1,20 +1,19 @@
 import React from 'react'
-import { useRecoilState } from 'recoil'
-import { useVideoLessons } from '../../../../../../hooks'
-import { offsetState } from '../../recoil'
-import { PreviewVideoLessonSkeleton, PreviewVideoLesson } from '../../../../components'
+import { VideoLessonsListWrapper } from '../../../../components'
+import VideoLessonsListContainer from './VideoLessonsListContainer'
+import * as S from './VideoLessonsList.styles'
+import { useTranslation } from 'react-i18next'
 
 function VideoLessonsList() {
-  const [offset] = useRecoilState(offsetState)
-  const { data, isValidating } = useVideoLessons({ offset })
+  const { t } = useTranslation('videolesson')
 
   return (
-    <>
-      {isValidating && <PreviewVideoLessonSkeleton />}
-      {data?.map(videoLesson => (
-        <PreviewVideoLesson key={videoLesson.id} videoLesson={videoLesson} />
-      ))}
-    </>
+    <S.Wrapper>
+      <S.Title>{t('list.title')}</S.Title>
+      <VideoLessonsListWrapper>
+        <VideoLessonsListContainer />
+      </VideoLessonsListWrapper>
+    </S.Wrapper>
   )
 }
 

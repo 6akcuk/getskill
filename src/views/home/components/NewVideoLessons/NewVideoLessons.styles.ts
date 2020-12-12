@@ -1,11 +1,10 @@
 import styled from 'styled-components'
-import { ListVideoLessons } from '../../../videoLessons'
+import { VideoLessonsListWrapper } from '../../../videoLessons'
 
-const Wrapper = styled.div``
-const List = styled(ListVideoLessons)`
-  display: flex;
-  flex-direction: row;
-  overflow-x: auto;
+const Wrapper = styled(VideoLessonsListWrapper)`
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  overflow: auto;
 `
 
-export { List, Wrapper }
+export { Wrapper }

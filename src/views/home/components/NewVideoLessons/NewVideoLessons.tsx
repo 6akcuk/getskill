@@ -1,11 +1,13 @@
 import React from 'react'
-import { useVideoLessons } from '../../../../hooks'
+import NewVideoLessonsContainer from './NewVideoLessonsContainer'
 import * as S from './NewVideoLessons.styles'
 
 function NewVideoLessons() {
-  const { data } = useVideoLessons()
-
-  return <S.List items={data} />
+  return (
+    <S.Wrapper>
+      <NewVideoLessonsContainer />
+    </S.Wrapper>
+  )
 }
 
 export default NewVideoLessons

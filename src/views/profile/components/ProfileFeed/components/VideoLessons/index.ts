@@ -1,2 +1,2 @@
-export { default } from './VideoLessonsWrapper'
-export { VideoLessonsWrapper as VideoLessons } from './VideoLessonsWrapper'
+export { default } from './VideoLessons'
+export * from './VideoLessons'

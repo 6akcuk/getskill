@@ -9,10 +9,10 @@ const Author = styled.div`
   margin-top: 1rem;
 `
 const AuthorAvatar = styled(Skeleton).attrs({ width: '1.5rem', height: '1.5rem', circle: true })``
-const AuthorName = styled(Skeleton).attrs({ width: '7.5rem', height: '1rem' })`
+const AuthorName = styled(Skeleton).attrs({ width: '37.5%', height: '1rem' })`
   margin-left: 0.75rem;
 `
-const Title = styled(Skeleton).attrs({ width: '20rem' })`
+const Title = styled(Skeleton).attrs({ width: '100%' })`
   margin-top: 1rem;
 `
 

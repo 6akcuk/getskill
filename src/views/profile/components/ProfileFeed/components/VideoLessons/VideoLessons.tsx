@@ -1,21 +1,16 @@
 import React from 'react'
-import { PreviewVideoLessonSkeleton, PreviewVideoLesson } from '../../../../../videoLessons'
-import { useVideoLessons } from '../../../../../../hooks'
+import { VideoLessonsListWrapper } from '../../../../../videoLessons'
+import VideoLessonsListContainer from './VideoLessonsListContainer'
 
 interface VideoLessonsProps {
   userId: string
 }
 
 function VideoLessons(props: VideoLessonsProps) {
-  const { data, isValidating } = useVideoLessons({ userId: props.userId })
-
   return (
-    <>
-      {isValidating && <PreviewVideoLessonSkeleton />}
-      {data?.map(videoLesson => (
-        <PreviewVideoLesson hideAuthor={true} key={videoLesson.id} videoLesson={videoLesson} />
-      ))}
-    </>
+    <VideoLessonsListWrapper gridSize={2} numberOfSkeletons={4}>
+      <VideoLessonsListContainer userId={props.userId} />
+    </VideoLessonsListWrapper>
   )
 }
 
