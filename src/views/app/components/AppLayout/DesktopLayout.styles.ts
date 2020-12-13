@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import BaseBanners from '../Banners'
 import Topbar from '../Topbar'
 import BaseNavBar from '../NavBar'
 
@@ -35,5 +36,6 @@ const MainContainer = styled.div`
 
 const TopBar = styled(Topbar)``
 const NavBar = styled(BaseNavBar)``
+const Banners = styled(BaseBanners)``
 
-export { Main, MainColumn, MainContainer, NavBar, TopBar, Wrapper }
+export { Banners, Main, MainColumn, MainContainer, NavBar, TopBar, Wrapper }

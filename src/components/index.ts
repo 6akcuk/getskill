@@ -1,4 +1,5 @@
 export * from './AsyncRequestConsumer'
+export * from './Banner'
 export * from './Button'
 export * from './Divider'
 export * from './Dropdown'

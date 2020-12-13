@@ -1,6 +1,6 @@
 import React, { ReactNode, Suspense } from 'react'
-import * as S from './DesktopLayout.styles'
 import { Spinner } from '../../../../components'
+import * as S from './DesktopLayout.styles'
 
 interface DesktopLayoutProps {
   children: ReactNode
@@ -10,6 +10,7 @@ function DesktopLayout(props: DesktopLayoutProps) {
   return (
     <S.Wrapper>
       <S.MainColumn>
+        <S.Banners />
         <S.TopBar />
         <S.Main>
           <S.MainContainer>

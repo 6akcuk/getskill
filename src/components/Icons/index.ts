@@ -4,6 +4,7 @@ import _IconChevronUp from './IconChevronUp'
 import _IconClose from './IconClose'
 import _IconCloseCircle from './IconCloseCircle'
 import _IconCloudUpload from './IconCloudUpload'
+import _IconExclamation from './IconExclamation'
 import _IconFilm from './IconFilm'
 import _IconInstagram from './IconInstagram'
 import _IconPlus from './IconPlus'
@@ -16,6 +17,7 @@ const IconChevronUp = cssVarsAsProps(_IconChevronUp)
 const IconClose = cssVarsAsProps(_IconClose)
 const IconCloseCircle = cssVarsAsProps(_IconCloseCircle)
 const IconCloudUpload = cssVarsAsProps(_IconCloudUpload)
+const IconExclamation = cssVarsAsProps(_IconExclamation)
 const IconFilm = cssVarsAsProps(_IconFilm)
 const IconInstagram = cssVarsAsProps(_IconInstagram)
 const IconPlus = cssVarsAsProps(_IconPlus)
@@ -29,6 +31,7 @@ export {
   IconClose,
   IconCloseCircle,
   IconCloudUpload,
+  IconExclamation,
   IconFilm,
   IconInstagram,
   IconPlus,

@@ -80,6 +80,17 @@ const danger = css`
   }
 `
 
+const icon = css`
+  border: 0;
+  background: transparent;
+  padding: 0.5rem;
+  box-shadow: none;
+
+  &:hover {
+    background: ${props => props.theme.colors.primaryLight};
+  }
+`
+
 const look = (props: StyledButtonProps) => {
   switch (props.look) {
     case 'secondary':
@@ -93,6 +104,9 @@ const look = (props: StyledButtonProps) => {
 
     case 'danger':
       return danger
+
+    case 'icon':
+      return icon
 
     case 'primary':
     default:
@@ -108,12 +122,13 @@ const StyledButton = styled.button<StyledButtonProps & { block?: boolean }>`
   font-weight: 500;
   border-radius: ${({ theme }) => theme.sizes.radius.md};
   border: 1px solid transparent;
-  ${look}
 
   position: relative;
   display: ${({ block }) => (block ? 'block' : 'inline-block')};
   border-radius: ${({ theme }) => theme.sizes.radius.md};
   box-shadow: ${({ theme }) => theme.shadow.sm};
+
+  ${look}
 
   transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -125,7 +140,7 @@ const StyledButton = styled.button<StyledButtonProps & { block?: boolean }>`
 `
 
 const Content = styled.div<{ showSpinner?: boolean }>`
-  visibility: ${props => props.showSpinner ? 'hidden' : 'visible'};
+  visibility: ${props => (props.showSpinner ? 'hidden' : 'visible')};
   display: flex;
   align-items: center;
   justify-content: center;

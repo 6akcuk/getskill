@@ -1,6 +1,6 @@
 import { ReactNode, ButtonHTMLAttributes } from 'react'
 
-export type ButtonLook = 'primary' | 'secondary' | 'white' | 'danger' | 'text'
+export type ButtonLook = 'primary' | 'secondary' | 'white' | 'danger' | 'text' | 'icon'
 
 export interface StyledButtonProps {
   look: ButtonLook
