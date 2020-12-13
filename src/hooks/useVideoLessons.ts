@@ -1,17 +1,17 @@
-import useSWR from 'swr'
-import qs, { ParsedUrlQueryInput } from 'querystring'
 import { VideoLesson } from '../api'
+import useInfiniteEntities from './useInfiniteEntities'
 
-interface UseVideoLessonsProps extends ParsedUrlQueryInput {
+interface UseVideoLessonsProps {
   userId?: string
-  offset?: number
   limit?: number
 }
 
 function useVideoLessons(props?: UseVideoLessonsProps) {
-  const params = qs.stringify(props ?? {})
-
-  return useSWR<VideoLesson[]>(`/api/videolessons?${params}`)
+  return useInfiniteEntities<VideoLesson>({
+    endpoint: '/api/videolessons',
+    params: props,
+    limit: props?.limit,
+  })
 }
 
 export default useVideoLessons

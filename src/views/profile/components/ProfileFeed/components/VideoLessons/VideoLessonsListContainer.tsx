@@ -7,9 +7,9 @@ interface VideoLessonsListContainerProps {
 }
 
 function VideoLessonsListContainer(props: VideoLessonsListContainerProps) {
-  const { data, isValidating } = useVideoLessons({ userId: props.userId })
+  const response = useVideoLessons({ userId: props.userId })
 
-  return <VideoLessonsList data={data} isValidating={isValidating} hideAuthor={true} />
+  return <VideoLessonsList {...response} hideAuthor={true} />
 }
 
 export default VideoLessonsListContainer

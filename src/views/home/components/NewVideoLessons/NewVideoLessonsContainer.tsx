@@ -3,9 +3,9 @@ import { useVideoLessons } from '../../../../hooks'
 import { VideoLessonsList } from '../../../videoLessons'
 
 function NewVideoLessonsContainer() {
-  const { data, isValidating } = useVideoLessons()
+  const response = useVideoLessons()
 
-  return <VideoLessonsList data={data} isValidating={isValidating} />
+  return <VideoLessonsList {...response} />
 }
 
 export default NewVideoLessonsContainer

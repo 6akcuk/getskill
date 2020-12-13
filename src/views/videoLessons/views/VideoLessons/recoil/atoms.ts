@@ -1,8 +1,29 @@
 import { atom } from 'recoil'
 
-const offsetState = atom({
-  key: 'videoLessonsOffset',
-  default: 0,
+interface VideoLessonsListState {
+  isEmpty: boolean
+  isReachedEnd: boolean
+}
+
+interface VideoLessonsListFiltersState {
+  page: number
+  limit: number
+}
+
+const videoLessonsListState = atom<VideoLessonsListState>({
+  key: 'videoLessonsListState',
+  default: {
+    isEmpty: true,
+    isReachedEnd: false,
+  },
 })
 
-export { offsetState }
+const videoLessonsListFiltersState = atom<VideoLessonsListFiltersState>({
+  key: 'videoLessonsListFiltersState',
+  default: {
+    page: 1,
+    limit: 3,
+  },
+})
+
+export { videoLessonsListFiltersState, videoLessonsListState }

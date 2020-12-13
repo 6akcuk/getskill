@@ -1,20 +1,33 @@
 import React from 'react'
-import { VideoLesson } from '../../../../api'
+import { useTranslation } from 'react-i18next'
 import PreviewVideoLesson, { PreviewVideoLessonSkeleton } from '../PreviewVideoLesson'
+import { UseInfiniteEntitiesResult } from '../../../../hooks'
+import { VideoLesson } from '../../../../api'
+import * as S from './VideoLessonsList.styles'
 
-interface VideoLessonsListProps {
-  isValidating: boolean
-  data?: VideoLesson[]
+interface VideoLessonsListProps extends UseInfiniteEntitiesResult<VideoLesson> {
   hideAuthor?: boolean
 }
 
 function VideoLessonsList(props: VideoLessonsListProps) {
+  const { t } = useTranslation('app')
+
   return (
     <>
-      {props.isValidating && <PreviewVideoLessonSkeleton />}
-      {props.data?.map(videoLesson => (
+      {props.entities?.map(videoLesson => (
         <PreviewVideoLesson hideAuthor={props.hideAuthor} key={videoLesson.id} videoLesson={videoLesson} />
       ))}
+      {props.isReachedEnd && props.isValidating && <PreviewVideoLessonSkeleton />}
+      {!props.isReachedEnd && (
+        <S.LoadMoreWrapper>
+          <S.LoadMore
+            look="white"
+            showSpinner={props.isValidating}
+            onClick={() => props.setSize(props.size + 1)}>
+            {t('common.load_more')}
+          </S.LoadMore>
+        </S.LoadMoreWrapper>
+      )}
     </>
   )
 }

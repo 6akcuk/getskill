@@ -46,7 +46,7 @@
     "recoil": "^0.0.10",
     "recoil-persist": "^0.6.0",
     "styled-components": "^5.1.1",
-    "swr": "^0.2.3",
+    "swr": "^0.3.9",
     "tus-js-client": "^2.2.0",
     "video.js": "^7.10.2",
     "videojs-contrib-quality-levels": "^2.0.9",

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Switch, useRouteMatch, Route, Redirect } from 'react-router-dom'
+import { Switch, useRouteMatch, Redirect } from 'react-router-dom'
+import { PrivateRoute } from '../../../../../../components'
 import { Account } from '../Account'
 import * as S from './ProfileSettings.styles'
 import Contacts from '../Contacts'
@@ -12,11 +13,11 @@ function ProfileSettings() {
       <S.Navigation />
       <S.Content>
         <Switch>
-          <Route path={`${path}/account`} component={Account} />
-          <Route path={`${path}/contacts`} component={Contacts} />
-          <Route path="*">
+          <PrivateRoute path={`${path}/account`} component={Account} />
+          <PrivateRoute path={`${path}/contacts`} component={Contacts} />
+          <PrivateRoute path="*">
             <Redirect to={`${path}/account`} />
-          </Route>
+          </PrivateRoute>
         </Switch>
       </S.Content>
     </S.Wrapper>

@@ -4,7 +4,7 @@ import { ApiResponse, ApiRequest } from '../types'
 
 interface GetVideoLessonsRequestQuery extends NowRequestQuery {
   userId: string
-  offset: string
+  page: string
   limit: string
 }
 
@@ -14,6 +14,9 @@ type GetVideoLessonsResponse = ApiResponse<VideoLesson[]>
 const prisma = new PrismaClient()
 
 async function getVideoLessons(request: GetVideoLessonsRequest, response: GetVideoLessonsResponse) {
+  const take = Number(request.query.limit ?? 10)
+  const skip = (Number(request.query.page ?? 1) - 1) * take
+
   const videoLessons = await prisma.videoLesson.findMany({
     include: {
       user: {
@@ -34,9 +37,17 @@ async function getVideoLessons(request: GetVideoLessonsRequest, response: GetVid
     orderBy: {
       createdAt: 'desc',
     },
-    take: Number(request.query.limit) || 10,
-    skip: Number(request.query.offset) || 0,
+    take,
+    skip,
   })
+  const total = await prisma.videoLesson.count({
+    where: {
+      userId: Number(request.query.userId) || undefined,
+      isReady: true,
+    },
+  })
+
+  response.setHeader('total', total)
 
   return response.json(videoLessons)
 }
