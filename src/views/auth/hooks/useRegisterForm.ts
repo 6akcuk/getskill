@@ -3,7 +3,7 @@ import { useSetRecoilState } from 'recoil'
 import * as yup from 'yup'
 import { useRegister } from '../../../api'
 import { useNavigateBack } from '../../../hooks'
-import { authTokenState } from '../atoms'
+import { authTokenState } from '../recoil/atoms'
 
 interface RegisterFormValues {
   email: string

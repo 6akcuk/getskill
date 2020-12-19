@@ -16,6 +16,8 @@ const Label = styled.label`
 const Hint = styled.p`
   margin-top: 0.5rem;
   font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: ${props => props.theme.colors.secondaryText};
 `
 
 const Error = styled(Hint)`
@@ -31,4 +33,4 @@ const Error = styled(Hint)`
   color: ${({ theme }) => theme.colors.danger};
 `
 
-export { Error, Label, Wrapper }
+export { Error, Hint, Label, Wrapper }

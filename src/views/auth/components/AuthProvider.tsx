@@ -11,7 +11,7 @@ function AuthProvider(props: AuthProviderProps) {
 
   return (
     <>
-      <PhoneVerifiedBanner user={user} />
+      {user && <PhoneVerifiedBanner user={user} />}
       {props.children}
     </>
   )

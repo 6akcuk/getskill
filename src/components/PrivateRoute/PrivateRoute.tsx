@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRecoilValue } from 'recoil'
-import { isLoggedInState } from '../../views/auth/selectors'
+import { isLoggedInState } from '../../views/auth/recoil/selectors'
 import { RouteProps, Route, Redirect } from 'react-router-dom'
 
 type PrivateRouteProps = RouteProps

@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSetRecoilState } from 'recoil'
 import { useCurrentUser } from '../../../../hooks'
-import { authTokenState } from '../../../auth/atoms'
+import { authTokenState } from '../../../auth/recoil/atoms'
 import * as S from './UserBlock.styles'
 import { useHistory } from 'react-router-dom'
 

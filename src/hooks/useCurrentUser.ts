@@ -1,5 +1,5 @@
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { authTokenState, currentUserState } from '../views/auth/atoms'
+import { authTokenState, currentUserState } from '../views/auth/recoil/atoms'
 import useSWR from 'swr'
 import { useEffect } from 'react'
 import { User } from '../api/types'
@@ -7,7 +7,7 @@ import { User } from '../api/types'
 function useCurrentUser() {
   const authToken = useRecoilValue<string | null>(authTokenState)
   const setCurrentUser = useSetRecoilState(currentUserState)
-  const { data } = useSWR<User>(authToken ? '/api/me' : null, { suspense: false })
+  const { data } = useSWR<User>(authToken ? '/api/me' : null)
 
   useEffect(() => {
     if (authToken) {

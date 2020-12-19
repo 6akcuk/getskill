@@ -1,27 +1,33 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useCallback } from 'react'
 import * as S from './Banner.styles'
 
 interface BannerProps {
   message: ReactNode
   icon?: ReactNode
-  action?: ReactNode
+  actionContent?: ReactNode
+  onAction?: () => void
   onClose?: () => void
 }
 
 function Banner(props: BannerProps) {
+  const handleAction = useCallback(() => {
+    props.onAction?.()
+    props.onClose?.()
+  }, [props.onAction, props.onClose])
+
   return (
     <S.Wrapper>
       <S.Content>
         {props.icon && <S.Icon>{props.icon}</S.Icon>}
         <S.Message hasIcon={Boolean(props.icon)}>{props.message}</S.Message>
       </S.Content>
-      {props.action && (
+      {props.actionContent && (
         <S.ActionItem>
-          <S.Action>{props.action}</S.Action>
+          <S.Action onClick={handleAction}>{props.actionContent}</S.Action>
         </S.ActionItem>
       )}
       <S.ActionItem>
-        <S.CloseButton look="icon">
+        <S.CloseButton look="icon" onClick={props.onClose}>
           <S.CloseIcon />
         </S.CloseButton>
       </S.ActionItem>

@@ -2,8 +2,9 @@ import React from 'react'
 import { Switch, useRouteMatch, Redirect } from 'react-router-dom'
 import { PrivateRoute } from '../../../../../../components'
 import { Account } from '../Account'
-import * as S from './ProfileSettings.styles'
 import Contacts from '../Contacts'
+import { Verification } from '../../views/verification'
+import * as S from './ProfileSettings.styles'
 
 function ProfileSettings() {
   const { path } = useRouteMatch()
@@ -15,6 +16,7 @@ function ProfileSettings() {
         <Switch>
           <PrivateRoute path={`${path}/account`} component={Account} />
           <PrivateRoute path={`${path}/contacts`} component={Contacts} />
+          <PrivateRoute path={`${path}/verification`} component={Verification} />
           <PrivateRoute path="*">
             <Redirect to={`${path}/account`} />
           </PrivateRoute>

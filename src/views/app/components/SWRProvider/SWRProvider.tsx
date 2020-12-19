@@ -3,7 +3,7 @@ import { SWRConfig } from 'swr'
 import { fetcher } from '../../../../utils'
 import { AxiosError } from 'axios'
 import { useSetRecoilState } from 'recoil'
-import { authTokenState } from '../../../auth/atoms'
+import { authTokenState } from '../../../auth/recoil/atoms'
 
 interface SWRProviderProps {
   children: ReactNode
@@ -19,6 +19,7 @@ function SWRProvider(props: SWRProviderProps) {
         revalidateOnFocus: false,
         suspense: true,
         onError: (err: AxiosError) => {
+          console.dir(err)
           // Clear auth token
           if (err.response?.status === 401) {
             setAuthToken(null)

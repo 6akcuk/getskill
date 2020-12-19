@@ -6,7 +6,7 @@ import { Modal } from '../../../../components'
 import { LoginForm } from '..'
 import { LoginFormSchema } from '../LoginForm/useLoginForm'
 import { useLogin } from '../../../../api'
-import { authTokenState } from '../../atoms'
+import { authTokenState } from '../../recoil/atoms'
 import { useIsLoggedIn, useNavigateBack, useOpenModalCallback } from '../../../../hooks'
 import * as S from './Login.styles'
 

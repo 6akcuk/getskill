@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { Wrapper, Label, Error } from './Field.styles'
+import { Wrapper, Label, Error, Hint } from './Field.styles'
 import { useTranslation } from 'react-i18next'
 import { FormikErrors } from 'formik'
 
@@ -13,6 +13,7 @@ interface FieldProps {
   id: string
   label?: string
   error?: FieldError
+  hint?: ReactNode
   children: ReactNode
   className?: string
 }
@@ -48,6 +49,7 @@ function Field(props: FieldProps) {
     <Wrapper className={props.className}>
       {props.label && <Label htmlFor={props.id}>{props.label}</Label>}
       {props.children}
+      {props.hint && <Hint>{props.hint}</Hint>}
       {props.error && <Error>{handleError()}</Error>}
     </Wrapper>
   )

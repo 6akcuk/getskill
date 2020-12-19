@@ -16,6 +16,8 @@ function SideNav(props: SideNavProps) {
       <S.Nav>
         <S.NavItem to={`${path}/account`}>{t('nav.account')}</S.NavItem>
         <S.NavItem to={`${path}/contacts`}>{t('nav.contacts')}</S.NavItem>
+        <S.NavItem to={`${path}/security`}>{t('nav.security')}</S.NavItem>
+        <S.NavItem to={`${path}/verification`}>{t('nav.verification')}</S.NavItem>
       </S.Nav>
     </S.Aside>
   )

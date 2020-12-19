@@ -1,5 +1,5 @@
 import { useRecoilValue } from 'recoil'
-import { isLoggedInState } from '../views/auth/selectors'
+import { isLoggedInState } from '../views/auth/recoil/selectors'
 
 function useIsLoggedIn() {
   const loggedIn = useRecoilValue(isLoggedInState)
