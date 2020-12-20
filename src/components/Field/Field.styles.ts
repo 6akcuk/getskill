@@ -9,7 +9,7 @@ const Label = styled.label`
   line-height: 1.25rem;
   font-size: 0.875rem;
   font-weight: 500;
-  color: ${({ theme }) => theme.colors.primaryText};
+  color: ${({ theme }) => theme.colors.text[700]};
   margin-bottom: 0.25rem;
 `
 
@@ -17,7 +17,7 @@ const Hint = styled.p`
   margin-top: 0.5rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  color: ${props => props.theme.colors.secondaryText};
+  color: ${props => props.theme.colors.text[500]};
 `
 
 const Error = styled(Hint)`
@@ -30,7 +30,7 @@ const Error = styled(Hint)`
   margin: 0;
   padding: 0;
 
-  color: ${({ theme }) => theme.colors.danger};
+  color: ${({ theme }) => theme.colors.danger[600]};
 `
 
 export { Error, Hint, Label, Wrapper }

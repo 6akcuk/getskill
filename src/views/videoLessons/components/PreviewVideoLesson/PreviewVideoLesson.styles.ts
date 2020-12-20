@@ -36,7 +36,7 @@ const Name = styled.h4`
   margin: 1rem 0 0;
   font-weight: 400;
   text-decoration: none;
-  color: ${props => props.theme.colors.primaryText};
+  color: ${props => props.theme.colors.text[900]};
 `
 
 const Author = styled(Link)`
@@ -49,7 +49,7 @@ const Author = styled(Link)`
 const AuthorAvatar = styled(UserAvatar)``
 const AuthorName = styled.div`
   margin-left: 0.75rem;
-  color: ${props => props.theme.colors.secondaryText};
+  color: ${props => props.theme.colors.text[500]};
 `
 
 export { Author, AuthorAvatar, AuthorName, Duration, Name, Poster, PosterWrapper, Wrapper }

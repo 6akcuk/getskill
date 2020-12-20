@@ -1,9 +1,9 @@
 import { selector } from 'recoil'
-import { currentUserState, authBannerStatuses } from './atoms'
+import { authBannerStatuses, authTokenState } from './atoms'
 
 const isLoggedInState = selector({
   key: 'isLoggedInState',
-  get: ({ get }) => get(currentUserState) !== null,
+  get: ({ get }) => get(authTokenState) !== null,
 })
 
 const phoneVerifiedBannerState = selector({

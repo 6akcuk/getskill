@@ -1,5 +1,10 @@
 import styled from 'styled-components'
-import { Button as BaseButton, Field as BaseField, Input as BaseInput } from '../../../../../../components'
+import {
+  Button as BaseButton,
+  Field as BaseField,
+  Input as BaseInput,
+  IconClose,
+} from '../../../../../../components'
 import FormContainer from '../FormContainer'
 import ContactResourceSelect from './ContactResourceSelect'
 
@@ -21,5 +26,9 @@ const Flex = styled.div`
 const InputWrapper = styled.div`
   flex: 1;
 `
+const CloseIcon = styled(IconClose)`
+  --size: 16px;
+  --color: ${props => props.theme.colors.white};
+`
 
-export { Button, Field, Flex, Form, FormContent, Input, InputWrapper, Select }
+export { Button, CloseIcon, Field, Flex, Form, FormContent, Input, InputWrapper, Select }

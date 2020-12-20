@@ -25,7 +25,7 @@ const Main = styled.main`
   position: relative;
   overflow-y: auto;
   flex: 1 1 0%;
-  background: ${props => props.theme.colors.background};
+  background: ${props => props.theme.colors.background[100]};
 `
 const MainContainer = styled.div`
   flex: 1;

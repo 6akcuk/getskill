@@ -1,19 +1,11 @@
 import styled from 'styled-components'
-import { darken } from 'polished'
+import { GSInputProps } from './Input'
 
-const Wrapper = styled.div`
-  position: relative;
-  border-radius: ${({ theme }) => theme.sizes.radius.md};
-  box-shadow: ${({ theme }) => theme.shadow.sm};
-`
-
-const StyledInput = styled.input`
+const StyledInput = styled.input<GSInputProps>`
   display: block;
   appearance: none;
   background-color: ${({ theme }) => theme.colors.white};
-  border-style: solid;
-  border-color: ${({ theme }) => theme.colors.border};
-  border-width: 1px;
+  border: 1px solid ${({ theme }) => theme.colors.border[300]};
   border-radius: ${({ theme }) => theme.sizes.radius.md};
   padding: 0.5rem 0.75rem;
   font-size: 0.875rem;
@@ -21,11 +13,30 @@ const StyledInput = styled.input`
   width: 100%;
   box-sizing: border-box;
   outline: none;
+  box-shadow: ${({ theme }) => theme.shadow.sm};
 
   &:focus {
-    border-color: ${({ theme }) => darken(0.04, theme.colors.border)};
-    box-shadow: ${({ theme }) => theme.shadow.outline.primary};
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    border-color: ${({ theme }) => theme.colors.primary[500]};
+    box-shadow: 0 0 0 1px ${({ theme }) => `${theme.colors.primary[500]}, ${theme.shadow.sm}`};
   }
+
+  ${props =>
+    props.hasError &&
+    `
+    border-color: ${props.theme.colors.danger[300]};
+    color: ${props.theme.colors.danger[900]};
+
+    &:focus {
+      border-color: ${props.theme.colors.danger[500]};
+      box-shadow: 0 0 0 1px ${`${props.theme.colors.danger[500]}, ${props.theme.shadow.sm}`};
+    }
+
+    &::placeholder {
+      color: ${props.theme.colors.danger[300]};
+    }
+  `}
 `
 
-export { StyledInput, Wrapper }
+export { StyledInput }

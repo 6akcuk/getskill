@@ -11,15 +11,16 @@ const NavItem = styled(NavLink)`
   line-height: 1.25rem;
   padding: 0.5rem 0.75rem;
   border-radius: ${props => props.theme.sizes.radius.md};
-  color: ${props => props.theme.colors.primaryAccentText};
+  color: ${props => props.theme.colors.text[900]};
   text-decoration: none;
 
   &:hover {
-    background-color: ${props => props.theme.colors.lightBackground};
+    background-color: ${props => props.theme.colors.background[50]};
   }
 
   &.active {
-    background-color: ${props => props.theme.colors.lightBackground};
+    background-color: ${props => props.theme.colors.background[50]};
+    color: ${props => props.theme.colors.primary[500]};
 
     &:hover {
       background-color: ${props => props.theme.colors.white};

@@ -1,3 +1,4 @@
+export * from './Alert'
 export * from './AsyncRequestConsumer'
 export * from './Banner'
 export * from './Button'

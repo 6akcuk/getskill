@@ -12,7 +12,6 @@ interface BannerProps {
 function Banner(props: BannerProps) {
   const handleAction = useCallback(() => {
     props.onAction?.()
-    props.onClose?.()
   }, [props.onAction, props.onClose])
 
   return (

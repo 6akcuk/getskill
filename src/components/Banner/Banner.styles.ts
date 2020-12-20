@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 0.75rem 1.5rem;
-  background: ${props => props.theme.colors.primary};
+  background: ${props => props.theme.colors.primary[600]};
 `
 const Content = styled.div`
   display: flex;
@@ -20,7 +20,7 @@ const Icon = styled.span`
   display: flex;
   padding: 0.5rem;
   border-radius: ${props => props.theme.sizes.radius.lg};
-  background: ${props => props.theme.colors.primaryAccent};
+  background: ${props => props.theme.colors.primary[800]};
 `
 const Message = styled.p<{ hasIcon?: boolean }>`
   margin-left: ${props => (props.hasIcon ? '0.75rem' : '')};
@@ -45,7 +45,7 @@ const Action = styled.a`
   align-items: center;
   border-radius: ${props => props.theme.sizes.radius.md};
   background: ${props => props.theme.colors.white};
-  color: ${props => props.theme.colors.primary};
+  color: ${props => props.theme.colors.primary[600]};
   padding: 0.5rem 1rem;
   cursor: pointer;
 
@@ -56,10 +56,14 @@ const Action = styled.a`
   line-height: 1.25rem;
 
   &:hover {
-    background: ${props => props.theme.colors.secondary};
+    background: ${props => props.theme.colors.secondary[50]};
   }
 `
-const CloseButton = styled(Button)``
+const CloseButton = styled(Button)`
+  &:hover {
+    background: ${props => props.theme.colors.primary[500]};
+  }
+`
 const CloseIcon = styled(IconClose)`
   --size: 24px;
   color: ${props => props.theme.colors.white};

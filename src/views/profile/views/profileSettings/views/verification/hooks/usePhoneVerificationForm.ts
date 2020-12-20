@@ -1,6 +1,8 @@
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 import { useCurrentUser } from '../../../../../../../hooks'
+import { useVerifyCode } from '../../../../../../../api'
+import { mutate } from 'swr'
 
 interface PhoneVerificationFormValues {
   phone: string
@@ -14,6 +16,7 @@ const phoneVerificationFormSchema = yup.object<PhoneVerificationFormValues>({
 
 function usePhoneVerificationForm() {
   const user = useCurrentUser()
+  const [, verifyCode] = useVerifyCode()
 
   return useFormik<PhoneVerificationFormValues>({
     initialValues: {
@@ -21,7 +24,17 @@ function usePhoneVerificationForm() {
       code: '',
     },
     validationSchema: phoneVerificationFormSchema,
-    onSubmit: () => {},
+    onSubmit: async values => {
+      await verifyCode(
+        {},
+        {
+          verify: 'phone',
+          code: values.code,
+        },
+      )
+
+      mutate('/api/me')
+    },
   })
 }
 

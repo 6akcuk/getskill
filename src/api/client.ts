@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosInstance } from 'axios'
+import axios, { AxiosRequestConfig, AxiosInstance, AxiosResponse } from 'axios'
 import qs from 'qs'
 import * as auth from './auth/endpoints'
 import * as draft from './draft/endpoints'
@@ -53,7 +53,23 @@ function onRequest(config: AxiosRequestConfig) {
   return { ...config, headers }
 }
 
+function onResponse(response: AxiosResponse) {
+  if (response.status === 401) {
+    const recoilPersist = localStorage.getItem('recoil-persist')
+    const state = recoilPersist ? JSON.parse(recoilPersist) : null
+
+    if (state) {
+      state.authTokenState = null
+
+      localStorage.setItem('recoil-persist', JSON.stringify(state))
+    }
+  }
+
+  return response
+}
+
 client.interceptors.request.use(onRequest)
+client.interceptors.response.use(onResponse)
 
 export { client }
 export default client

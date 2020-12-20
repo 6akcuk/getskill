@@ -1,4 +1,6 @@
 import cssVarsAsProps from './cssVarsAsProps'
+import _IconCheckCircle from './IconCheckCircle'
+import _IconCheckCircleSolid from './IconCheckCircleSolid'
 import _IconChevronDown from './IconChevronDown'
 import _IconChevronUp from './IconChevronUp'
 import _IconClose from './IconClose'
@@ -12,6 +14,8 @@ import _IconSearch from './IconSearch'
 import _IconSelector from './IconSelector'
 import _IconVk from './IconVk'
 
+const IconCheckCircle = cssVarsAsProps(_IconCheckCircle)
+const IconCheckCircleSolid = cssVarsAsProps(_IconCheckCircleSolid)
 const IconChevronDown = cssVarsAsProps(_IconChevronDown)
 const IconChevronUp = cssVarsAsProps(_IconChevronUp)
 const IconClose = cssVarsAsProps(_IconClose)
@@ -26,6 +30,8 @@ const IconSelector = cssVarsAsProps(_IconSelector)
 const IconVk = cssVarsAsProps(_IconVk)
 
 export {
+  IconCheckCircle,
+  IconCheckCircleSolid,
   IconChevronDown,
   IconChevronUp,
   IconClose,

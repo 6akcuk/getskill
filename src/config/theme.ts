@@ -1,44 +1,48 @@
 import { DefaultTheme } from 'styled-components'
+import colors from './colors'
 
 export const theme: DefaultTheme = {
   colors: {
-    primary: '#5850ec',
-    primaryAccent: '#3730a3',
-    primaryLight: '#6366f1',
-    secondary: '#e5edff',
-    primaryAccentText: '#161e2e',
-    primaryText: '#374151',
-    secondaryAccentText: '#4b5563',
-    secondaryText: '#6b7280',
-    danger: '#e02424',
-    backdrop: 'rgba(107,114,128,0.75)', // #6b7280
-    inverseBackdrop: 'rgba(255,255,255,0.90)',
-    background: '#f4f5f7',
-    lightBackground: '#f9fafb',
-    border: '#d2d6dc',
+    primary: colors.indigo,
+    secondary: colors.indigo,
+    text: colors.gray,
+
+    success: colors.green,
+    warning: colors.orange,
+    danger: colors.red,
+    info: colors.blue,
+
+    border: colors.gray,
+    background: colors.gray,
+    backdrop: colors.gray[500],
     white: '#fff',
-    sidebarPrimary: '#161e2e',
-    sidebarBackground: '#252f3f',
-    sidebarLight: '#374151',
   },
   sizes: {
     radius: {
+      none: '0px',
+      sm: '0.125rem',
+      DEFAULT: '0.25rem',
       md: '0.375rem',
       lg: '0.5rem',
+      xl: '0.75rem',
+      '2xl': '1rem',
+      '3xl': '1.5rem',
+      full: '9999px',
     },
   },
   shadow: {
-    xs: '0 0 0 1px rgba(0,0,0,.05)',
-    sm: '0 1px 2px 0 rgba(0,0,0,.05)',
-    md: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-    lg: '0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05)',
-    xl: '0 20px 25px -5px rgba(0,0,0,.1), 0 10px 10px -5px rgba(0,0,0,.04)',
-
-    outline: {
-      primary: '0 0 0 3px rgba(180,198,252,.45)',
-      secondary: '0 0 0 3px rgba(164,202,254,.45)',
-      danger: '0 0 0 3px rgba(164,202,254,.45)', // FIXME
-    },
+    sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+    DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+    md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+    xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+    '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+    inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+    none: 'none',
+  },
+  outline: {
+    primary: colors.indigo[500],
+    danger: colors.red[500],
   },
   zIndex: {
     dropdown: 1002,

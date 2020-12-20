@@ -16,7 +16,12 @@ function ProfileForm() {
         fields={
           <>
             <S.Field id="publicName" label={t('form.profile.label.public_name')} error={errors.publicName}>
-              <S.Input id="publicName" onChange={handleChange} value={values.publicName} />
+              <S.Input
+                id="publicName"
+                hasError={Boolean(errors.publicName)}
+                onChange={handleChange}
+                value={values.publicName}
+              />
             </S.Field>
             <S.Field id="about" label={t('form.profile.label.about')} error={errors.about}>
               <S.TextArea id="about" onChange={handleChange} value={values.about ?? ''} />

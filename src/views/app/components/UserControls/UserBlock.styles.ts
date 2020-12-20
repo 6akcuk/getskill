@@ -8,16 +8,15 @@ import {
   MenuItem as BaseMenuItem,
 } from '../../../../components'
 
-const UserButton = styled(BaseButton).attrs({ look: 'text' })`
+const UserButton = styled(BaseButton).attrs({ look: 'primary' })`
   display: flex;
-  border: 2px solid transparent;
   border-radius: 9999px;
   padding: 0;
+  background: ${props => props.theme.colors.white};
   box-shadow: none;
 
-  &:focus,
-  &:active {
-    border-color: ${props => props.theme.colors.border};
+  &:hover {
+    background: ${props => props.theme.colors.white};
   }
 `
 const UserAvatar = styled(BaseUserAvatar)``

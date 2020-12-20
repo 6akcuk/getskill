@@ -46,7 +46,13 @@ async function sendCode(request: SendCodeRequest, response: ApiResponse) {
   }
 
   if (request.body.verify === 'phone') {
-    const callResponse = await sendCodeInCall(user.phone)
+    // FIXME enable on production
+    // const callResponse = await sendCodeInCall(user.phone)
+    const codeMatch = ['', '3369'] // callResponse.code.match(/\d{2}(\d{4})/)
+
+    if (!codeMatch?.[1]) {
+      return sendError(response)('Не удалось выслать код подтверждения', 500)
+    }
 
     await prisma.userVerification.upsert({
       create: {
@@ -56,11 +62,12 @@ async function sendCode(request: SendCodeRequest, response: ApiResponse) {
           },
         },
         type: 'PHONE',
-        code: Number(callResponse.code),
+        code: codeMatch[1],
         createdAt: DateTime.local().toJSDate(),
       },
       update: {
-        code: Number(callResponse.code),
+        code: codeMatch[1],
+        attempts: 0,
         times: {
           increment: 1,
         },
@@ -69,11 +76,9 @@ async function sendCode(request: SendCodeRequest, response: ApiResponse) {
         userId: user.id,
       },
     })
-
-    return true
   }
 
-  return true
+  return response.json({})
 }
 
 export default sendCode

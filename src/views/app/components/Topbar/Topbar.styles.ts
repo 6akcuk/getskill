@@ -28,7 +28,7 @@ const Logo = styled(Link)`
   font-size: 1.125rem;
   font-weight: 600;
   text-decoration: none;
-  color: ${props => props.theme.colors.primaryText};
+  color: ${props => props.theme.colors.text[900]};
   margin-right: 3rem;
 `
 

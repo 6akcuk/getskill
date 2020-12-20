@@ -45,7 +45,7 @@ const Wrapper = styled.span<UserAvatarStyleProps>`
   justify-content: center;
   align-items: center;
   border-radius: 9999px;
-  background: ${props => props.theme.colors.secondaryText};
+  background: ${props => props.theme.colors.background[500]};
   overflow: hidden;
   ${size}
 `

@@ -20,7 +20,7 @@ const HelperText = styled.p`
   margin-top: 0.25rem;
   line-height: 1.25rem;
   font-size: 0.875rem;
-  color: ${props => props.theme.colors.secondaryText};
+  color: ${props => props.theme.colors.text[500]};
 `
 const Input = styled(BaseInput)``
 const TextArea = styled(BaseTextArea)``
@@ -32,9 +32,9 @@ const VideoProcessing = styled.div`
   justify-content: center;
   align-items: center;
   height: 10rem;
-  background: ${props => props.theme.colors.background};
+  background: ${props => props.theme.colors.background[50]};
   font-size: 0.875rem;
-  color: ${props => props.theme.colors.secondaryText};
+  color: ${props => props.theme.colors.text[500]};
   text-align: center;
 `
 

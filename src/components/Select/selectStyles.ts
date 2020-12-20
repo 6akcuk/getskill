@@ -13,8 +13,8 @@ const selectStyles: StylesConfig = {
     ...styles,
     backgroundColor: theme.colors.white,
     borderRadius: theme.sizes.radius.md,
-    borderColor: isFocused ? theme.colors.primary : theme.colors.border,
-    boxShadow: isFocused ? theme.shadow.outline.primary : theme.shadow.sm,
+    borderColor: isFocused ? theme.colors.primary[500] : theme.colors.border[300],
+    boxShadow: isFocused ? `0 0 0 1px rgba(0, 0, 0, 0.05), ${theme.shadow.lg}` : theme.shadow.sm,
     cursor: 'pointer',
     fontSize: '0.875rem',
     lineHeight: '1.25rem',
@@ -53,12 +53,12 @@ const selectStyles: StylesConfig = {
     lineHeight: '1.25rem',
     padding: '0.25rem 0',
     borderRadius: theme.sizes.radius.md,
-    boxShadow: theme.shadow.xs,
+    boxShadow: '0 0 0 1px rgba(0, 0, 0, 0.05)',
   }),
   multiValue: (styles: CSSProperties) => ({
     ...styles,
     alignItems: 'center',
-    backgroundColor: theme.colors.border,
+    backgroundColor: theme.colors.border[300],
     minWidth: 'auto',
     padding: '0.5rem 0.75rem',
   }),
@@ -69,14 +69,21 @@ const selectStyles: StylesConfig = {
   }),
   option: (styles: any, { isFocused, isSelected }: any) => ({
     ...styles,
-    backgroundColor: isFocused ? theme.colors.primary : theme.colors.white,
-    color: isFocused ? theme.colors.white : theme.colors.primaryText,
+    // eslint-disable-next-line no-nested-ternary
+    backgroundColor: isSelected
+      ? theme.colors.primary[600]
+      : isFocused
+      ? theme.colors.background[100]
+      : theme.colors.white,
+    // eslint-disable-next-line no-nested-ternary
+    color: isSelected ? theme.colors.white : isFocused ? theme.colors.text[900] : theme.colors.text[700],
     cursor: 'pointer',
     fontWeight: isSelected ? '600' : '400',
 
     ':active': {
       ...styles[':active'],
-      backgroundColor: theme.colors.primary,
+      color: theme.colors.white,
+      backgroundColor: theme.colors.primary[600],
       fontWeight: '600',
     },
   }),
@@ -87,7 +94,7 @@ const selectStyles: StylesConfig = {
   }),
   singleValue: (styles: CSSProperties) => ({
     ...styles,
-    color: theme.colors.primaryText,
+    color: theme.colors.text[700],
     marginLeft: '0',
     marginRight: '0',
   }),

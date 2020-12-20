@@ -8,10 +8,10 @@ const Wrapper = styled.div`
 const SearchWrapper = styled.div`
   position: relative;
   width: 100%;
-  color: ${props => props.theme.colors.secondaryText};
+  color: ${props => props.theme.colors.text[400]};
 
   &:focus-within {
-    color: ${props => props.theme.colors.primaryText};
+    color: ${props => props.theme.colors.text[600]};
   }
 `
 

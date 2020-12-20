@@ -7,7 +7,7 @@ const Header = styled.h1`
   font-size: 1.875rem;
   font-weight: 800;
   line-height: 2.25rem;
-  color: ${({ theme }) => theme.colors.primaryText};
+  color: ${({ theme }) => theme.colors.text[900]};
   margin: 0 0 1.5rem;
 `
 

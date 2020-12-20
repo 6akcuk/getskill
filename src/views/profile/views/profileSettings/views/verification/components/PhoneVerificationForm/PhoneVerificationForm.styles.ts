@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { FormContainer } from '../../../../components'
-import { Field as BaseField, Input as BaseInput } from '../../../../../../../../components'
+import { Alert, Field as BaseField, Input as BaseInput } from '../../../../../../../../components'
 import SendCodeButton from './SendCodeButton'
 
 const Form = styled.form``
@@ -12,5 +12,6 @@ const Field = styled(BaseField)`
 `
 const Input = styled(BaseInput)``
 const SendButton = styled(SendCodeButton)``
+const Hint = styled(Alert)``
 
-export { SendButton, Field, Form, FormContent, Input }
+export { SendButton, Field, Form, FormContent, Hint, Input }

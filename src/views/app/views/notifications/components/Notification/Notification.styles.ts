@@ -5,7 +5,7 @@ const Wrapper = styled.div`
   max-width: 24rem;
   width: 100%;
   border-radius: ${props => props.theme.sizes.radius.lg};
-  box-shadow: ${props => props.theme.shadow.lg};
+  box-shadow: ${props => `0 0 0 1px rgba(0, 0, 0, 0.05), ${props.theme.shadow.lg}`};
   background: ${props => props.theme.colors.white};
 
   &:not(:first-child) {
@@ -17,9 +17,6 @@ const Container = styled.div`
   display: flex;
   align-items: flex-start;
   padding: 1rem;
-  box-shadow: ${props => props.theme.shadow.xs};
-  border-radius: ${props => props.theme.sizes.radius.lg};
-  overflow: hidden;
 `
 
 const IconSection = styled.div`
@@ -46,16 +43,18 @@ const CloseIcon = styled(IconClose)`
 const CloseButton = styled(Button)`
   padding: 0;
   box-shadow: none;
-  color: ${props => props.theme.colors.secondaryText};
-  opacity: 0.7;
+  color: ${props => props.theme.colors.text[400]};
 
+  &:hover {
+    color: ${props => props.theme.colors.text[500]};
+  }
   &:focus {
     opacity: 1;
   }
 `
 
 const ErrorIcon = styled(IconCloseCircle)`
-  color: ${props => props.theme.colors.danger};
+  color: ${props => props.theme.colors.danger[400]};
   --size: 1.5rem;
 `
 
@@ -64,7 +63,7 @@ const Title = styled.p`
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  color: ${props => props.theme.colors.primaryText};
+  color: ${props => props.theme.colors.text[900]};
 
   & + & {
     margin-top: 0.25rem;
@@ -75,7 +74,7 @@ const Text = styled.p`
   margin: 0;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  color: ${props => props.theme.colors.secondaryText};
+  color: ${props => props.theme.colors.text[500]};
 `
 
 export {

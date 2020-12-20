@@ -11,7 +11,7 @@ const Loading = styled(Spinner)``
 const Title = styled.h3`
   font-size: 1.125rem;
   font-weight: 500;
-  color: ${props => props.theme.colors.primaryAccentText};
+  color: ${props => props.theme.colors.text[900]};
   line-height: 1.5rem;
   margin: 1rem 0 0;
 `

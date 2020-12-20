@@ -1,60 +1,48 @@
 import styled, { css } from 'styled-components'
 import { StyledButtonProps } from './types'
-import { lighten, darken } from 'polished'
 import { Spinner } from '../Spinner'
 
+const focusShadow = (color: string) => css`
+  box-shadow: ${({ theme }) => `0 0 0 2px #fff, 0 0 0 4px ${color}, ${theme.shadow.sm}`};
+`
+
 const primary = css`
-  background: ${({ theme }) => theme.colors.primary};
+  background: ${props => props.theme.colors.primary[600]};
   color: ${({ theme }) => theme.colors.white};
 
   &:hover {
-    background: ${({ theme }) => lighten(0.04, theme.colors.primary)};
+    background: ${({ theme }) => theme.colors.primary[700]};
   }
 
   &:focus {
-    border-color: ${({ theme }) => darken(0.04, theme.colors.primary)};
-    box-shadow: ${({ theme }) => theme.shadow.outline.primary};
-  }
-
-  &:active {
-    background: ${({ theme }) => darken(0.04, theme.colors.primary)};
+    ${({ theme }) => focusShadow(theme.colors.primary[500])}
   }
 `
 
 const secondary = css`
-  background: ${({ theme }) => theme.colors.secondary};
-  color: ${({ theme }) => theme.colors.primary};
+  background: ${({ theme }) => theme.colors.secondary[100]};
+  color: ${({ theme }) => theme.colors.secondary[700]};
 
   &:hover {
-    background: ${({ theme }) => lighten(0.02, theme.colors.secondary)};
+    background: ${({ theme }) => theme.colors.secondary[200]};
   }
 
   &:focus {
-    border-color: ${({ theme }) => lighten(0.2, theme.colors.primary)};
-    box-shadow: ${({ theme }) => theme.shadow.outline.primary};
-  }
-
-  &:active {
-    background: ${({ theme }) => darken(0.04, theme.colors.secondary)};
+    ${({ theme }) => focusShadow(theme.colors.primary[500])}
   }
 `
 
 const white = css`
   background: ${({ theme }) => theme.colors.white};
-  color: ${({ theme }) => theme.colors.primaryText};
-  border-color: ${({ theme }) => theme.colors.border};
+  color: ${({ theme }) => theme.colors.text[700]};
+  border-color: ${({ theme }) => theme.colors.border[300]};
 
   &:hover {
-    color: ${({ theme }) => theme.colors.secondaryText};
+    background: ${({ theme }) => theme.colors.background[50]};
   }
 
   &:focus {
-    box-shadow: ${({ theme }) => theme.shadow.outline.secondary};
-  }
-
-  &:active {
-    background: ${({ theme }) => darken(0.04, theme.colors.white)};
-    color: ${({ theme }) => theme.colors.primaryText};
+    ${({ theme }) => focusShadow(theme.colors.primary[500])}
   }
 `
 
@@ -63,20 +51,15 @@ const text = css`
 `
 
 const danger = css`
-  background: ${({ theme }) => theme.colors.danger};
+  background: ${({ theme }) => theme.colors.danger[600]};
   color: ${({ theme }) => theme.colors.white};
 
   &:hover {
-    background: ${({ theme }) => lighten(0.04, theme.colors.danger)};
+    background: ${({ theme }) => theme.colors.danger[700]};
   }
 
   &:focus {
-    border-color: ${({ theme }) => darken(0.04, theme.colors.danger)};
-    box-shadow: ${({ theme }) => theme.shadow.outline.danger};
-  }
-
-  &:active {
-    background: ${({ theme }) => darken(0.04, theme.colors.danger)};
+    ${({ theme }) => focusShadow(theme.colors.danger[500])}
   }
 `
 
@@ -87,7 +70,7 @@ const icon = css`
   box-shadow: none;
 
   &:hover {
-    background: ${props => props.theme.colors.primaryLight};
+    background: ${props => props.theme.colors.background[50]};
   }
 `
 
@@ -136,6 +119,11 @@ const StyledButton = styled.button<StyledButtonProps & { block?: boolean }>`
 
   &:focus {
     outline: 0;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    pointer-events: none;
   }
 `
 

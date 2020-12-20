@@ -9,6 +9,7 @@ import * as S from './PhoneVerifiedBanner.styles'
 import { useSetRecoilState } from 'recoil'
 import { authBannerStatuses } from '../../recoil/atoms'
 import { DateTime } from 'luxon'
+import { useHistory } from 'react-router-dom'
 
 interface PhoneVerifiedBannerProps {
   user?: User | null
@@ -19,6 +20,7 @@ function PhoneVerifiedBanner(props: PhoneVerifiedBannerProps) {
   const bannersRoot = document.getElementById('banners')
   const state = useRecoilValue(phoneVerifiedBannerState)
   const setState = useSetRecoilState(authBannerStatuses)
+  const history = useHistory()
 
   const handleClose = useCallback(() => {
     setState(state => ({
@@ -29,6 +31,10 @@ function PhoneVerifiedBanner(props: PhoneVerifiedBannerProps) {
       },
     }))
   }, [setState])
+
+  const handleAction = useCallback(() => {
+    history.push('/settings/verification')
+  }, [history])
 
   if (props.user?.isPhoneVerified || !bannersRoot) {
     return null
@@ -43,6 +49,7 @@ function PhoneVerifiedBanner(props: PhoneVerifiedBannerProps) {
       icon={<S.WarningIcon />}
       message={t('banner.phone_not_verified.message')}
       actionContent={t('banner.phone_not_verified.action')}
+      onAction={handleAction}
       onClose={handleClose}
     />,
     bannersRoot,

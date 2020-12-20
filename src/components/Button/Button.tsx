@@ -3,12 +3,12 @@ import { ButtonProps } from './types'
 import * as S from './Button.styles'
 
 function Button(props: ButtonProps) {
-  const { look, children, showSpinner, ...rest } = props
+  const { look, children, showSpinner, disabled, ...rest } = props
 
   const inverse = useMemo(() => ['primary'].includes(look), [look])
 
   return (
-    <S.StyledButton look={look} {...rest}>
+    <S.StyledButton {...rest} look={look} disabled={disabled ?? showSpinner}>
       {showSpinner ? (
         <S.SpinnerWrapper>
           <S.ButtonSpinner inverse={inverse} />

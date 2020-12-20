@@ -18,12 +18,12 @@ const contactStyles = css`
   grid-template-columns: 32px 1fr;
   margin-top: 0.75rem;
   font-size: 0.875rem;
-  color: ${props => props.theme.colors.primaryAccentText};
+  color: ${props => props.theme.colors.text[900]};
   text-decoration: none;
   align-items: center;
 
   &:hover {
-    color: ${props => props.theme.colors.primaryText};
+    color: ${props => props.theme.colors.text[700]};
   }
 `
 

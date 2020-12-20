@@ -66,11 +66,12 @@ function ContactForm() {
                       id={`contacts.${index}.value`}
                       onChange={form.handleChange}
                       placeholder={t('form.contacts.placeholder.type_address')}
+                      hasError={Boolean(errors?.[index].value)}
                       value={contact?.value ?? ''}
                     />
                   </S.InputWrapper>
                   <S.Button look="danger" type="button" onClick={() => handleRemove(index)}>
-                    X
+                    <S.CloseIcon />
                   </S.Button>
                 </S.Flex>
               </S.Field>

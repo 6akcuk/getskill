@@ -50,7 +50,7 @@ model UserToken {
 model UserVerification {
   userId    Int                  @id
   type      UserVerificationType
-  code      Int
+  code      String
   attempts  Int                  @default(0)
   times     Int                  @default(1)
   createdAt DateTime

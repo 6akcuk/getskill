@@ -2,6 +2,7 @@ import React from 'react'
 import * as S from './PhoneVerificationForm.styles'
 import { usePhoneVerificationForm } from '../../hooks'
 import { useTranslation } from 'react-i18next'
+import { useCurrentUser } from '../../../../../../../../hooks'
 
 interface PhoneVerificationFormProps {
   className?: string
@@ -10,6 +11,16 @@ interface PhoneVerificationFormProps {
 function PhoneVerificationForm(props: PhoneVerificationFormProps) {
   const form = usePhoneVerificationForm()
   const { t } = useTranslation('profile')
+  const user = useCurrentUser()
+
+  if (user?.isPhoneVerified) {
+    return (
+      <S.FormContent
+        title={t('form.verification.phone.title')}
+        hint={<S.Hint look="success" heading={t('form.verification.phone.done.heading')} />}
+      />
+    )
+  }
 
   return (
     <S.Form className={props.className} onSubmit={form.handleSubmit}>

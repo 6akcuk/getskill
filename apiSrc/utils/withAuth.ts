@@ -2,6 +2,7 @@ import { NowRequestBody, NowRequestQuery } from '@vercel/node'
 import { verifyToken } from './verifyToken'
 import { ApiResponse, ApiRequestWithAuth } from '../endpoints/types'
 import { getUserPayloadFromToken } from './getUserFromToken'
+import sendError from './sendError'
 
 function authorizeRequest<
   Body extends NowRequestBody = NowRequestBody,
@@ -29,9 +30,7 @@ function withAuth<
 >(next: (req: ApiRequestWithAuth<Body, Query>, res: ApiResponse) => void) {
   return (req: ApiRequestWithAuth<Body, Query>, res: ApiResponse) => {
     if (!authorizeRequest(req)) {
-      return res.status(401).json({
-        message: 'Вы не авторизованы',
-      })
+      return sendError(res)('Вы не авторизованы', 401)
     }
 
     return next(addAuthorizedUserToRequestObject(req), res)

@@ -24,14 +24,14 @@ const Title = styled.div`
   line-height: 1.5;
   text-align: center;
   padding: 0 1.5rem;
-  color: ${props => props.theme.colors.primaryText};
+  color: ${props => props.theme.colors.text[700]};
 `
 
 const Text = styled.div`
   line-height: 1.5;
   text-align: center;
   padding: 0 1.5rem;
-  color: ${props => props.theme.colors.secondaryText};
+  color: ${props => props.theme.colors.text[500]};
 `
 
 const RefreshButton = styled(Button)`

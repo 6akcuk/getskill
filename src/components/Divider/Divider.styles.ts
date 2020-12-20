@@ -16,7 +16,7 @@ const LineWrapper = styled.div`
 
 const Line = styled.div`
   width: 100%;
-  border-top: 1px solid ${props => props.theme.colors.border};
+  border-top: 1px solid ${props => props.theme.colors.border[300]};
 `
 
 const TextWrapper = styled.div`
@@ -29,7 +29,7 @@ const TextWrapper = styled.div`
 
 const Text = styled.span`
   padding: 0 0.5rem;
-  color: ${props => props.theme.colors.secondaryText};
+  color: ${props => props.theme.colors.text[500]};
   background: ${props => props.theme.colors.white};
 `
 

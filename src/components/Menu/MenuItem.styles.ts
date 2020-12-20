@@ -6,14 +6,13 @@ const MenuItem = styled.a`
   line-height: 1.25rem;
   font-size: 0.875rem;
   text-decoration: inherit;
-  color: ${props => props.theme.colors.primaryText};
+  color: ${props => props.theme.colors.text[700]};
   cursor: pointer;
 
   &:hover,
   &:focus {
     outline: 0;
-    color: ${props => props.theme.colors.sidebarPrimary};
-    background: ${props => props.theme.colors.background};
+    background: ${props => props.theme.colors.background[100]};
   }
 `
 

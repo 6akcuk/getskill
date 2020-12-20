@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   justify-content: center;
   padding: 1.25rem 1.5rem 1.5rem;
   border-radius: ${props => props.theme.sizes.radius.md};
-  border: 2px dashed ${props => props.theme.colors.border};
+  border: 2px dashed ${props => props.theme.colors.border[300]};
 `
 
 const Content = styled.div`
@@ -19,13 +19,13 @@ const Content = styled.div`
 const FileInfo = styled.div`
   margin-top: 0.25rem;
   font-size: 0.75rem;
-  color: ${props => props.theme.colors.secondaryText};
+  color: ${props => props.theme.colors.text[500]};
 `
 
 const Browse = styled.span`
   margin-right: 0.25rem;
   font-weight: 500;
-  color: ${props => props.theme.colors.primary};
+  color: ${props => props.theme.colors.primary[600]};
   cursor: pointer;
 `
 
@@ -48,14 +48,14 @@ const UploadIcon = styled.div`
   width: 3rem;
   height: 3rem;
   margin: auto;
-  color: ${props => props.theme.colors.secondaryText};
+  color: ${props => props.theme.colors.text[500]};
 `
 const UploadWrapper = styled.div``
 const Dropzone = styled(BaseDropzone)``
 const Title = styled.div`
   margin-top: 0.25rem;
   font-size: 0.875rem;
-  color: ${props => props.theme.colors.secondaryAccentText};
+  color: ${props => props.theme.colors.text[600]};
 `
 
 const Uploader = styled(BaseUploader)``

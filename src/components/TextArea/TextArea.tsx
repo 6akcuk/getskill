@@ -21,11 +21,7 @@ interface TextAreaProps extends InputHTMLAttributes<HTMLTextAreaElement> {
 }
 
 function TextArea(props: TextAreaProps) {
-  return (
-    <S.Wrapper>
-      <S.TextArea rows={3} maxRows={6} {...props} async={true} />
-    </S.Wrapper>
-  )
+  return <S.TextArea rows={3} maxRows={6} {...props} async={true} />
 }
 
 export default TextArea

@@ -6,8 +6,9 @@ interface FormContainerProps {
   className?: string
   title: ReactNode
   subtitle?: ReactNode
-  fields: ReactNode
-  isSubmitting: boolean
+  fields?: ReactNode
+  hint?: ReactNode
+  isSubmitting?: boolean
 }
 
 function FormContainer(props: FormContainerProps) {
@@ -20,13 +21,16 @@ function FormContainer(props: FormContainerProps) {
           <S.Title>{props.title}</S.Title>
           {props.subtitle && <S.Subtitle>{props.subtitle}</S.Subtitle>}
         </S.Heading>
-        <S.Fields>{props.fields}</S.Fields>
+        {props.fields && <S.Fields>{props.fields}</S.Fields>}
+        {props.hint && <S.Hint>{props.hint}</S.Hint>}
       </S.Body>
-      <S.Footer>
-        <S.Button look="primary" type="submit" showSpinner={props.isSubmitting}>
-          {t('common.save')}
-        </S.Button>
-      </S.Footer>
+      {props.fields && (
+        <S.Footer>
+          <S.Button look="primary" type="submit" showSpinner={props.isSubmitting}>
+            {t('common.save')}
+          </S.Button>
+        </S.Footer>
+      )}
     </S.FormContent>
   )
 }

@@ -1,3 +1,4 @@
 export * from './login'
-export * from './sendCode'
 export * from './register'
+export * from './sendCode'
+export * from './verifyCode'

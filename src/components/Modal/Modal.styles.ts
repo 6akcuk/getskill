@@ -20,6 +20,7 @@ const Backdrop = styled.div`
   right: 0;
   bottom: 0;
   background: ${({ theme }) => theme.colors.backdrop};
+  opacity: 0.7;
 `
 const Content = styled.div`
   max-width: 32rem;
