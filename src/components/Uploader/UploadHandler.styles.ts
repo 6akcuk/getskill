@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background: ${props => props.theme.colors.inverseBackdrop};
+  background: ${props => props.theme.colors.background[50]};
   z-index: 1;
 
   display: flex;
@@ -20,10 +20,10 @@ const ProgressBar = styled(CircularProgressbar)`
   height: 75%;
 
   .CircularProgressbar-path {
-    stroke: ${props => props.theme.colors.primary};
+    stroke: ${props => props.theme.colors.primary[500]};
   }
   .CircularProgressbar-text {
-    fill: ${props => props.theme.colors.primary};
+    fill: ${props => props.theme.colors.primary[500]};
   }
 `
 

@@ -23,17 +23,17 @@ const NavLink = styled(BaseNavLink)`
   line-height: 1.25rem;
   padding: 0.5rem 0.75rem;
   border-radius: ${props => props.theme.sizes.radius.md};
-  color: ${props => props.theme.colors.secondaryText};
+  color: ${props => props.theme.colors.text[500]};
   text-decoration: none;
 
   background: transparent;
 
   &:hover {
-    color: ${props => props.theme.colors.primaryText};
+    color: ${props => props.theme.colors.text[700]};
   }
 
   &.active {
-    background: ${props => props.theme.colors.background};
+    background: ${props => props.theme.colors.background[50]};
   }
 `
 

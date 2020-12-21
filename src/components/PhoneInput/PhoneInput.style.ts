@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { darken } from 'polished'
 
 const StyledPhoneInput = styled.div`
   .special-label {
@@ -14,12 +13,12 @@ const StyledPhoneInput = styled.div`
 
     background-color: ${props => props.theme.colors.white};
     border-style: solid;
-    border-color: ${props => props.theme.colors.border};
+    border-color: ${props => props.theme.colors.border[300]};
     border-width: 1px;
     border-radius: ${props => props.theme.sizes.radius.md};
-    caret-color: ${props => props.theme.colors.primary};
-    color: ${props => props.theme.colors.primaryText};
-    --color: ${props => props.theme.colors.primaryText};
+    caret-color: ${props => props.theme.colors.primary[500]};
+    color: ${props => props.theme.colors.text[700]};
+    --color: ${props => props.theme.colors.text[700]};
 
     padding: 0.5rem 0.75rem;
     font-size: 0.875rem;
@@ -28,8 +27,8 @@ const StyledPhoneInput = styled.div`
     box-sizing: border-box;
 
     &:focus {
-      border-color: ${props => darken(0.04, props.theme.colors.border)};
-      box-shadow: ${props => props.theme.shadow.outline.primary};
+      border-color: ${props => props.theme.colors.primary[500]};
+      box-shadow: 0 0 0 1px ${({ theme }) => `${theme.colors.primary[500]}, ${theme.shadow.sm}`};
     }
   }
 `

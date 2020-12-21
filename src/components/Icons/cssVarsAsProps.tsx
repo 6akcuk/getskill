@@ -11,8 +11,8 @@ interface IconProps {
 
 const defaultIconProps: Required<Omit<IconProps, 'className' | 'children'>> = {
   size: 32,
-  color: theme.colors.primaryText,
-  secondColor: theme.colors.danger,
+  color: theme.colors.text[700],
+  secondColor: theme.colors.danger[500],
 }
 
 function cssVarsAsProps<P extends IconProps>(IconComponent: any) {

@@ -1,5 +1,10 @@
 import styled from 'styled-components'
-import { DropdownButton, MenuGroup as BaseMenuGroup, MenuItem as BaseMenuItem } from '../../../../components'
+import {
+  DropdownButton,
+  MenuGroup as BaseMenuGroup,
+  MenuItem as BaseMenuItem,
+  MenuItemWithLock as BaseMenuItemWithLock,
+} from '../../../../components'
 
 const PublishDropdownButton = styled(DropdownButton)`
   display: inline-flex;
@@ -8,5 +13,6 @@ const PublishDropdownButton = styled(DropdownButton)`
 `
 const MenuGroup = styled(BaseMenuGroup)``
 const MenuItem = styled(BaseMenuItem)``
+const MenuItemWithLock = styled(BaseMenuItemWithLock)``
 
-export { MenuGroup, MenuItem, PublishDropdownButton }
+export { MenuGroup, MenuItem, MenuItemWithLock, PublishDropdownButton }

@@ -7,7 +7,7 @@ const Content = styled.div`
   align-items: center;
   justify-content: center;
   line-height: 1.5;
-  color: ${({ theme }) => theme.colors.primaryText};
+  color: ${({ theme }) => theme.colors.text[700]};
   text-align: center;
   outline: none;
   flex: 1;

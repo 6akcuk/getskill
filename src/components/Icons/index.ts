@@ -9,6 +9,8 @@ import _IconCloudUpload from './IconCloudUpload'
 import _IconExclamation from './IconExclamation'
 import _IconFilm from './IconFilm'
 import _IconInstagram from './IconInstagram'
+import _IconLockClosed from './IconLockClosed'
+import _IconLockClosedSolid from './IconLockClosedSolid'
 import _IconPlus from './IconPlus'
 import _IconSearch from './IconSearch'
 import _IconSelector from './IconSelector'
@@ -24,6 +26,8 @@ const IconCloudUpload = cssVarsAsProps(_IconCloudUpload)
 const IconExclamation = cssVarsAsProps(_IconExclamation)
 const IconFilm = cssVarsAsProps(_IconFilm)
 const IconInstagram = cssVarsAsProps(_IconInstagram)
+const IconLockClosed = cssVarsAsProps(_IconLockClosed)
+const IconLockClosedSolid = cssVarsAsProps(_IconLockClosedSolid)
 const IconPlus = cssVarsAsProps(_IconPlus)
 const IconSearch = cssVarsAsProps(_IconSearch)
 const IconSelector = cssVarsAsProps(_IconSelector)
@@ -40,6 +44,8 @@ export {
   IconExclamation,
   IconFilm,
   IconInstagram,
+  IconLockClosed,
+  IconLockClosedSolid,
   IconPlus,
   IconSearch,
   IconSelector,

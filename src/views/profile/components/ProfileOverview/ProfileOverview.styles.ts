@@ -14,7 +14,7 @@ const About = styled(ProfileAbout)`
 const Contacts = styled(ProfileContacts)`
   margin-top: 1rem;
   padding-top: 1rem;
-  border-top: 1px solid ${props => props.theme.colors.border};
+  border-top: 1px solid ${props => props.theme.colors.border[300]};
 `
 
 export { About, Contacts, PublicName, Wrapper }

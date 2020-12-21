@@ -18,7 +18,7 @@ const LogoWrapper = styled.div`
   align-items: center;
   padding: 0 1rem;
   height: 4rem;
-  background: ${props => props.theme.colors.sidebarPrimary};
+  background: ${props => props.theme.colors.background[700]};
   color: ${props => props.theme.colors.white};
 `
 
@@ -32,7 +32,7 @@ const NavWrapper = styled.div`
 const NavMenu = styled.nav`
   flex: 1;
   padding: 1rem 0.5rem;
-  background: ${props => props.theme.colors.sidebarBackground};
+  background: ${props => props.theme.colors.background[700]};
 `
 
 export { Content, LogoWrapper, NavMenu, NavWrapper, Wrapper }

@@ -3,7 +3,7 @@ import { NavLink as BaseNavLink } from 'react-router-dom'
 
 const Tabs = styled.nav`
   display: flex;
-  border-bottom: 1px solid ${props => props.theme.colors.border};
+  border-bottom: 1px solid ${props => props.theme.colors.border[300]};
 `
 
 const NavLink = styled(BaseNavLink)`
@@ -14,7 +14,7 @@ const NavLink = styled(BaseNavLink)`
   line-height: 1.25rem;
   height: 4rem;
   padding: 0 0.25rem;
-  color: ${props => props.theme.colors.secondaryText};
+  color: ${props => props.theme.colors.text[500]};
   text-decoration: none;
   border-bottom: solid 2px transparent;
   margin-bottom: -1px;
@@ -24,13 +24,13 @@ const NavLink = styled(BaseNavLink)`
   transition-duration: 0.15s;
 
   &:hover {
-    border-bottom-color: ${props => props.theme.colors.border};
-    color: ${props => props.theme.colors.primaryText};
+    border-bottom-color: ${props => props.theme.colors.border[300]};
+    color: ${props => props.theme.colors.text[700]};
   }
 
   &.active {
-    color: ${props => props.theme.colors.primary};
-    border-bottom-color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.primary[500]};
+    border-bottom-color: ${props => props.theme.colors.primary[500]};
   }
 `
 

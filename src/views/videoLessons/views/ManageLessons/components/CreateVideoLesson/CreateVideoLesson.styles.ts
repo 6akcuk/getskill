@@ -16,7 +16,7 @@ const Header = styled.h1`
   font-size: 1.875rem;
   font-weight: 800;
   line-height: 2.25rem;
-  color: ${props => props.theme.colors.text[900]};
+  color: ${props => props.theme.colors.text[700]};
   margin: 0 0 1.5rem;
 `
 
