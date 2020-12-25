@@ -2,10 +2,12 @@ import { PrismaClient } from '@prisma/client'
 import { ApiRequestWithAuth, ApiResponse } from '../types'
 import { sendError } from '../../utils'
 import { DateTime } from 'luxon'
+import { VerifyBy, VerifyType } from './types'
 import { sendCodeInCall } from '../../libraries/smsc'
 
 interface SendCodeRequestBody {
-  verify: 'phone' | 'email'
+  by: VerifyBy
+  verify: VerifyType
 }
 type SendCodeRequest = ApiRequestWithAuth<SendCodeRequestBody>
 
@@ -19,7 +21,8 @@ async function sendCode(request: SendCodeRequest, response: ApiResponse) {
     include: {
       UserVerification: {
         where: {
-          type: request.body.verify === 'phone' ? 'PHONE' : 'EMAIL',
+          by: request.body.by,
+          type: request.body.verify,
         },
       },
     },
@@ -45,38 +48,43 @@ async function sendCode(request: SendCodeRequest, response: ApiResponse) {
     return sendError(response)('Превышено количество отправлений', 500)
   }
 
-  if (request.body.verify === 'phone') {
+  let code = null
+
+  if (request.body.by === 'phone') {
     // FIXME enable on production
     // const callResponse = await sendCodeInCall(user.phone)
     const codeMatch = ['', '3369'] // callResponse.code.match(/\d{2}(\d{4})/)
 
-    if (!codeMatch?.[1]) {
-      return sendError(response)('Не удалось выслать код подтверждения', 500)
-    }
-
-    await prisma.userVerification.upsert({
-      create: {
-        user: {
-          connect: {
-            id: user.id,
-          },
-        },
-        type: 'PHONE',
-        code: codeMatch[1],
-        createdAt: DateTime.local().toJSDate(),
-      },
-      update: {
-        code: codeMatch[1],
-        attempts: 0,
-        times: {
-          increment: 1,
-        },
-      },
-      where: {
-        userId: user.id,
-      },
-    })
+    code = codeMatch?.[1]
   }
+
+  if (!code) {
+    return sendError(response)('Не удалось выслать код подтверждения', 500)
+  }
+
+  await prisma.userVerification.upsert({
+    create: {
+      user: {
+        connect: {
+          id: user.id,
+        },
+      },
+      by: request.body.by,
+      type: request.body.verify,
+      code,
+      createdAt: DateTime.local().toJSDate(),
+    },
+    update: {
+      code,
+      attempts: 0,
+      times: {
+        increment: 1,
+      },
+    },
+    where: {
+      userId: user.id,
+    },
+  })
 
   return response.json({})
 }

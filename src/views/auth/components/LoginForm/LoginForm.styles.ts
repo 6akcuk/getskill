@@ -11,8 +11,17 @@ const Field = styled(BaseField)`
   }
 `
 
-const SignInButton = styled(BaseButton)`
+const Buttons = styled.div`
+  display: flex;
   margin-top: 1.5rem;
 `
 
-export { Field, Form, SignInButton }
+const SignInButton = styled(BaseButton)`
+  flex: 1 1 0%;
+`
+const ForgotPasswordLink = styled(BaseButton)`
+  margin-left: 0.75rem;
+  flex-shrink: 0;
+`
+
+export { Buttons, Field, ForgotPasswordLink, Form, SignInButton }

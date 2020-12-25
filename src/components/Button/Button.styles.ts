@@ -48,6 +48,7 @@ const white = css`
 
 const text = css`
   background: transparent;
+  box-shadow: none;
 `
 
 const danger = css`

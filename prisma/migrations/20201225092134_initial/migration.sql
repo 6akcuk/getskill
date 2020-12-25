@@ -29,14 +29,17 @@ CREATE TABLE `UserToken` (
 
 -- CreateTable
 CREATE TABLE `UserVerification` (
+    `id` INT NOT NULL AUTO_INCREMENT,
     `userId` INT NOT NULL,
-    `type` ENUM('PHONE', 'EMAIL') NOT NULL,
-    `code` INT NOT NULL,
+    `by` ENUM('phone', 'email') NOT NULL DEFAULT 'phone',
+    `type` ENUM('phone', 'email', 'forgot_password') NOT NULL,
+    `code` VARCHAR(191) NOT NULL,
     `attempts` INT NOT NULL DEFAULT 0,
     `times` INT NOT NULL DEFAULT 1,
     `createdAt` DATETIME(3) NOT NULL,
+    `userTokenId` INT,
 
-    PRIMARY KEY (`userId`)
+    PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
@@ -96,6 +99,9 @@ ALTER TABLE `UserToken` ADD FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DE
 
 -- AddForeignKey
 ALTER TABLE `UserVerification` ADD FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `UserVerification` ADD FOREIGN KEY (`userTokenId`) REFERENCES `UserToken`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Profile` ADD FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

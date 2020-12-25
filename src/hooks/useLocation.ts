@@ -1,7 +1,8 @@
 import { useLocation as useRouterLocation } from 'react-router-dom'
+import { Location } from 'history'
 
 interface LocationState {
-  modal?: boolean
+  background?: Location<LocationState>
 }
 
 function useLocation() {

@@ -1,9 +1,11 @@
 import { PrismaClient } from '@prisma/client'
 import { ApiRequestWithAuth, ApiResponse } from '../types'
 import { sendError } from '../../utils'
+import { VerifyType, VerifyBy } from './types'
 
 interface VerifyCodeRequestBody {
-  verify: 'phone' | 'email'
+  by: VerifyBy
+  verify: VerifyType
   code: string
 }
 interface VerifyCodeResponseBody {
@@ -22,7 +24,8 @@ async function verifyCode(request: VerifyCodeRequest, response: VerifyCodeRespon
     include: {
       UserVerification: {
         where: {
-          type: request.body.verify === 'phone' ? 'PHONE' : 'EMAIL',
+          by: request.body.by,
+          type: request.body.verify,
         },
       },
     },

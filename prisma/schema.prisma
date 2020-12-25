@@ -17,9 +17,15 @@ enum Role {
   ADMIN
 }
 
+enum UserVerificationBy {
+  phone
+  email
+}
+
 enum UserVerificationType {
-  PHONE
-  EMAIL
+  phone
+  email
+  forgot_password
 }
 
 model User {
@@ -38,23 +44,29 @@ model User {
 }
 
 model UserToken {
-  id       Int     @id @default(autoincrement())
-  token    String // @db.Text
-  deviceId String
-  ip       Int
-  isValid  Boolean @default(true)
-  user     User    @relation(fields: [userId], references: [id])
-  userId   Int
+  id            Int                @id @default(autoincrement())
+  token         String // @db.Text
+  deviceId      String
+  ip            Int
+  isValid       Boolean            @default(true)
+  user          User               @relation(fields: [userId], references: [id])
+  userId        Int
+  verifications UserVerification[]
 }
 
 model UserVerification {
-  userId    Int                  @id
-  type      UserVerificationType
-  code      String
-  attempts  Int                  @default(0)
-  times     Int                  @default(1)
-  createdAt DateTime
-  user      User                 @relation(fields: [userId], references: [id])
+  userId      Int                  @id
+  by          UserVerificationBy   @default(phone)
+  type        UserVerificationType
+  code        String
+  attempts    Int                  @default(0)
+  times       Int                  @default(1)
+  createdAt   DateTime
+  user        User                 @relation(fields: [userId], references: [id])
+  UserToken   UserToken?           @relation(fields: [userTokenId], references: [id])
+  userTokenId Int?
+
+  @@unique([userId, by, type])
 }
 
 model Profile {
