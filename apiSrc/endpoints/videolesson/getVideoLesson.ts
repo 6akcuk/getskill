@@ -12,7 +12,7 @@ type GetVideoLessonResponse = ApiResponse<VideoLesson>
 const prisma = new PrismaClient()
 
 async function getVideoLesson(request: GetVideoLessonRequest, response: GetVideoLessonResponse) {
-  const videoLesson = await prisma.videoLesson.findOne({
+  const videoLesson = await prisma.videoLesson.findUnique({
     where: {
       id: Number(request.query.id),
     },

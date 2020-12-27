@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Input, PasswordInput } from '../../../../components'
 import useLoginForm, { LoginFormSchema } from './useLoginForm'
+import { useOpenModalCallback } from '../../../../hooks'
 import * as S from './LoginForm.styles'
 
 interface LoginFormProps {
@@ -11,6 +12,10 @@ interface LoginFormProps {
 function LoginForm({ onSubmit }: LoginFormProps) {
   const { t } = useTranslation('auth')
   const { handleChange, handleSubmit, values, isSubmitting } = useLoginForm({ onSubmit })
+  const openModal = useOpenModalCallback()
+  const navigateToForgotPassword = useCallback(() => {
+    openModal('/forgot')
+  }, [openModal])
 
   return (
     <S.Form onSubmit={handleSubmit}>
@@ -24,7 +29,7 @@ function LoginForm({ onSubmit }: LoginFormProps) {
         <S.SignInButton block={true} type="submit" look="primary" showSpinner={isSubmitting}>
           {t('button.sign_in')}
         </S.SignInButton>
-        <S.ForgotPasswordLink type="button" look="text">
+        <S.ForgotPasswordLink type="button" look="text" onClick={navigateToForgotPassword}>
           {t('button.forgot_password')}
         </S.ForgotPasswordLink>
       </S.Buttons>

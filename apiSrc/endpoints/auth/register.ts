@@ -23,7 +23,7 @@ async function register(req: RegisterRequest, res: RegisterResponse) {
 
   const passwordHash = await argon2.hash(password)
 
-  const hasEmailExist = await prisma.user.findOne({
+  const hasEmailExist = await prisma.user.findUnique({
     where: {
       email,
     },
@@ -33,7 +33,7 @@ async function register(req: RegisterRequest, res: RegisterResponse) {
     return sendError(res)('Почтовый адрес уже используется', 500)
   }
 
-  const hasPhoneExist = await prisma.user.findOne({
+  const hasPhoneExist = await prisma.user.findUnique({
     where: {
       phone,
     },

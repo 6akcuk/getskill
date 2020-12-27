@@ -1,6 +1,11 @@
 import { User } from '@prisma/client'
 import jwt from 'jsonwebtoken'
 
+interface GenerateTimeTokenOptions {
+  userId: number
+  expiresIn?: string
+}
+
 function generateToken(user: User) {
   return jwt.sign(
     {
@@ -13,4 +18,14 @@ function generateToken(user: User) {
   )
 }
 
-export { generateToken }
+function generateTimeToken(options: GenerateTimeTokenOptions) {
+  return jwt.sign(
+    {
+      userId: options.userId,
+    },
+    process.env.JWT_SIGNATURE!,
+    { expiresIn: options.expiresIn ?? '10m' },
+  )
+}
+
+export { generateToken, generateTimeToken }

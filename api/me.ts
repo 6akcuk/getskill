@@ -6,7 +6,7 @@ const prisma = new PrismaClient()
 
 async function me(req: NowRequest, res: NowResponse) {
   const payload = getUserPayloadFromToken(req.headers.authorization)
-  const user = await prisma.user.findOne({
+  const user = await prisma.user.findUnique({
     where: {
       id: Number(payload.id),
     },

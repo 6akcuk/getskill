@@ -28,6 +28,7 @@ function usePhoneVerificationForm() {
       await verifyCode(
         {},
         {
+          by: 'phone',
           verify: 'phone',
           code: values.code,
         },

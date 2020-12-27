@@ -3,11 +3,15 @@ import defineEndpoint from '../../utils/defineEndpoint'
 
 type PostVerifyCodeRequestParams = VoidArgument
 interface PostVerifyCodeRequestBody {
-  verify: 'phone' | 'email'
+  phone?: string
+  email?: string
+  by: 'phone' | 'email'
+  verify: 'phone' | 'email' | 'forgot_password'
   code: string
 }
 interface PostVerifyCodeResponseBody {
   success: boolean
+  token?: string
 }
 
 const postVerifyCode = defineEndpoint<

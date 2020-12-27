@@ -20,7 +20,7 @@ async function login(req: LoginRequest, res: LoginResponse) {
   const { username, password } = req.body
 
   const field = username.match(/^\+\d+/) ? 'phone' : 'email'
-  const user = await prisma.user.findOne({
+  const user = await prisma.user.findUnique({
     where: {
       [field]: username,
     },

@@ -30,6 +30,7 @@ function SendCodeButton(props: SendCodeButtonProps) {
     await sendCode(
       {},
       {
+        by: 'phone',
         verify: 'phone',
       },
     )

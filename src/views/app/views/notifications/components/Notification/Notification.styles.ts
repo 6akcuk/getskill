@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { IconClose, IconCloseCircle, Button } from '../../../../../../components'
+import { IconClose, IconCloseCircle, IconCheckCircle, Button } from '../../../../../../components'
 
 const Wrapper = styled.div`
   max-width: 24rem;
@@ -57,6 +57,10 @@ const ErrorIcon = styled(IconCloseCircle)`
   color: ${props => props.theme.colors.danger[400]};
   --size: 1.5rem;
 `
+const SuccessIcon = styled(IconCheckCircle)`
+  color: ${props => props.theme.colors.success[400]};
+  --size: 1.5rem;
+`
 
 const Title = styled.p`
   margin: 0;
@@ -84,6 +88,7 @@ export {
   Container,
   ErrorIcon,
   IconSection,
+  SuccessIcon,
   Text,
   TextSection,
   Title,

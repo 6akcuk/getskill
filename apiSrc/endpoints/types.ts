@@ -8,6 +8,7 @@ interface ApiRequest<
   method: string
   query: Query
   body: Body
+  user?: UserPayload | null
 }
 
 interface ApiRequestWithAuth<

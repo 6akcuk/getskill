@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const StyledPhoneInput = styled.div`
+const StyledPhoneInput = styled.div<{ hasError?: boolean }>`
   .special-label {
     display: none;
   }
@@ -30,6 +30,22 @@ const StyledPhoneInput = styled.div`
       border-color: ${props => props.theme.colors.primary[500]};
       box-shadow: 0 0 0 1px ${({ theme }) => `${theme.colors.primary[500]}, ${theme.shadow.sm}`};
     }
+
+    ${props =>
+      props.hasError &&
+      `
+      border-color: ${props.theme.colors.danger[300]};
+      color: ${props.theme.colors.danger[900]};
+  
+      &:focus {
+        border-color: ${props.theme.colors.danger[500]};
+        box-shadow: 0 0 0 1px ${`${props.theme.colors.danger[500]}, ${props.theme.shadow.sm}`};
+      }
+  
+      &::placeholder {
+        color: ${props.theme.colors.danger[300]};
+      }
+    `}
   }
 `
 

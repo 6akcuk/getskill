@@ -1,7 +1,7 @@
-import { ApiRequestWithAuth, ApiResponse, verifyCode, withAuth } from '../apiSrc'
+import { ApiRequestWithAuth, ApiResponse, verifyCode } from '../apiSrc'
 
 async function verifyCodeHandler(req: ApiRequestWithAuth, res: ApiResponse) {
   return verifyCode(req, res)
 }
 
-export default withAuth(verifyCodeHandler)
+export default verifyCodeHandler

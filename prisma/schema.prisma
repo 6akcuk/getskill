@@ -29,42 +29,39 @@ enum UserVerificationType {
 }
 
 model User {
-  id               Int                @id @default(autoincrement())
-  email            String             @unique
-  password         String
-  phone            String?            @unique
-  role             Role               @default(USER)
-  isEmailVerified  Boolean            @default(false)
-  isPhoneVerified  Boolean            @default(false)
-  vkontakteId      String?            @unique
-  profile          Profile?
-  UserToken        UserToken[]
-  VideoLesson      VideoLesson[]
-  UserVerification UserVerification[]
+  id              Int                @id @default(autoincrement())
+  email           String             @unique
+  password        String
+  phone           String?            @unique
+  role            Role               @default(USER)
+  isEmailVerified Boolean            @default(false)
+  isPhoneVerified Boolean            @default(false)
+  vkontakteId     String?            @unique
+  profile         Profile?
+  UserToken       UserToken[]
+  VideoLesson     VideoLesson[]
+  verifications   UserVerification[]
 }
 
 model UserToken {
-  id            Int                @id @default(autoincrement())
-  token         String // @db.Text
-  deviceId      String
-  ip            Int
-  isValid       Boolean            @default(true)
-  user          User               @relation(fields: [userId], references: [id])
-  userId        Int
-  verifications UserVerification[]
+  id       Int     @id @default(autoincrement())
+  token    String // @db.Text
+  deviceId String
+  ip       Int
+  isValid  Boolean @default(true)
+  user     User    @relation(fields: [userId], references: [id])
+  userId   Int
 }
 
 model UserVerification {
-  userId      Int                  @id
-  by          UserVerificationBy   @default(phone)
-  type        UserVerificationType
-  code        String
-  attempts    Int                  @default(0)
-  times       Int                  @default(1)
-  createdAt   DateTime
-  user        User                 @relation(fields: [userId], references: [id])
-  UserToken   UserToken?           @relation(fields: [userTokenId], references: [id])
-  userTokenId Int?
+  userId    Int
+  by        UserVerificationBy   @default(phone)
+  type      UserVerificationType
+  code      String
+  attempts  Int                  @default(0)
+  times     Int                  @default(1)
+  createdAt DateTime
+  user      User                 @relation(fields: [userId], references: [id])
 
   @@unique([userId, by, type])
 }

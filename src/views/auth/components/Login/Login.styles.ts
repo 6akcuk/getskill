@@ -4,8 +4,8 @@ import { Button as BaseButton, Divider as BaseDivider, Spinner as BaseSpinner } 
 const Wrapper = styled.div``
 
 const Header = styled.h1`
-  font-size: 1.875rem;
-  font-weight: 800;
+  font-size: 1.625rem;
+  font-weight: 700;
   line-height: 2.25rem;
   color: ${({ theme }) => theme.colors.text[900]};
   margin: 0 0 1.5rem;

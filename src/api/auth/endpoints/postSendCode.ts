@@ -3,7 +3,10 @@ import defineEndpoint from '../../utils/defineEndpoint'
 
 type PostSendCodeRequestParams = VoidArgument
 interface PostSendCodeRequestBody {
-  verify: 'phone' | 'email'
+  phone?: string
+  email?: string
+  by: 'phone' | 'email'
+  verify: 'phone' | 'email' | 'forgot_password'
 }
 
 type PostSendCodeResponseBody = VoidArgument

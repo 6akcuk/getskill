@@ -9,6 +9,9 @@ type NotificationProps = NotificationInterface & {
 function Notification(props: NotificationProps) {
   const icon = useMemo(() => {
     switch (props.type) {
+      case NotificationType.SUCCESS:
+        return <S.SuccessIcon />
+
       case NotificationType.ERROR:
       default:
         return <S.ErrorIcon />

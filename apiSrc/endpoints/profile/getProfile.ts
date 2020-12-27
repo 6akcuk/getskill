@@ -13,7 +13,7 @@ type GetProfileResponse = ApiResponse<UserProfile>
 const prisma = new PrismaClient()
 
 async function getProfile(request: GetProfileRequest, response: GetProfileResponse) {
-  const user = await prisma.user.findOne({
+  const user = await prisma.user.findUnique({
     include: {
       profile: true,
     },

@@ -19,7 +19,8 @@ function SWRProvider(props: SWRProviderProps) {
         revalidateOnFocus: false,
         suspense: true,
         onError: (err: AxiosError) => {
-          console.dir(err)
+          // eslint-disable-next-line no-console
+          console.error(err)
           // Clear auth token
           if (err.response?.status === 401) {
             setAuthToken(null)

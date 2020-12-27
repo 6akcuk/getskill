@@ -2,8 +2,9 @@ import { AxiosResponse, AxiosError } from 'axios'
 import { useState, useCallback } from 'react'
 import client, { APIInstance } from '../client'
 import { useAsyncRequestStatus } from './hooks'
-import { useSetRecoilState } from 'recoil'
-import { notificationsState, NotificationType } from '../../views/app/views/notifications/atoms'
+import { NotificationType } from '../../views/app/views/notifications/atoms'
+import { useNotifications } from '../../hooks'
+import { useTranslation } from 'react-i18next'
 
 type ApiCallFunction<RequestParams, RequestBody, ResponseBody> = ({
   params,
@@ -30,32 +31,33 @@ function createRequestHook<RequestParams, RequestBody, ResponseBody>(
   return function useRequestHook(props?: UseRequestHookProps) {
     const [status, setStatus] = useState<AsyncRequestStatus>(AsyncRequestStatus.IDLE)
     const asyncRequestStatus = useAsyncRequestStatus(status)
-    const setNotifications = useSetRecoilState(notificationsState)
+    const { push } = useNotifications()
+    const { t } = useTranslation('app')
 
-    const requestCallback = useCallback(async (params: RequestParams, body: RequestBody) => {
-      setStatus(AsyncRequestStatus.PENDING)
+    const requestCallback = useCallback(
+      async (params: RequestParams, body: RequestBody) => {
+        setStatus(AsyncRequestStatus.PENDING)
 
-      try {
-        const response = await apiCall(client)({ params, body })
+        try {
+          const response = await apiCall(client)({ params, body })
 
-        setStatus(AsyncRequestStatus.SUCCESS)
+          setStatus(AsyncRequestStatus.SUCCESS)
 
-        return response.data
-      } catch (e) {
-        setStatus(AsyncRequestStatus.FAILURE)
+          return response.data
+        } catch (e) {
+          setStatus(AsyncRequestStatus.FAILURE)
 
-        setNotifications(oldNotifications => [
-          ...oldNotifications,
-          {
-            title: 'Ошибка',
+          push({
+            title: t('notification.type.error'),
             text: (e as AxiosError).response?.data.error.message,
             type: NotificationType.ERROR,
-          },
-        ])
+          })
 
-        throw e
-      }
-    }, [])
+          throw e
+        }
+      },
+      [t, push],
+    )
 
     if (Boolean(props?.suspense) && asyncRequestStatus.pending) {
       throw Promise.resolve()

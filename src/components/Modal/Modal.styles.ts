@@ -23,6 +23,7 @@ const Backdrop = styled.div`
   opacity: 0.7;
 `
 const Content = styled.div`
+  min-width: 24rem;
   max-width: 32rem;
   padding: 1.5rem;
   border-radius: ${({ theme }) => theme.sizes.radius.lg};

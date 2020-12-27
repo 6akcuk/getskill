@@ -1,3 +1,4 @@
+export * from './postChangePassword'
 export * from './postLogin'
 export * from './postRegister'
 export * from './postSendCode'

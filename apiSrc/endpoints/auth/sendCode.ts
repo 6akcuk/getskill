@@ -1,11 +1,13 @@
 import { PrismaClient } from '@prisma/client'
 import { ApiRequestWithAuth, ApiResponse } from '../types'
-import { sendError } from '../../utils'
+import { sendError, withAuthHandler } from '../../utils'
 import { DateTime } from 'luxon'
 import { VerifyBy, VerifyType } from './types'
 import { sendCodeInCall } from '../../libraries/smsc'
 
 interface SendCodeRequestBody {
+  phone?: string
+  email?: string
   by: VerifyBy
   verify: VerifyType
 }
@@ -13,13 +15,33 @@ type SendCodeRequest = ApiRequestWithAuth<SendCodeRequestBody>
 
 const prisma = new PrismaClient()
 
-async function sendCode(request: SendCodeRequest, response: ApiResponse) {
-  const user = await prisma.user.findOne({
+async function sendCodeHandler(request: SendCodeRequest, response: ApiResponse) {
+  let userId = null
+
+  //
+  if (request.body.phone || request.body.email) {
+    const foundUser = await prisma.user.findFirst({
+      where: {
+        OR: {
+          email: request.body.email,
+          phone: request.body.phone,
+        },
+      },
+    })
+
+    userId = foundUser?.id
+  }
+
+  if (request.body.verify === 'forgot_password' && !userId) {
+    return sendError(response)('Пользователь не найден', 404)
+  }
+
+  const user = await prisma.user.findUnique({
     where: {
-      id: Number(request.user.id),
+      id: userId ?? Number(request.user.id),
     },
     include: {
-      UserVerification: {
+      verifications: {
         where: {
           by: request.body.by,
           type: request.body.verify,
@@ -35,7 +57,7 @@ async function sendCode(request: SendCodeRequest, response: ApiResponse) {
     return sendError(response)('Номер телефона не указан', 500)
   }
 
-  const verification = user.UserVerification[0]
+  const verification = user.verifications[0]
 
   if (verification && verification.attempts >= Number(process.env.VERIFICATION_MAX_ATTEMPTS)) {
     return sendError(response)('Превышено количество попыток', 500)
@@ -43,7 +65,7 @@ async function sendCode(request: SendCodeRequest, response: ApiResponse) {
   if (
     verification &&
     verification.times > Number(process.env.VERIFICATION_TIMES) &&
-    DateTime.fromJSDate(verification.createdAt).diffNow().as('minutes') < 30
+    DateTime.fromJSDate(verification.createdAt).diffNow().as('minutes') > -30
   ) {
     return sendError(response)('Превышено количество отправлений', 500)
   }
@@ -82,11 +104,23 @@ async function sendCode(request: SendCodeRequest, response: ApiResponse) {
       },
     },
     where: {
-      userId: user.id,
+      userId_by_type: {
+        userId: user.id,
+        by: request.body.by,
+        type: request.body.verify,
+      },
     },
   })
 
   return response.json({})
+}
+
+async function sendCode(request: SendCodeRequest, response: ApiResponse) {
+  if (!request.body.phone && !request.body.email) {
+    return withAuthHandler(sendCodeHandler)(request, response)
+  }
+
+  return sendCodeHandler(request, response)
 }
 
 export default sendCode
