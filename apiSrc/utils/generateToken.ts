@@ -6,7 +6,7 @@ interface GenerateTimeTokenOptions {
   expiresIn?: string
 }
 
-function generateToken(user: User) {
+function generateAuthToken(user: User) {
   return jwt.sign(
     {
       id: user.id,
@@ -15,6 +15,17 @@ function generateToken(user: User) {
     },
     process.env.JWT_SIGNATURE!,
     { expiresIn: '6h' },
+  )
+}
+
+function generateRefreshToken(user: User) {
+  return jwt.sign(
+    {
+      id: user.id,
+      refresh: true,
+    },
+    process.env.JWT_SIGNATURE!,
+    { expiresIn: '30d' },
   )
 }
 
@@ -28,4 +39,4 @@ function generateTimeToken(options: GenerateTimeTokenOptions) {
   )
 }
 
-export { generateToken, generateTimeToken }
+export { generateAuthToken, generateRefreshToken, generateTimeToken }

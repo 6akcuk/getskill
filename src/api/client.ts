@@ -1,10 +1,11 @@
-import axios, { AxiosRequestConfig, AxiosInstance, AxiosResponse } from 'axios'
+import axios, { AxiosInstance } from 'axios'
 import qs from 'qs'
 import * as auth from './auth/endpoints'
 import * as draft from './draft/endpoints'
 import * as user from './user/endpoints'
 import * as videoLesson from './videoLesson/endpoints'
-import { combineEndpoints } from './utils'
+import * as authInterceptors from './auth/interceptors'
+import { combineEndpoints, attachInterceptors } from './utils'
 
 interface CreateAPIOptions {
   baseURL?: string
@@ -30,46 +31,19 @@ function createClient() {
   const baseClient = axios.create()
   const apiClient = createAPI({ client: baseClient })
 
+  attachInterceptors(baseClient, apiClient, {
+    request: [authInterceptors.addAuthorizationToken],
+    response: {
+      error: [authInterceptors.processAuthTokenOnUnauthorizedError],
+    },
+  })
+
   Object.assign(baseClient, apiClient)
 
   return baseClient as typeof baseClient & typeof apiClient
 }
 
 const client = createClient()
-
-function onRequest(config: AxiosRequestConfig) {
-  const recoilPersist = localStorage.getItem('recoil-persist')
-  const token = recoilPersist ? JSON.parse(recoilPersist).authTokenState : null
-
-  if (!token) {
-    return config
-  }
-
-  const headers = {
-    ...config.headers,
-    authorization: `Bearer ${token}`,
-  }
-
-  return { ...config, headers }
-}
-
-function onResponse(response: AxiosResponse) {
-  if (response.status === 401) {
-    const recoilPersist = localStorage.getItem('recoil-persist')
-    const state = recoilPersist ? JSON.parse(recoilPersist) : null
-
-    if (state) {
-      state.authTokenState = null
-
-      localStorage.setItem('recoil-persist', JSON.stringify(state))
-    }
-  }
-
-  return response
-}
-
-client.interceptors.request.use(onRequest)
-client.interceptors.response.use(onResponse)
 
 export { client }
 export default client

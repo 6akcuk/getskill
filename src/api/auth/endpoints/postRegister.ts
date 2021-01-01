@@ -10,14 +10,15 @@ interface PostRegisterRequestBody {
 }
 
 interface PostRegisterResponseBody {
-  token: string
+  authToken: string
+  refreshToken: string
 }
 
 const postRegister = defineEndpoint<
   PostRegisterRequestParams,
   PostRegisterRequestBody,
   PostRegisterResponseBody
->(({ client, body }) => client.request({ method: 'POST', url: '/api/register', data: body }))
+>(({ client, body }) => client.request({ method: 'POST', url: '/api/auth/register', data: body }))
 
 export default postRegister
 export { postRegister }

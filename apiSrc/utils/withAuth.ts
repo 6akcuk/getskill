@@ -1,7 +1,7 @@
 import { NowRequestBody, NowRequestQuery } from '@vercel/node'
 import { verifyToken } from './verifyToken'
 import { ApiResponse, ApiRequestWithAuth } from '../endpoints/types'
-import { getUserPayloadFromToken } from './getUserFromToken'
+import { getAuthTokenPayload } from './getTokenPayload'
 import sendError from './sendError'
 
 function authorizeRequest<
@@ -19,7 +19,7 @@ function addAuthorizedUserToRequestObject<
   Body extends NowRequestBody = NowRequestBody,
   Query extends NowRequestQuery = NowRequestQuery
 >(req: ApiRequestWithAuth<Body, Query>) {
-  req.user = getUserPayloadFromToken(req.headers.authorization!)
+  req.user = getAuthTokenPayload(req.headers.authorization!)
 
   return req
 }

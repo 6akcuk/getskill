@@ -1,5 +1,5 @@
 import { NowRequest, NowRequestBody, NowRequestQuery, NowResponse } from '@vercel/node'
-import { UserPayload } from '../utils'
+import { AuthTokenPayload } from '../utils'
 
 interface ApiRequest<
   Body extends NowRequestBody = NowRequestBody,
@@ -8,14 +8,14 @@ interface ApiRequest<
   method: string
   query: Query
   body: Body
-  user?: UserPayload | null
+  user?: AuthTokenPayload | null
 }
 
 interface ApiRequestWithAuth<
   Body extends NowRequestBody = NowRequestBody,
   Query extends NowRequestQuery = NowRequestQuery
 > extends ApiRequest<Body, Query> {
-  user: UserPayload
+  user: AuthTokenPayload
 }
 
 interface ApiResponse<Body = any> extends NowResponse {

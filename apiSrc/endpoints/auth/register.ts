@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 import argon2 from 'argon2'
 import { ApiRequest, ApiResponse } from '../types'
 import { sendError } from '../../utils'
-import { getAuthToken } from './utils'
+import { getAuthToken, getRefreshToken } from './utils'
 
 interface RegisterRequestBody {
   email: string
@@ -11,7 +11,8 @@ interface RegisterRequestBody {
   password: string
 }
 interface RegisterResponseBody {
-  token: string
+  authToken: string
+  refreshToken: string
 }
 type RegisterRequest = ApiRequest<RegisterRequestBody>
 type RegisterResponse = ApiResponse<RegisterResponseBody>
@@ -57,7 +58,11 @@ async function register(req: RegisterRequest, res: RegisterResponse) {
   })
 
   return res.json({
-    token: await getAuthToken({
+    authToken: await getAuthToken({
+      user,
+      request: req,
+    }),
+    refreshToken: await getRefreshToken({
       user,
       request: req,
     }),

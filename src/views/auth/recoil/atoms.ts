@@ -21,6 +21,14 @@ const authTokenState = atom<string | null>({
   },
 })
 
+const refreshTokenState = atom<string | null>({
+  key: 'refreshTokenState',
+  default: null,
+  persistence_UNSTABLE: {
+    type: 'refreshToken',
+  },
+})
+
 const authBannerStatuses = atom<Record<BannerType, BannerStatus>>({
   key: 'authBannerStatusesState',
   default: {
@@ -34,4 +42,4 @@ const authBannerStatuses = atom<Record<BannerType, BannerStatus>>({
   },
 })
 
-export { authBannerStatuses, authTokenState, currentUserState }
+export { authBannerStatuses, authTokenState, currentUserState, refreshTokenState }

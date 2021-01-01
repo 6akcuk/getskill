@@ -10,18 +10,10 @@ function useCurrentUser() {
   const { data } = useSWR<User>(authToken ? '/api/me' : null)
 
   useEffect(() => {
-    if (authToken) {
-      setCurrentUser(data ?? null)
-    } else {
-      setCurrentUser(null)
-    }
-  }, [data, authToken, setCurrentUser])
+    setCurrentUser(data ?? null)
+  }, [data, setCurrentUser])
 
-  if (!authToken) {
-    return null
-  }
-
-  return data
+  return data ?? null
 }
 
 export { useCurrentUser }

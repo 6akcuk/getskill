@@ -1,9 +1,9 @@
 import { FormikConfig, useFormik, FormikProps } from 'formik'
 import { useSetRecoilState } from 'recoil'
-import * as yup from 'yup'
 import { useRegister } from '../../../api'
 import { useNavigateBack } from '../../../hooks'
-import { authTokenState } from '../recoil/atoms'
+import { authTokenState, refreshTokenState } from '../recoil/atoms'
+import * as yup from 'yup'
 
 interface RegisterFormValues {
   email: string
@@ -32,6 +32,7 @@ type RegisterFormHandle = FormikProps<RegisterFormValues>
 
 function useRegisterForm(config: RegisterFormConfig = {}) {
   const setAuthToken = useSetRecoilState(authTokenState)
+  const setRefreshToken = useSetRecoilState(refreshTokenState)
   const navigateBack = useNavigateBack()
   const [, register] = useRegister()
 
@@ -41,7 +42,8 @@ function useRegisterForm(config: RegisterFormConfig = {}) {
     onSubmit: async values => {
       const response = await register({}, values)
 
-      setAuthToken(response.token)
+      setAuthToken(response.authToken)
+      setRefreshToken(response.refreshToken)
       navigateBack()
     },
     ...config,

@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSetRecoilState } from 'recoil'
 import { useCurrentUser } from '../../../../hooks'
-import { authTokenState } from '../../../auth/recoil/atoms'
+import { authTokenState, refreshTokenState } from '../../../auth/recoil/atoms'
 import * as S from './UserBlock.styles'
 import { useHistory } from 'react-router-dom'
 
@@ -14,7 +14,10 @@ function UserBlock(props: UserBlockProps) {
   const user = useCurrentUser()
   const { t } = useTranslation('auth')
   const setAuthToken = useSetRecoilState(authTokenState)
+  const setRefreshToken = useSetRecoilState(refreshTokenState)
   const history = useHistory()
+
+  console.dir(user)
 
   const handleNavigateToProfile = useCallback(() => {
     history.push(`/user/${user?.id}`)
@@ -26,7 +29,8 @@ function UserBlock(props: UserBlockProps) {
 
   const handleSignOut = useCallback(() => {
     setAuthToken(null)
-  }, [setAuthToken])
+    setRefreshToken(null)
+  }, [setAuthToken, setRefreshToken])
 
   return (
     <S.Dropdown

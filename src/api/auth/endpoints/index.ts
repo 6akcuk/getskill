@@ -1,5 +1,6 @@
 export * from './postChangePassword'
 export * from './postLogin'
+export * from './postRefreshToken'
 export * from './postRegister'
 export * from './postSendCode'
 export * from './postVerifyCode'

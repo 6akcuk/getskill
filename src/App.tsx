@@ -11,6 +11,7 @@ import { RecoilRoot } from 'recoil'
 import recoilPersist from 'recoil-persist'
 import { NotificationsProvider } from './views/app/views/notifications'
 import { CloudinaryContext } from 'cloudinary-react'
+import { Suspense } from './components'
 
 const { RecoilPersist, updateState } = recoilPersist()
 
@@ -23,11 +24,13 @@ function App() {
             <RecoilPersist />
             <NotificationsProvider />
             <CloudinaryContext cloudName={process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}>
-              <AppLayout>
+              <Suspense>
                 <AuthRouterProvider>
-                  <Routes />
+                  <AppLayout>
+                    <Routes />
+                  </AppLayout>
                 </AuthRouterProvider>
-              </AppLayout>
+              </Suspense>
             </CloudinaryContext>
           </SWRProvider>
         </RecoilRoot>

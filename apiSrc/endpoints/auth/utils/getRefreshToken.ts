@@ -1,16 +1,16 @@
 import { User, PrismaClient } from '@prisma/client'
-import { generateAuthToken, IPToNumber } from '../../../utils'
+import { IPToNumber, generateRefreshToken } from '../../../utils'
 import { NowRequest } from '@vercel/node'
 
-interface GetAuthTokenParams {
+interface GetRefreshTokenParams {
   request: NowRequest
   user: User
 }
 
 const prisma = new PrismaClient()
 
-async function getAuthToken(params: GetAuthTokenParams) {
-  const token = generateAuthToken(params.user)
+async function getRefreshToken(params: GetRefreshTokenParams) {
+  const token = generateRefreshToken(params.user)
 
   await prisma.userToken.create({
     data: {
@@ -28,5 +28,5 @@ async function getAuthToken(params: GetAuthTokenParams) {
   return token
 }
 
-export default getAuthToken
-export { getAuthToken }
+export default getRefreshToken
+export { getRefreshToken }

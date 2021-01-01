@@ -2,14 +2,15 @@ import { PrismaClient } from '@prisma/client'
 import argon2 from 'argon2'
 import { ApiRequest, ApiResponse } from '../types'
 import { sendError } from '../../utils'
-import { getAuthToken } from './utils'
+import { getAuthToken, getRefreshToken } from './utils'
 
 interface LoginRequestBody {
   username: string
   password: string
 }
 interface LoginResponseBody {
-  token: string
+  authToken: string
+  refreshToken: string
 }
 type LoginRequest = ApiRequest<LoginRequestBody>
 type LoginResponse = ApiResponse<LoginResponseBody>
@@ -31,7 +32,11 @@ async function login(req: LoginRequest, res: LoginResponse) {
   }
 
   return res.json({
-    token: await getAuthToken({
+    authToken: await getAuthToken({
+      user,
+      request: req,
+    }),
+    refreshToken: await getRefreshToken({
       user,
       request: req,
     }),

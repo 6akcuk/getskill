@@ -5,12 +5,13 @@ import { Modal } from '../../../../components'
 import { LoginForm } from '..'
 import { LoginFormSchema } from '../LoginForm/useLoginForm'
 import { useLogin } from '../../../../api'
-import { authTokenState } from '../../recoil/atoms'
+import { authTokenState, refreshTokenState } from '../../recoil/atoms'
 import { useNavigateBack, useOpenModalCallback } from '../../../../hooks'
 import * as S from './Login.styles'
 
 function Login() {
   const setAuthToken = useSetRecoilState(authTokenState)
+  const setRefreshToken = useSetRecoilState(refreshTokenState)
   const { t } = useTranslation('auth')
   const [, login] = useLogin()
   const navigateBack = useNavigateBack()
@@ -26,10 +27,11 @@ function Login() {
         },
       )
 
-      setAuthToken(response.token)
+      setAuthToken(response.authToken)
+      setRefreshToken(response.refreshToken)
       navigateBack()
     },
-    [setAuthToken],
+    [setAuthToken, setRefreshToken],
   )
 
   const handleSignUpClick = useCallback(() => {

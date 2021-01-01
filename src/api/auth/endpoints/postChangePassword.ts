@@ -14,7 +14,7 @@ const postChangePassword = defineEndpoint<
   PostChangePasswordRequestParams,
   PostChangePasswordRequestBody,
   PostChangePasswordResponseBody
->(({ client, body }) => client.request({ method: 'POST', url: '/api/change_password', data: body }))
+>(({ client, body }) => client.request({ method: 'POST', url: '/api/auth/change_password', data: body }))
 
 export default postChangePassword
 export { postChangePassword }

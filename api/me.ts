@@ -1,11 +1,11 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 import { PrismaClient } from '@prisma/client'
-import { withAuth, getUserPayloadFromToken } from '../apiSrc'
+import { withAuth, getAuthTokenPayload } from '../apiSrc'
 
 const prisma = new PrismaClient()
 
 async function me(req: NowRequest, res: NowResponse) {
-  const payload = getUserPayloadFromToken(req.headers.authorization)
+  const payload = getAuthTokenPayload(req.headers.authorization)
   const user = await prisma.user.findUnique({
     where: {
       id: Number(payload.id),

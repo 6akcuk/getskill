@@ -8,14 +8,15 @@ interface PostLoginRequestBody {
 }
 
 interface PostLoginResponseBody {
-  token: string
+  authToken: string
+  refreshToken: string
 }
 
 const postLogin = defineEndpoint<PostLoginRequestParams, PostLoginRequestParams, PostLoginResponseBody>(
   ({ client, body }) =>
     client.request({
       method: 'POST',
-      url: '/api/login',
+      url: '/api/auth/login',
       data: body,
     }),
 )

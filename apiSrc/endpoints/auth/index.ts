@@ -1,5 +1,6 @@
 export * from './changePassword'
 export * from './login'
+export * from './refreshToken'
 export * from './register'
 export * from './sendCode'
 export * from './verifyCode'
