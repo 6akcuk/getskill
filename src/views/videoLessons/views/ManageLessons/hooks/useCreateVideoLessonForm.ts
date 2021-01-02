@@ -3,6 +3,7 @@ import { mutate } from 'swr'
 import { FormikProps, useFormik } from 'formik'
 import { useCreateVideoLesson, VideoLesson } from '../../../../../api'
 import { useNavigateBack } from '../../../../../hooks'
+import { OptionType } from '../../../../../components'
 
 interface CreateVideoLessonFormValues {
   id: string
@@ -13,6 +14,7 @@ interface CreateVideoLessonFormValues {
   version: number
   duration: number
   description?: string
+  skills: OptionType[]
 }
 
 const createVideoLessonFormSchema = yup.object<CreateVideoLessonFormValues>({
@@ -24,6 +26,17 @@ const createVideoLessonFormSchema = yup.object<CreateVideoLessonFormValues>({
   version: yup.number().required().min(1),
   duration: yup.number().required(),
   description: yup.string().default(''),
+  skills: yup
+    .array()
+    .of(
+      yup
+        .object<OptionType>({
+          label: yup.string().required(),
+          value: yup.string().required(),
+        })
+        .required(),
+    )
+    .required(),
 })
 
 type CreateVideoLessonFormHandle = FormikProps<CreateVideoLessonFormValues>
@@ -56,6 +69,7 @@ function useCreateVideoLessonForm(videoLesson: VideoLesson) {
           duration: values.duration,
           publicId: values.publicId,
           version: values.version,
+          skills: values.skills.map(skill => skill.value),
         },
       )
 

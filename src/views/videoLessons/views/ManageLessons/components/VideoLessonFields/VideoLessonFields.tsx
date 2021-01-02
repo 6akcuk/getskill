@@ -57,6 +57,12 @@ function VideoLessonFields(props: VideoLessonFieldsProps) {
           value={props.form.values.description}
         />
       </S.Field>
+      <S.Field id="skills" label={t('create.form.label.skills')} error={props.form.errors.skills as string}>
+        <S.SkillsInput
+          value={props.form.values.skills}
+          onChange={skills => props.form.setFieldValue('skills', skills ?? [])}
+        />
+      </S.Field>
     </S.Wrapper>
   )
 }

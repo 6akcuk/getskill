@@ -27,7 +27,7 @@ function ContactResourceSelect(props: ContactResourceSelectProps) {
       placeholder={t('form.contacts.placeholder.select_resource')}
       options={options}
       onChange={resource => props.form.setFieldValue('selectedResource', resource?.value)}
-      value={props.form.values.selectedResource}
+      value={props.form.values.selectedResource as string}
     />
   )
 }

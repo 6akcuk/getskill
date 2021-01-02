@@ -9,6 +9,7 @@ interface PostVideoLessonRequestBody {
   version: number
   duration: number
   description?: string
+  skills: string[]
 }
 type PostVideoLessonResponseBody = VideoLesson
 

@@ -16,6 +16,12 @@
       "heading": "Услуга недоступна"
     },
     "save": "Сохранить",
+    "skill_search": {
+      "create_label": "Добавить новый навык",
+      "loading": "Загрузка",
+      "no_options": "Навыки не найдены",
+      "placeholder": "Начните вводить название навыка.."
+    },
     "steps": {
       "label": {
         "step_number": "Шаг {{step}}"

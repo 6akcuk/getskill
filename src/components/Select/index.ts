@@ -1,2 +1,5 @@
+export * from './AsyncSelect'
+export * from './AsyncMultiSelect'
+export * from './MultiSelect'
 export { default } from './Select'
 export * from './Select'

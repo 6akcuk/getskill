@@ -1,16 +1,21 @@
-import React, { useMemo, useCallback } from 'react'
-import ReactSelect, { Props, OptionTypeBase, ValueType } from 'react-select'
+import React, { useMemo, useCallback, ComponentType } from 'react'
+import ReactSelect, { NamedProps, OptionTypeBase, ValueType } from 'react-select'
 import ClearIndicator from './ClearIndicator'
 import DropdownIndicator from './DropdownIndicator'
 import { selectStyles } from './selectStyles'
 import { keyBy } from 'lodash'
 
-interface SelectProps extends Omit<Props, 'onChange'> {
-  onChange: (option?: OptionType | null) => void
-}
 interface OptionType extends OptionTypeBase {
   label: string
   value: string
+}
+type Props = NamedProps<OptionType>
+interface SelectProps extends Omit<Props, 'onChange' | 'value'> {
+  options?: OptionType[]
+  onChange: (option?: OptionType | null) => void
+  value: string | OptionType
+
+  __Component?: ComponentType<Props>
 }
 
 function Select(props: SelectProps) {
@@ -36,9 +41,10 @@ function Select(props: SelectProps) {
     props.value,
     optionsByValue,
   ])
+  const SelectComponent = props.__Component || ReactSelect
 
   return (
-    <ReactSelect
+    <SelectComponent
       {...props}
       onChange={handleChange}
       menuPortalTarget={portalTarget}

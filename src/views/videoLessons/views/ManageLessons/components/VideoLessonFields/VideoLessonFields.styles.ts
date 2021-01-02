@@ -6,6 +6,7 @@ import {
   VideoUploader as BaseVideoUploader,
   TextArea as BaseTextArea,
 } from '../../../../../../components'
+import SkillsSearch from './SkillsSearch'
 
 const Wrapper = styled.div``
 
@@ -26,6 +27,7 @@ const Input = styled(BaseInput)``
 const TextArea = styled(BaseTextArea)``
 const VideoUploader = styled(BaseVideoUploader)``
 const VideoPlayer = styled(Stream)``
+const SkillsInput = styled(SkillsSearch)``
 
 const VideoProcessing = styled.div`
   display: flex;
@@ -38,4 +40,14 @@ const VideoProcessing = styled.div`
   text-align: center;
 `
 
-export { Field, HelperText, Input, TextArea, VideoPlayer, VideoProcessing, VideoUploader, Wrapper }
+export {
+  Field,
+  HelperText,
+  Input,
+  SkillsInput,
+  TextArea,
+  VideoPlayer,
+  VideoProcessing,
+  VideoUploader,
+  Wrapper,
+}

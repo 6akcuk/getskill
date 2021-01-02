@@ -1,4 +1,4 @@
-import { VideoLesson, PrismaClient } from '@prisma/client'
+import { VideoLesson, PrismaClient, TagType } from '@prisma/client'
 import { ApiResponse, ApiRequestWithAuth } from '../types'
 import { DateTime } from 'luxon'
 
@@ -8,6 +8,7 @@ interface CreateVideoLessonRequestBody {
   version: number
   duration: number
   description?: string
+  skills: string[]
 }
 
 type CreateVideoLessonRequest = ApiRequestWithAuth<CreateVideoLessonRequestBody, any>
@@ -41,6 +42,17 @@ async function createVideoLesson(request: CreateVideoLessonRequest, response: Cr
         version: request.body.version,
         duration: Math.floor(request.body.duration),
         isUploaded: true,
+        tags: {
+          connectOrCreate: request.body.skills.map(skill => ({
+            where: {
+              id: isNaN(Number(skill)) ? 0 : Number(skill),
+            },
+            create: {
+              name: skill,
+              type: TagType.SKILL,
+            },
+          })),
+        },
       },
     }),
   )

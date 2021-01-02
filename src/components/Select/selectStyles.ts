@@ -14,7 +14,7 @@ const selectStyles: StylesConfig = {
     backgroundColor: theme.colors.white,
     borderRadius: theme.sizes.radius.md,
     borderColor: isFocused ? theme.colors.primary[500] : theme.colors.border[300],
-    boxShadow: isFocused ? `0 0 0 1px rgba(0, 0, 0, 0.05), ${theme.shadow.lg}` : theme.shadow.sm,
+    boxShadow: isFocused ? `0 0 0 1px ${theme.colors.primary[500]}, ${theme.shadow.lg}` : theme.shadow.sm,
     cursor: 'pointer',
     fontSize: '0.875rem',
     lineHeight: '1.25rem',
@@ -58,14 +58,44 @@ const selectStyles: StylesConfig = {
   multiValue: (styles: CSSProperties) => ({
     ...styles,
     alignItems: 'center',
-    backgroundColor: theme.colors.border[300],
+    backgroundColor: theme.colors.primary[100],
     minWidth: 'auto',
-    padding: '0.5rem 0.75rem',
+    borderRadius: theme.sizes.radius.md,
+    padding: '0.125rem 0.25rem',
+    paddingLeft: '0.625rem',
+    margin: 0,
+
+    ':not(:first-child)': {
+      marginLeft: '0.25rem',
+    },
   }),
   multiValueLabel: (styles: CSSProperties) => ({
     ...styles,
+    padding: 0,
+    paddingLeft: 0,
     fontSize: '0.875rem',
-    paddingRight: '0.75rem',
+    fontWeight: 500,
+    color: theme.colors.primary[700],
+    lineHeight: '1.25rem',
+  }),
+  multiValueRemove: (styles: CSSProperties) => ({
+    ...styles,
+    justifyContent: 'center',
+    color: theme.colors.primary[400],
+    marginLeft: '0.125rem',
+    padding: 0,
+    width: '1rem',
+    height: '1rem',
+
+    ':active': {
+      color: theme.colors.white,
+      backgroundColor: theme.colors.primary[500],
+    },
+
+    ':hover': {
+      color: theme.colors.primary[500],
+      backgroundColor: theme.colors.primary[200],
+    },
   }),
   option: (styles: any, { isFocused, isSelected }: any) => ({
     ...styles,

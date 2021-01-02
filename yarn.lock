@@ -1077,6 +1077,13 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@7.4.5":
+  version "7.4.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.5.tgz#582bb531f5f9dc67d2fcb682979894f75e253f12"
+  integrity sha512-TuI4qpWZP6lGOGIuGWtp9sPluqYICmbk8T/1vpSysqJxRPkudh/ofFWyqdcMsDf2s7KvDL4/YHgKyvcS3g9CJQ==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/runtime@7.9.0":
   version "7.9.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.9.0.tgz#337eda67401f5b066a6f205a3113d4ac18ba495b"
@@ -1926,6 +1933,13 @@
   version "16.9.8"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.8.tgz#fe4c1e11dfc67155733dfa6aa65108b4971cb423"
   integrity sha512-ykkPQ+5nFknnlU6lDd947WbQ6TE3NNzbQAkInC2EKY1qeYdTKp7onFusmYZb+ityzx2YviqT6BXSu+LyWWJwcA==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-mentions@^3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@types/react-mentions/-/react-mentions-3.3.1.tgz#f0fa1138f7fbf3012546260b634cbf23f735c0fe"
+  integrity sha512-o27Fb89lX4pGcA6lMkE+n7d/jqE9Zty3DYIUTVL0SBx8YV4uiqjI6d/34zVL2bUxq1mXSHb34hm2i358C/rRoA==
   dependencies:
     "@types/react" "*"
 
@@ -10603,6 +10617,16 @@ react-loading-skeleton@^2.1.1:
   dependencies:
     "@emotion/core" "^10.0.22"
 
+react-mentions@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/react-mentions/-/react-mentions-4.0.2.tgz#a3c06ee9b0da7c792227b0fb4620b04c9c891189"
+  integrity sha512-NlWzoAHWeeciewwUqH5jF0PT1wqVKCeHUwy5BvcMspDR3M22jPtqQLsTBJTcLuu+c7dzy/f3snaa0S+UJnyJiA==
+  dependencies:
+    "@babel/runtime" "7.4.5"
+    invariant "^2.2.4"
+    prop-types "^15.5.8"
+    substyle "^9.1.0"
+
 react-phone-input-2@^2.13.8:
   version "2.13.8"
   resolved "https://registry.yarnpkg.com/react-phone-input-2/-/react-phone-input-2-2.13.8.tgz#83448abca741325f84460f85911921b3b1a6ecd0"
@@ -10879,7 +10903,7 @@ regenerator-runtime@^0.11.0:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
 
-regenerator-runtime@^0.13.3, regenerator-runtime@^0.13.4:
+regenerator-runtime@^0.13.2, regenerator-runtime@^0.13.3, regenerator-runtime@^0.13.4:
   version "0.13.7"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
   integrity sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew==
@@ -12055,6 +12079,14 @@ stylehacks@^4.0.0:
     browserslist "^4.0.0"
     postcss "^7.0.0"
     postcss-selector-parser "^3.0.0"
+
+substyle@^9.1.0:
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/substyle/-/substyle-9.3.0.tgz#569af81723f74cd895b08b6b1e6bc06727f2a2bd"
+  integrity sha512-OK6A6EpqOfRvlwOnrgwFKIi8UDJwCQ2UB5cIJGMEFvl3zUUA83XDbRUJizECj66CdeZ9pGjkmwRxyc/9wBGQMA==
+  dependencies:
+    "@babel/runtime" "^7.3.4"
+    invariant "^2.2.4"
 
 supports-color@^2.0.0:
   version "2.0.0"
