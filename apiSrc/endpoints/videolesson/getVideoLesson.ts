@@ -13,6 +13,19 @@ const prisma = new PrismaClient()
 
 async function getVideoLesson(request: GetVideoLessonRequest, response: GetVideoLessonResponse) {
   const videoLesson = await prisma.videoLesson.findUnique({
+    include: {
+      user: {
+        select: {
+          profile: {
+            select: {
+              publicName: true,
+              avatar: true,
+            },
+          },
+        },
+      },
+      tags: true,
+    },
     where: {
       id: Number(request.query.id),
     },

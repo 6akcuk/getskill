@@ -11,24 +11,36 @@ interface WatchLessonParams {
 
 const Player = lazyComponent(() => import('../../../../components/VideoPlayer'))
 
-function WatchLesson() {
+function WatchLessonContainer() {
   const params = useParams<WatchLessonParams>()
   const { data } = useSWR<VideoLesson>(`/api/videolesson/${params.id}`)
 
+  if (!data) {
+    return null
+  }
+
+  return (
+    <>
+      <Player
+        publicId={data.publicId ?? ''}
+        version={data.version ?? 0}
+        streamingProfile={videoLessonAssetTransformations.player.streaming_profile ?? 'hd_lean'}
+      />
+      <S.Title>{data.name}</S.Title>
+      <S.Description>{data.description}</S.Description>
+      <S.SkillsList>
+        {data.tags?.map(tag => (
+          <S.Skill>{tag.name}</S.Skill>
+        ))}
+      </S.SkillsList>
+    </>
+  )
+}
+
+function WatchLesson() {
   return (
     <S.WatchModal backdrop={true}>
-      {!data && <S.Loading />}
-      {data && (
-        <>
-          <Player
-            publicId={data.publicId ?? ''}
-            version={data.version ?? 0}
-            streamingProfile={videoLessonAssetTransformations.player.streaming_profile ?? 'hd_lean'}
-          />
-          <S.Title>{data.name}</S.Title>
-          <S.Description>{data.description}</S.Description>
-        </>
-      )}
+      <WatchLessonContainer />
     </S.WatchModal>
   )
 }

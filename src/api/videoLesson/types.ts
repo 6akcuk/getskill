@@ -1,4 +1,5 @@
 import { User } from '../user/types'
+import { Tag } from '../tag/types'
 
 interface VideoLesson {
   id: number
@@ -15,6 +16,7 @@ interface VideoLesson {
   description: string | null
   createdAt: string
 
+  tags?: Tag[]
   user: User
 }
 

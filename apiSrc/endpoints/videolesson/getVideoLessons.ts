@@ -29,6 +29,7 @@ async function getVideoLessons(request: GetVideoLessonsRequest, response: GetVid
           },
         },
       },
+      tags: true,
     },
     where: {
       userId: Number(request.query.userId) || undefined,

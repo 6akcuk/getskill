@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Modal, Spinner } from '../../../../components'
+import { Modal, Spinner, Tag } from '../../../../components'
 
 const WatchModal = styled(Modal)`
   width: calc(100vw - 10rem);
@@ -8,17 +8,27 @@ const WatchModal = styled(Modal)`
 
 const Loading = styled(Spinner)``
 
-const Title = styled.h3`
-  font-size: 1.125rem;
-  font-weight: 500;
+const Title = styled.h2`
+  font-size: 1.5rem;
+  font-weight: 700;
   color: ${props => props.theme.colors.text[900]};
-  line-height: 1.5rem;
+  line-height: 2rem;
   margin: 1rem 0 0;
 `
 const Description = styled.div`
   margin-top: 0.25rem;
-  line-height: 1.25rem;
+  line-height: 1.75;
   font-size: 0.875rem;
+  color: ${props => props.theme.colors.text[500]};
 `
+const SkillsList = styled.div`
+  margin-top: 0.75rem;
+  line-height: 2rem;
 
-export { Description, Loading, Title, WatchModal }
+  & > *:not(:first-child) {
+    margin-left: 0.75rem;
+  }
+`
+const Skill = styled(Tag)``
+
+export { Description, Loading, Skill, SkillsList, Title, WatchModal }

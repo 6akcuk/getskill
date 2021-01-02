@@ -38,13 +38,21 @@ function PreviewVideoLesson(props: VideoLessonPreviewProps) {
         </S.Poster>
         <S.Duration>{duration}</S.Duration>
       </S.PosterWrapper>
-      {!props.hideAuthor && (
-        <S.Author to={`/user/${props.videoLesson.userId}`} onClick={e => e.stopPropagation()}>
-          <S.AuthorAvatar size="xs" user={props.videoLesson.user} />
-          <S.AuthorName>{props.videoLesson.user.profile.publicName}</S.AuthorName>
-        </S.Author>
-      )}
-      <S.Name>{props.videoLesson.name}</S.Name>
+      <S.ContentWrapper>
+        <S.Name>{props.videoLesson.name}</S.Name>
+        <S.Description>{props.videoLesson.description}</S.Description>
+        <S.SkillsList>
+          {props.videoLesson.tags?.map(tag => (
+            <S.Skill>{tag.name}</S.Skill>
+          ))}
+        </S.SkillsList>
+        {!props.hideAuthor && (
+          <S.Author to={`/user/${props.videoLesson.userId}`} onClick={e => e.stopPropagation()}>
+            <S.AuthorAvatar size="sm" user={props.videoLesson.user} />
+            <S.AuthorName>{props.videoLesson.user.profile.publicName}</S.AuthorName>
+          </S.Author>
+        )}
+      </S.ContentWrapper>
     </S.Wrapper>
   )
 }
