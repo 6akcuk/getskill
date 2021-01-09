@@ -13,6 +13,7 @@ function NavBar(props: NavBarProps) {
     <S.Wrapper className={props.className}>
       <S.Content>
         <S.NavLink to="/videolessons">{t('navbar.videolessons')}</S.NavLink>
+        <S.NavLink to="/specialists">{t('navbar.specialists')}</S.NavLink>
       </S.Content>
     </S.Wrapper>
   )

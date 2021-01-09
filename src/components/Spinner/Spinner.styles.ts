@@ -9,6 +9,15 @@ const animation = keyframes`
   }
 `
 
+const Wrapper = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  justify-self: stretch;
+`
+
 const Ring = styled.div`
   position: relative;
   display: inline-block;
@@ -40,4 +49,4 @@ const Forth = styled(Sector)`
   animation-delay: -0.15s;
 `
 
-export { First, Forth, Ring, Second, Third }
+export { First, Forth, Ring, Second, Third, Wrapper }

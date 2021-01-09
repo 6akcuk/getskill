@@ -41,6 +41,7 @@ model User {
   UserToken       UserToken[]
   VideoLesson     VideoLesson[]
   verifications   UserVerification[]
+  specialist      Specialist?
 }
 
 model UserToken {
@@ -72,27 +73,47 @@ model Profile {
   avatar     Json?
   about      String? // @db.Text
   contacts   Json?
-  user       User    @relation(fields: [userId], references: [id])
-  userId     Int
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+}
+
+model Specialist {
+  id     Int @id @default(autoincrement())
+  scores Int @default(0)
+
+  user                   User                     @relation(fields: [userId], references: [id])
+  userId                 Int
+  tags                   ServicesToTags[]
+  SpecialistScoreHistory SpecialistScoreHistory[]
+}
+
+model SpecialistScoreHistory {
+  id        Int      @id @default(autoincrement())
+  amount    Int
+  reason    String
+  createdAt DateTime @default(now())
+
+  specialist   Specialist @relation(fields: [specialistId], references: [id])
+  specialistId Int
 }
 
 model VideoLesson {
-  id             Int              @id @default(autoincrement())
-  userId         Int
-  isDraft        Boolean          @default(true)
-  isUploaded     Boolean          @default(false)
-  isReady        Boolean          @default(false)
-  duration       Int              @default(0)
-  name           String
-  poster         String?
-  publicId       String?
-  version        Int?
-  uploadUrl      String?
-  description    String?
-  tags           Tag[]
-  user           User             @relation(fields: [userId], references: [id])
-  createdAt      DateTime
-  ServicesToTags ServicesToTags[]
+  id          Int              @id @default(autoincrement())
+  userId      Int
+  isDraft     Boolean          @default(true)
+  isUploaded  Boolean          @default(false)
+  isReady     Boolean          @default(false)
+  duration    Int              @default(0)
+  name        String
+  poster      String?
+  publicId    String?
+  version     Int?
+  uploadUrl   String?
+  description String?
+  user        User             @relation(fields: [userId], references: [id])
+  createdAt   DateTime
+  tags        ServicesToTags[]
 }
 
 enum TagType {
@@ -103,8 +124,6 @@ model Tag {
   id             Int              @id @default(autoincrement())
   name           String
   type           TagType
-  VideoLesson    VideoLesson?     @relation(fields: [videoLessonId], references: [id])
-  videoLessonId  Int?
   ServicesToTags ServicesToTags[]
 }
 
@@ -114,8 +133,11 @@ model ServicesToTags {
   serviceId   Int
   serviceName String
 
-  videoLessonId Int
-  videoLesson   VideoLesson @relation(fields: [videoLessonId], references: [id])
+  specialistId Int?
+  specialist   Specialist? @relation(fields: [specialistId], references: [id])
+
+  videoLessonId Int?
+  videoLesson   VideoLesson? @relation(fields: [videoLessonId], references: [id])
 
   @@id([tagId, serviceId, serviceName])
 }

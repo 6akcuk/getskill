@@ -8,6 +8,7 @@ interface ProfileAvatarProps {
 }
 
 const Avatar = styled.div<{ avatar?: string }>`
+  line-height: 0;
   border-radius: 9999px;
   background: ${props => props.theme.colors.background[500]};
   overflow: hidden;

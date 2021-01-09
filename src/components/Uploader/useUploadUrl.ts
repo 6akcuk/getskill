@@ -49,6 +49,7 @@ function useUploadUrl(params: UseUploadUrlParams) {
     }&eager=${eager}&eager_async=${Boolean(params.eagerAsync)}&id=${params.id}&cacheBuster=${
       params.cacheBuster
     }`,
+    { suspense: false },
   )
 
   return isValidating ? undefined : data

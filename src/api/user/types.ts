@@ -1,4 +1,5 @@
 import { Asset } from '../shared/types'
+import { Specialist } from '../specialists/types'
 
 interface User {
   id: number
@@ -6,6 +7,7 @@ interface User {
   phone: string
   role: string
   profile: UserProfile
+  specialist: Specialist
   isEmailVerified: boolean
   isPhoneVerified: boolean
 }

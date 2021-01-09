@@ -17,8 +17,6 @@ function UserBlock(props: UserBlockProps) {
   const setRefreshToken = useSetRecoilState(refreshTokenState)
   const history = useHistory()
 
-  console.dir(user)
-
   const handleNavigateToProfile = useCallback(() => {
     history.push(`/user/${user?.id}`)
   }, [history, user])

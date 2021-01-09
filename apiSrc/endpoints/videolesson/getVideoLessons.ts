@@ -29,7 +29,11 @@ async function getVideoLessons(request: GetVideoLessonsRequest, response: GetVid
           },
         },
       },
-      tags: true,
+      tags: {
+        select: {
+          tag: true,
+        },
+      },
     },
     where: {
       userId: Number(request.query.userId) || undefined,

@@ -11,7 +11,6 @@ const size = (props: UserAvatarStyleProps) => {
       `
 
     case 'sm':
-    default:
       return css`
         width: 2rem;
         height: 2rem;
@@ -37,6 +36,13 @@ const size = (props: UserAvatarStyleProps) => {
         height: 3.5rem;
         font-size: 1.25rem;
       `
+
+    default:
+      return css`
+        width: ${props.size};
+        height: ${props.size};
+        font-size: 1.25rem;
+      `
   }
 }
 
@@ -48,6 +54,10 @@ const Wrapper = styled.span<UserAvatarStyleProps>`
   background: ${props => props.theme.colors.background[500]};
   overflow: hidden;
   ${size}
+
+  & img {
+    width: 100%;
+  }
 `
 
 const InitialsPlaceholder = styled.span`

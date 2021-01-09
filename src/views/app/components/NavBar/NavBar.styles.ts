@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 const Content = styled.div`
   display: flex;
   flex: 1;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 `
 
@@ -27,6 +27,10 @@ const NavLink = styled(BaseNavLink)`
   text-decoration: none;
 
   background: transparent;
+
+  &:not(:first-child) {
+    margin-left: 0.75rem;
+  }
 
   &:hover {
     color: ${props => props.theme.colors.text[700]};

@@ -1,5 +1,6 @@
 import React, { SuspenseProps as ReactSuspenseProps, ReactNode } from 'react'
 import { Spinner } from '../Spinner'
+import styled from 'styled-components'
 
 interface SuspenseProps {
   children?: ReactNode

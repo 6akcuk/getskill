@@ -54,6 +54,11 @@ async function register(req: RegisterRequest, res: RegisterResponse) {
           publicName,
         },
       },
+      specialist: {
+        create: {
+          scores: 0,
+        },
+      },
     },
   })
 

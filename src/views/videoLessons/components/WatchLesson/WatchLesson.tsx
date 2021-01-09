@@ -29,8 +29,8 @@ function WatchLessonContainer() {
       <S.Title>{data.name}</S.Title>
       <S.Description>{data.description}</S.Description>
       <S.SkillsList>
-        {data.tags?.map(tag => (
-          <S.Skill>{tag.name}</S.Skill>
+        {data.tags?.map(serviceTag => (
+          <S.Skill>{serviceTag.tag.name}</S.Skill>
         ))}
       </S.SkillsList>
     </>

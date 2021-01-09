@@ -13,5 +13,9 @@ interface Tag<Type = TagType> {
   VideoLesson: VideoLesson
 }
 
+interface ServiceTag<Type = TagType> {
+  tag: Tag<Type>
+}
+
 export { TagType }
-export type { Tag }
+export type { ServiceTag, Tag }

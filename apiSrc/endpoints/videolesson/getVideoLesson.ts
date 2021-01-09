@@ -24,7 +24,11 @@ async function getVideoLesson(request: GetVideoLessonRequest, response: GetVideo
           },
         },
       },
-      tags: true,
+      tags: {
+        select: {
+          tag: true,
+        },
+      },
     },
     where: {
       id: Number(request.query.id),

@@ -5,6 +5,7 @@ import BaseNavBar from '../NavBar'
 
 const Wrapper = styled.div`
   display: flex;
+  flex: 1;
   height: 100vh;
   overflow: hidden;
   background: ${props => props.theme.colors.white};

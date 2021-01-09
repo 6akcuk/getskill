@@ -7,6 +7,7 @@ import { ProfileSettings } from './profile/views/profileSettings'
 import { ProfileView } from './profile'
 import { useLocation } from '../hooks'
 import { VideoLessons } from './videoLessons/views/VideoLessons'
+import { Specialists } from './specialists/views/Specialists'
 
 function Routes() {
   const location = useLocation()
@@ -18,6 +19,7 @@ function Routes() {
       <Switch location={location.state?.background ?? location}>
         <Route path="/" exact={true} component={Home} />
         <Route path="/videolessons" component={VideoLessons} />
+        <Route path="/specialists" component={Specialists} />
         <Route path="/user/:userId" component={ProfileView} />
         <Route path="/settings" component={ProfileSettings} />
       </Switch>

@@ -42,8 +42,8 @@ function PreviewVideoLesson(props: VideoLessonPreviewProps) {
         <S.Name>{props.videoLesson.name}</S.Name>
         <S.Description>{props.videoLesson.description}</S.Description>
         <S.SkillsList>
-          {props.videoLesson.tags?.map(tag => (
-            <S.Skill>{tag.name}</S.Skill>
+          {props.videoLesson.tags?.map(serviceTag => (
+            <S.Skill>{serviceTag.tag.name}</S.Skill>
           ))}
         </S.SkillsList>
         {!props.hideAuthor && (

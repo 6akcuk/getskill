@@ -1,5 +1,5 @@
 import React from 'react'
-import { Ring, First, Second, Third, Forth } from './Spinner.styles'
+import * as S from './Spinner.styles'
 
 interface SpinnerProps {
   className?: string
@@ -8,12 +8,14 @@ interface SpinnerProps {
 
 function Spinner(props: SpinnerProps) {
   return (
-    <Ring className={props.className}>
-      <First inverse={props.inverse} />
-      <Second inverse={props.inverse} />
-      <Third inverse={props.inverse} />
-      <Forth inverse={props.inverse} />
-    </Ring>
+    <S.Wrapper>
+      <S.Ring className={props.className}>
+        <S.First inverse={props.inverse} />
+        <S.Second inverse={props.inverse} />
+        <S.Third inverse={props.inverse} />
+        <S.Forth inverse={props.inverse} />
+      </S.Ring>
+    </S.Wrapper>
   )
 }
 

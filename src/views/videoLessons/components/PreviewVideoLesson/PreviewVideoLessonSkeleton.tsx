@@ -5,11 +5,12 @@ function PreviewVideoLessonSkeleton() {
   return (
     <S.Wrapper>
       <S.Poster />
+      <S.Title />
+      <S.Description count={3} />
       <S.Author>
         <S.AuthorAvatar />
         <S.AuthorName />
       </S.Author>
-      <S.Title />
     </S.Wrapper>
   )
 }
