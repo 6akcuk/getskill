@@ -5,9 +5,8 @@ import { VideoLesson } from '../../videoLesson/types'
 type PostVideoLessonRequestParams = VoidArgument
 interface PostVideoLessonRequestBody {
   name: string
-  publicId: string
-  version: number
-  duration: number
+  uploadUrl: string
+  duration?: number
   description?: string
   skills: string[]
 }

@@ -24,6 +24,13 @@ async function getVideoLesson(request: GetVideoLessonRequest, response: GetVideo
           },
         },
       },
+      video: {
+        select: {
+          serviceId: true,
+          duration: true,
+          preview: true,
+        },
+      },
       tags: {
         select: {
           tag: true,

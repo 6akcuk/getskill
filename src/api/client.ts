@@ -36,6 +36,7 @@ function createClient() {
   attachInterceptors(baseClient, apiClient, {
     request: [authInterceptors.addAuthorizationToken],
     response: {
+      success: [authInterceptors.storeTokensOnLoginSuccess],
       error: [authInterceptors.processAuthTokenOnUnauthorizedError],
     },
   })

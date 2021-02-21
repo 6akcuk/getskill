@@ -1,4 +1,4 @@
-import React, { useCallback, useState, ReactNode } from 'react'
+import React, { useCallback, useState, ReactNode, useEffect } from 'react'
 import useUploadUrl, { UploadResource, UseUploadUrlParams } from './useUploadUrl'
 import { UploadResponse } from './UploadHandler'
 import * as S from './Uploader.styles'
@@ -14,13 +14,27 @@ interface UploaderProps extends Omit<UseUploadUrlParams, 'cacheBuster'> {
 }
 
 function Uploader(props: UploaderProps) {
+  const [uploadUrl, setUploadUrl] = useState<string>()
   const [file, setFile] = useState<FileProps>()
   const [cacheBuster, setCacheBuster] = useState(1)
-  const uploadUrl = useUploadUrl({
+  const { data, isValidating, error } = useUploadUrl({
     cacheBuster,
+    file,
     ...props,
   })
-  const isUploadUrlPending = !uploadUrl
+
+  useEffect(() => {
+    if (data) {
+      setUploadUrl(data)
+    }
+  }, [data])
+
+  useEffect(() => {
+    if (file && error) {
+      setFile(undefined)
+      setUploadUrl(undefined)
+    }
+  }, [file, error])
 
   const { onSuccess, maxSize = 1024 * 1024 * 1024, accept = 'image/*' } = props
   const handleDrop = useCallback(
@@ -31,11 +45,13 @@ function Uploader(props: UploaderProps) {
   )
   const handleRemove = useCallback(() => {
     setFile(undefined)
+    setUploadUrl(undefined)
     onSuccess(undefined)
   }, [onSuccess])
   const handleSuccess = useCallback(
     (response: UploadResponse) => {
       setFile(undefined)
+      setUploadUrl(undefined)
       onSuccess(response)
       setCacheBuster(buster => buster + 1)
     },
@@ -44,9 +60,16 @@ function Uploader(props: UploaderProps) {
 
   return (
     <S.Wrapper className={props.className}>
-      <S.UploadHandler uploadUrl={uploadUrl} file={file} onSuccess={handleSuccess} onFailure={handleRemove} />
-      <S.Dropzone accept={accept} maxSize={maxSize} onDrop={handleDrop} disabled={isUploadUrlPending}>
-        {isUploadUrlPending && (
+      {file && (
+        <S.UploadHandler
+          uploadUrl={uploadUrl}
+          file={file}
+          onSuccess={handleSuccess}
+          onFailure={handleRemove}
+        />
+      )}
+      <S.Dropzone accept={accept} maxSize={maxSize} onDrop={handleDrop} disabled={isValidating}>
+        {isValidating && (
           <S.Awaiting>
             <S.Spinner />
           </S.Awaiting>

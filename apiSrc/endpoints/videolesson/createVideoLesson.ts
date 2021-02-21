@@ -2,12 +2,12 @@ import { VideoLesson, PrismaClient, TagType } from '@prisma/client'
 import { ApiResponse, ApiRequestWithAuth } from '../types'
 import { DateTime } from 'luxon'
 import { addScore, ScoreReason } from '../specialist'
+import { sendError } from '../../utils'
+import { getVideoDetails } from '../../libraries'
 
 interface CreateVideoLessonRequestBody {
   name: string
-  publicId: string
-  version: number
-  duration: number
+  uploadUrl: string
   description?: string
   skills: string[]
 }
@@ -18,19 +18,41 @@ type CreateVideoLessonResponse = ApiResponse<VideoLesson>
 const prisma = new PrismaClient()
 
 async function createVideoLesson(request: CreateVideoLessonRequest, response: CreateVideoLessonResponse) {
-  let [videoLesson] = await prisma.videoLesson.findMany({
+  const video = await prisma.video.findFirst({
     where: {
-      isDraft: true,
-      userId: Number(request.user.id),
-      createdAt: {
-        gte: DateTime.local().minus({ minutes: 30 }).toJSDate(),
-      },
+      signedUrl: request.body.uploadUrl,
     },
   })
 
-  const videoLessonId = videoLesson.id
+  if (!video) {
+    return sendError(response)('Загруженное видео не было найдено', 422)
+  }
+  if (!video.serviceId) {
+    return sendError(response)('Cloudflare идентификатор не был сохранен', 422)
+  }
 
-  // const videoDetails = await getVideoDetails({ id: videoLesson.uid })
+  const videoLesson = await prisma.videoLesson.create({
+    data: {
+      name: request.body.name,
+      description: request.body.description,
+      videoId: video?.id,
+      userId: Number(request.user.id),
+      createdAt: DateTime.local().toJSDate(),
+    },
+  })
+
+  const videoDetails = await getVideoDetails({ id: video.serviceId })
+
+  await prisma.video.update({
+    where: {
+      id: video.id,
+    },
+    data: {
+      isUploaded: true,
+      duration: Math.floor(videoDetails.duration),
+      preview: videoDetails.preview,
+    },
+  })
 
   await addScore({
     userId: Number(request.user.id),
@@ -82,24 +104,17 @@ async function createVideoLesson(request: CreateVideoLessonRequest, response: Cr
     },
   })
 
-  videoLesson = await prisma.videoLesson.update({
+  await prisma.videoLesson.update({
     where: {
       id: videoLesson.id,
     },
     data: {
-      isDraft: false,
-      name: request.body.name,
-      description: request.body.description,
-      publicId: request.body.publicId,
-      version: request.body.version,
-      duration: Math.floor(request.body.duration),
-      isUploaded: true,
       tags: {
         connectOrCreate: request.body.skills.map(skill => ({
           where: {
             tagId_serviceId_serviceName: {
               tagId: isNaN(Number(skill)) ? 0 : Number(skill),
-              serviceId: videoLessonId,
+              serviceId: videoLesson.id,
               serviceName: 'videolesson',
             },
           },
@@ -115,7 +130,7 @@ async function createVideoLesson(request: CreateVideoLessonRequest, response: Cr
                 },
               },
             },
-            serviceId: videoLessonId,
+            serviceId: videoLesson.id,
             serviceName: 'videolesson',
           },
         })),

@@ -1,8 +1,7 @@
 import React, { useMemo, useCallback } from 'react'
-import { VideoLesson, videoLessonPosterTransformations } from '../../../../api'
-import * as S from './PreviewVideoLesson.styles'
+import { VideoLesson } from '../../../../api'
 import { useOpenModalCallback } from '../../../../hooks'
-import { Transformation } from 'cloudinary-react'
+import * as S from './PreviewVideoLesson.styles'
 
 interface VideoLessonPreviewProps {
   videoLesson: VideoLesson
@@ -12,11 +11,11 @@ interface VideoLessonPreviewProps {
 
 function PreviewVideoLesson(props: VideoLessonPreviewProps) {
   const duration = useMemo(() => {
-    const minutes = Math.floor(props.videoLesson.duration / 60)
-    const seconds = props.videoLesson.duration % 60
+    const minutes = Math.floor(props.videoLesson.video.duration / 60)
+    const seconds = props.videoLesson.video.duration % 60
 
     return `${minutes}:${seconds}`
-  }, [props.videoLesson.duration])
+  }, [props.videoLesson.video.duration])
   const openModal = useOpenModalCallback()
 
   const handleClick = useCallback(() => {
@@ -27,15 +26,13 @@ function PreviewVideoLesson(props: VideoLessonPreviewProps) {
     <S.Wrapper className={props.className} onClick={handleClick}>
       <S.PosterWrapper>
         <S.Poster
-          publicId={`${props.videoLesson.publicId}.jpg`}
-          version={`${props.videoLesson.version}`}
-          resourceType="video">
-          <Transformation
-            width={videoLessonPosterTransformations.poster.width}
-            height={videoLessonPosterTransformations.poster.height}
-            crop={videoLessonPosterTransformations.poster.crop}
-          />
-        </S.Poster>
+          src={
+            props.videoLesson.video.serviceId
+              ? `https://videodelivery.net/${props.videoLesson.video.serviceId}/thumbnails/thumbnail.jpg`
+              : ''
+          }
+          alt={props.videoLesson.name}
+        />
         <S.Duration>{duration}</S.Duration>
       </S.PosterWrapper>
       <S.ContentWrapper>

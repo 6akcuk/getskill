@@ -1,10 +1,11 @@
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useSetRecoilState } from 'recoil'
-import { useCurrentUser } from '../../../../hooks'
-import { authTokenState, refreshTokenState } from '../../../auth/recoil/atoms'
-import * as S from './UserBlock.styles'
 import { useHistory } from 'react-router-dom'
+import { useCurrentUser } from '../../../../hooks'
+import { AuthStorageKeys } from '../../../../api'
+import { useSetRecoilState } from 'recoil'
+import { isLoggedInState } from '../../../auth/recoil/atoms'
+import * as S from './UserBlock.styles'
 
 interface UserBlockProps {
   className?: string
@@ -13,9 +14,8 @@ interface UserBlockProps {
 function UserBlock(props: UserBlockProps) {
   const user = useCurrentUser()
   const { t } = useTranslation('auth')
-  const setAuthToken = useSetRecoilState(authTokenState)
-  const setRefreshToken = useSetRecoilState(refreshTokenState)
   const history = useHistory()
+  const setLoggedIn = useSetRecoilState(isLoggedInState)
 
   const handleNavigateToProfile = useCallback(() => {
     history.push(`/user/${user?.id}`)
@@ -26,9 +26,11 @@ function UserBlock(props: UserBlockProps) {
   }, [history])
 
   const handleSignOut = useCallback(() => {
-    setAuthToken(null)
-    setRefreshToken(null)
-  }, [setAuthToken, setRefreshToken])
+    localStorage.removeItem(AuthStorageKeys.AUTH_TOKEN)
+    localStorage.removeItem(AuthStorageKeys.REFRESH_TOKEN)
+
+    setLoggedIn(false)
+  }, [])
 
   return (
     <S.Dropdown

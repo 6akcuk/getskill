@@ -1,8 +1,8 @@
 import { AxiosRequestConfig } from 'axios'
+import { AuthStorageKeys } from '../types'
 
 function addAuthorizationToken(config: AxiosRequestConfig) {
-  const recoilPersist = localStorage.getItem('recoil-persist')
-  const token = recoilPersist ? JSON.parse(recoilPersist).authTokenState : null
+  const token = localStorage.getItem(AuthStorageKeys.AUTH_TOKEN)
 
   if (!token) {
     return config

@@ -3,14 +3,14 @@ import { SWRConfig } from 'swr'
 import { fetcher } from '../../../../utils'
 import { AxiosError } from 'axios'
 import { useSetRecoilState } from 'recoil'
-import { authTokenState } from '../../../auth/recoil/atoms'
+import { isLoggedInState } from '../../../auth/recoil/atoms'
 
 interface SWRProviderProps {
   children: ReactNode
 }
 
 function SWRProvider(props: SWRProviderProps) {
-  const setAuthToken = useSetRecoilState(authTokenState)
+  const setIsLoggedIn = useSetRecoilState(isLoggedInState)
 
   return (
     <SWRConfig
@@ -21,9 +21,9 @@ function SWRProvider(props: SWRProviderProps) {
         onError: (err: AxiosError) => {
           // eslint-disable-next-line no-console
           console.error(err)
-          // Clear auth token
+
           if (err.response?.status === 401) {
-            setAuthToken(null)
+            setIsLoggedIn(false)
           }
         },
       }}>

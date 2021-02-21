@@ -1,31 +1,40 @@
-import { ResponseErrorInterceptor } from '../../utils'
+import { ResponseErrorInterceptor, ResponseSuccessInterceptor } from '../../utils'
+import { AuthStorageKeys } from '../types'
+import { PostLoginResponseBody } from '../endpoints'
+
+const storeTokensOnLoginSuccess: ResponseSuccessInterceptor = response => {
+  if (response.config.url?.match(/auth\/login/)) {
+    const data = response.data as PostLoginResponseBody
+
+    localStorage.setItem(AuthStorageKeys.AUTH_TOKEN, data.authToken)
+    localStorage.setItem(AuthStorageKeys.REFRESH_TOKEN, data.refreshToken)
+  }
+
+  return response
+}
 
 const processAuthTokenOnUnauthorizedError: ResponseErrorInterceptor = (client, api) => async error => {
   const response = error.response
 
   if (response && response.status === 401) {
-    const recoilPersist = localStorage.getItem('recoil-persist')
-    const state = recoilPersist ? JSON.parse(recoilPersist) : null
+    const authToken = localStorage.getItem(AuthStorageKeys.AUTH_TOKEN)
+    const refreshToken = localStorage.getItem(AuthStorageKeys.REFRESH_TOKEN)
 
-    if (state) {
+    if (authToken) {
       // Error happened on refresh token request, then refresh token is invalid
       if (error.config.url?.match(/refresh_token/)) {
-        state.authTokenState = null
-        state.refreshTokenState = null
-
-        localStorage.setItem('recoil-persist', JSON.stringify(state))
+        localStorage.removeItem(AuthStorageKeys.AUTH_TOKEN)
+        localStorage.removeItem(AuthStorageKeys.REFRESH_TOKEN)
 
         throw error
       }
 
       // Request new auth token
       const tokens = await api.postRefreshToken({
-        body: { token: state.refreshTokenState },
+        body: { token: refreshToken ?? '' },
       })
 
-      state.authTokenState = tokens.data.authToken
-
-      localStorage.setItem('recoil-persist', JSON.stringify(state))
+      localStorage.setItem(AuthStorageKeys.AUTH_TOKEN, tokens.data.authToken)
 
       return client.request(error.config)
     }
@@ -34,4 +43,4 @@ const processAuthTokenOnUnauthorizedError: ResponseErrorInterceptor = (client, a
   throw error
 }
 
-export { processAuthTokenOnUnauthorizedError }
+export { processAuthTokenOnUnauthorizedError, storeTokensOnLoginSuccess }

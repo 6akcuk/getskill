@@ -1,30 +1,24 @@
 import * as yup from 'yup'
 import { mutate } from 'swr'
 import { FormikProps, useFormik } from 'formik'
-import { useCreateVideoLesson, VideoLesson } from '../../../../../api'
+import { useCreateVideoLesson } from '../../../../../api'
 import { useNavigateBack } from '../../../../../hooks'
 import { OptionType } from '../../../../../components'
 
 interface CreateVideoLessonFormValues {
-  id: string
   name: string
   uploaded: boolean
   videoReady: boolean
-  publicId: string
-  version: number
-  duration: number
+  uploadUrl: string
   description?: string
   skills: OptionType[]
 }
 
 const createVideoLessonFormSchema = yup.object<CreateVideoLessonFormValues>({
-  id: yup.string().required().default(''),
   name: yup.string().required().default(''),
   uploaded: yup.boolean().required().default(undefined),
   videoReady: yup.boolean().required().default(false),
-  publicId: yup.string().required().default(''),
-  version: yup.number().required().min(1),
-  duration: yup.number().required(),
+  uploadUrl: yup.string().required().default(''),
   description: yup.string().default(''),
   skills: yup
     .array()
@@ -41,7 +35,7 @@ const createVideoLessonFormSchema = yup.object<CreateVideoLessonFormValues>({
 
 type CreateVideoLessonFormHandle = FormikProps<CreateVideoLessonFormValues>
 
-function useCreateVideoLessonForm(videoLesson: VideoLesson) {
+function useCreateVideoLessonForm() {
   const [, createVideoLesson] = useCreateVideoLesson()
   const navigateBack = useNavigateBack()
 
@@ -49,16 +43,6 @@ function useCreateVideoLessonForm(videoLesson: VideoLesson) {
     validationSchema: createVideoLessonFormSchema,
     initialValues: {
       ...createVideoLessonFormSchema.default()!,
-      ...{
-        id: `${videoLesson.id}`,
-        name: videoLesson.name,
-        uploaded: videoLesson.isUploaded,
-        videoReady: videoLesson.isReady,
-        publicId: videoLesson.publicId ?? '',
-        version: videoLesson.version ?? 0,
-        duration: videoLesson.duration,
-        description: videoLesson.description ?? '',
-      },
     },
     onSubmit: async values => {
       await createVideoLesson(
@@ -66,9 +50,7 @@ function useCreateVideoLessonForm(videoLesson: VideoLesson) {
         {
           name: values.name,
           description: values.description,
-          duration: values.duration,
-          publicId: values.publicId,
-          version: values.version,
+          uploadUrl: values.uploadUrl,
           skills: values.skills.map(skill => skill.value),
         },
       )

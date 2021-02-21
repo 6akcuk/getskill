@@ -17,9 +17,7 @@ function VideoLessonFields(props: VideoLessonFieldsProps) {
   const handleUploadSuccess = useCallback(
     (response?: UploadResponse) => {
       if (response) {
-        setFieldValue('publicId', response.public_id)
-        setFieldValue('version', response.version)
-        setFieldValue('duration', response.duration)
+        setFieldValue('uploadUrl', response.upload_url)
         setFieldValue('uploaded', true)
       }
     },
@@ -35,12 +33,7 @@ function VideoLessonFields(props: VideoLessonFieldsProps) {
         {!props.form.values.uploaded && (
           <>
             <S.HelperText>{t('create.form.helper.video')}</S.HelperText>
-            <S.VideoUploader
-              id={props.form.values.id}
-              eager={eager}
-              resource={UploadResource.videolesson}
-              onSuccess={handleUploadSuccess}
-            />
+            <S.VideoUploader eager={eager} resource={UploadResource.video} onSuccess={handleUploadSuccess} />
           </>
         )}
         {props.form.values.uploaded && (

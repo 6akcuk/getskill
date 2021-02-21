@@ -6,7 +6,7 @@ import * as S from './UploadHandler.styles'
 
 import 'react-circular-progressbar/dist/styles.css'
 
-interface UploadResponse {
+interface CloudinaryUploadResponse {
   asset_id: string
   bytes: number
   duration: number
@@ -29,6 +29,12 @@ interface UploadResponse {
   width: number
 }
 
+interface UploadResponse {
+  upload_url: string
+  public_id: string // Backward compatibility with Cloudinary response (e.g. use asset_id for others)
+  version: number
+}
+
 interface UploadHandlerProps {
   uploadUrl?: string
   file?: File
@@ -39,20 +45,41 @@ interface UploadHandlerProps {
 function UploadHandler(props: UploadHandlerProps) {
   const [percentage, setPercentage] = useState(0)
   const setNotifications = useSetRecoilState(notificationsState)
+  const { uploadUrl, file, onSuccess, onFailure } = props
 
   useEffect(() => {
-    if (props.uploadUrl && props.file && percentage === 0) {
+    const cancelable = axios.CancelToken.source()
+
+    if (uploadUrl && file && percentage === 0) {
       const formData = new FormData()
 
-      formData.append('file', props.file)
+      formData.append('file', file)
 
       axios
-        .post<UploadResponse>(props.uploadUrl, formData, {
+        .post<UploadResponse>(uploadUrl, formData, {
+          cancelToken: cancelable.token,
+          headers: {
+            'Content-Type': file.type,
+          },
           onUploadProgress: (progressEvent: ProgressEvent) => {
             setPercentage(Number(((progressEvent.loaded / progressEvent.total) * 100).toFixed(0)))
           },
         })
-        .then(response => props.onSuccess(response.data))
+        .then(response =>
+          onSuccess(
+            response.data
+              ? {
+                  upload_url: uploadUrl!,
+                  public_id: response.data.public_id,
+                  version: response.data.version,
+                }
+              : {
+                  upload_url: uploadUrl!,
+                  public_id: '',
+                  version: 1,
+                },
+          ),
+        )
         .catch(e => {
           setNotifications(oldNotifications => [
             ...oldNotifications,
@@ -63,12 +90,17 @@ function UploadHandler(props: UploadHandlerProps) {
             },
           ])
 
-          props.onFailure()
+          onFailure()
         })
+        .finally(() => setPercentage(0))
     }
-  }, [props, percentage])
 
-  if (!props.uploadUrl || !props.file) {
+    if (!file) {
+      cancelable.cancel()
+    }
+  }, [uploadUrl, file, onSuccess, onFailure, percentage])
+
+  if (!file) {
     return null
   }
 

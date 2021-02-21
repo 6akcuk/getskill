@@ -20,14 +20,14 @@ async function refreshToken(req: RefreshTokenRequest, res: RefreshTokenResponse)
   }
 
   const payload = getRefreshTokenPayload(req.body.token)
-  const user = await prisma.user.findOne({
+  const user = await prisma.user.findFirst({
     where: {
       id: Number(payload.id),
     },
   })
 
   if (!user) {
-    return sendError(res)('Пользователь не найден', 404)
+    return sendError(res)('Пользователь не найден', 401) // 401 - чтобы сбросить токен
   }
 
   return res.json({

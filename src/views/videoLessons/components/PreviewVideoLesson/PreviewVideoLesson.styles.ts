@@ -21,7 +21,9 @@ const PosterWrapper = styled.div`
   border-radius: ${props => `${props.theme.sizes.radius.md} ${props.theme.sizes.radius.md} 0 0`};
   overflow: hidden;
 `
-const Poster = styled(Image)`
+const Poster = styled.img`
+  width: 100%;
+
   &:hover {
     transformation: scale(1.1);
   }

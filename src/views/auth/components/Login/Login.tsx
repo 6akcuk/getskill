@@ -1,25 +1,24 @@
 import React, { Suspense, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useSetRecoilState } from 'recoil'
 import { Modal } from '../../../../components'
 import { LoginForm } from '..'
 import { LoginFormSchema } from '../LoginForm/useLoginForm'
 import { useLogin } from '../../../../api'
-import { authTokenState, refreshTokenState } from '../../recoil/atoms'
 import { useNavigateBack, useOpenModalCallback } from '../../../../hooks'
+import { useSetRecoilState } from 'recoil'
+import { isLoggedInState } from '../../recoil/atoms'
 import * as S from './Login.styles'
 
 function Login() {
-  const setAuthToken = useSetRecoilState(authTokenState)
-  const setRefreshToken = useSetRecoilState(refreshTokenState)
   const { t } = useTranslation('auth')
   const [, login] = useLogin()
   const navigateBack = useNavigateBack()
   const openModal = useOpenModalCallback()
+  const setIsLoggedIn = useSetRecoilState(isLoggedInState)
 
   const handleSubmit = useCallback(
     async (values: LoginFormSchema) => {
-      const response = await login(
+      await login(
         {},
         {
           username: values.username,
@@ -27,11 +26,10 @@ function Login() {
         },
       )
 
-      setAuthToken(response.authToken)
-      setRefreshToken(response.refreshToken)
+      setIsLoggedIn(true)
       navigateBack()
     },
-    [setAuthToken, setRefreshToken],
+    [login, setIsLoggedIn, navigateBack],
   )
 
   const handleSignUpClick = useCallback(() => {

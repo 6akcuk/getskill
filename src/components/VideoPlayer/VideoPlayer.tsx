@@ -11,8 +11,7 @@ import * as S from './VideoPlayer.styles'
 
 interface VideoPlayerProps {
   className?: string
-  publicId: string
-  version: number
+  serviceId: string | null
   streamingProfile: AssetTransformationStreamingProfile
 }
 
@@ -42,12 +41,11 @@ function VideoPlayer(props: VideoPlayerProps) {
     return undefined
   }, [i18n, videoRef])
 
-  const src = useMemo(
-    () =>
-      // eslint-disable-next-line max-len
-      `http://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/video/upload/sp_${props.streamingProfile}/v${props.version}/${props.publicId}.m3u8`,
-    [props],
-  )
+  const src = useMemo(() => `https://videodelivery.net/${props.serviceId}/manifest/video.m3u8`, [props])
+
+  if (!props.serviceId) {
+    return null
+  }
 
   return (
     <S.Wrapper>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import useSWR from 'swr'
-import { VideoLesson, videoLessonAssetTransformations } from '../../../../api'
+import { VideoLesson } from '../../../../api'
 import * as S from './WatchLesson.styles'
 import { lazyComponent } from '../../../../components'
 
@@ -21,11 +21,7 @@ function WatchLessonContainer() {
 
   return (
     <>
-      <Player
-        publicId={data.publicId ?? ''}
-        version={data.version ?? 0}
-        streamingProfile={videoLessonAssetTransformations.player.streaming_profile ?? 'hd_lean'}
-      />
+      <Player serviceId={data.video.serviceId} />
       <S.Title>{data.name}</S.Title>
       <S.Description>{data.description}</S.Description>
       <S.SkillsList>

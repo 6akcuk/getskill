@@ -7,8 +7,8 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
-  // previewFeatures = ["nativeTypes"]
+  provider        = "prisma-client-js"
+  previewFeatures = ["nativeTypes"]
 }
 
 enum Role {
@@ -42,11 +42,12 @@ model User {
   VideoLesson     VideoLesson[]
   verifications   UserVerification[]
   specialist      Specialist?
+  Video           Video[]
 }
 
 model UserToken {
   id       Int     @id @default(autoincrement())
-  token    String // @db.Text
+  token    String  @db.Text
   deviceId String
   ip       Int
   isValid  Boolean @default(true)
@@ -71,7 +72,7 @@ model Profile {
   id         Int     @id @default(autoincrement())
   publicName String
   avatar     Json?
-  about      String? // @db.Text
+  about      String? @db.Text
   contacts   Json?
 
   user   User @relation(fields: [userId], references: [id])
@@ -98,22 +99,34 @@ model SpecialistScoreHistory {
   specialistId Int
 }
 
+model Video {
+  id         Int      @id @default(autoincrement())
+  ownerId    Int
+  isUploaded Boolean  @default(false)
+  isReady    Boolean  @default(false)
+  duration   Int      @default(0)
+  filename   String
+  signedUrl  String   @db.MediumText
+  serviceId  String?
+  preview    String?
+  createdAt  DateTime @default(now())
+
+  owner       User          @relation(fields: [ownerId], references: [id])
+  VideoLesson VideoLesson[]
+}
+
 model VideoLesson {
-  id          Int              @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   userId      Int
-  isDraft     Boolean          @default(true)
-  isUploaded  Boolean          @default(false)
-  isReady     Boolean          @default(false)
-  duration    Int              @default(0)
+  videoId     Int
   name        String
   poster      String?
-  publicId    String?
-  version     Int?
-  uploadUrl   String?
   description String?
-  user        User             @relation(fields: [userId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
   createdAt   DateTime
-  tags        ServicesToTags[]
+
+  video Video            @relation(fields: [videoId], references: [id])
+  tags  ServicesToTags[]
 }
 
 enum TagType {

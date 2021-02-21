@@ -11,21 +11,16 @@ interface BannerStatus {
 const currentUserState = atom<User | null>({
   key: 'currentUserState',
   default: null,
-})
-
-const authTokenState = atom<string | null>({
-  key: 'authTokenState',
-  default: null,
   persistence_UNSTABLE: {
-    type: 'authToken',
+    type: 'currentUserState',
   },
 })
 
-const refreshTokenState = atom<string | null>({
-  key: 'refreshTokenState',
-  default: null,
+const isLoggedInState = atom<boolean>({
+  key: 'isLoggedInState',
+  default: false,
   persistence_UNSTABLE: {
-    type: 'refreshToken',
+    type: 'isLoggedInState',
   },
 })
 
@@ -42,4 +37,4 @@ const authBannerStatuses = atom<Record<BannerType, BannerStatus>>({
   },
 })
 
-export { authBannerStatuses, authTokenState, currentUserState, refreshTokenState }
+export { authBannerStatuses, currentUserState, isLoggedInState }

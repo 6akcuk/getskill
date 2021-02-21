@@ -29,6 +29,13 @@ async function getVideoLessons(request: GetVideoLessonsRequest, response: GetVid
           },
         },
       },
+      video: {
+        select: {
+          serviceId: true,
+          duration: true,
+          preview: true,
+        },
+      },
       tags: {
         select: {
           tag: true,
@@ -37,7 +44,6 @@ async function getVideoLessons(request: GetVideoLessonsRequest, response: GetVid
     },
     where: {
       userId: Number(request.query.userId) || undefined,
-      isReady: true,
     },
     orderBy: {
       createdAt: 'desc',
@@ -48,7 +54,6 @@ async function getVideoLessons(request: GetVideoLessonsRequest, response: GetVid
   const total = await prisma.videoLesson.count({
     where: {
       userId: Number(request.query.userId) || undefined,
-      isReady: true,
     },
   })
 

@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { AssetTransformation } from '../../api'
 
 enum UploadResource {
-  videolesson = 'videolesson',
+  video = 'video',
   avatar = 'avatar',
 }
 
@@ -11,6 +11,7 @@ interface UseUploadUrlParams {
   resourceType: 'image' | 'video' | 'auto'
   resource: UploadResource
   cacheBuster: number
+  file?: File
   eager?: AssetTransformation[]
   eagerAsync?: boolean
   id?: string
@@ -42,17 +43,17 @@ function useUploadUrl(params: UseUploadUrlParams) {
     [params.eager],
   )
 
-  const { data, isValidating } = useSWR<string>(
-    // eslint-disable-next-line max-len
-    `/api/upload_url?resource_type=${params.resourceType}&resource=${
-      params.resource
-    }&eager=${eager}&eager_async=${Boolean(params.eagerAsync)}&id=${params.id}&cacheBuster=${
-      params.cacheBuster
-    }`,
+  return useSWR<string>(
+    params.file
+      ? // eslint-disable-next-line max-len
+        `/api/upload_url?resource_type=${params.resourceType}&resource=${
+          params.resource
+        }&eager=${eager}&eager_async=${Boolean(params.eagerAsync)}&id=${params.id}&filetype=${
+          params.file.type
+        }&cacheBuster=${params.cacheBuster}`
+      : null,
     { suspense: false },
   )
-
-  return isValidating ? undefined : data
 }
 
 export default useUploadUrl

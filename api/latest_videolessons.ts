@@ -9,10 +9,6 @@ async function latestVideolessons(req: ApiRequest, res: ApiResponse<VideoLesson[
       orderBy: {
         createdAt: 'desc',
       },
-      where: {
-        isDraft: false,
-        isReady: true,
-      },
       take: 6,
     }),
   )

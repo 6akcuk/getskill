@@ -9,11 +9,11 @@ function RegisterForm() {
 
   return (
     <S.Form onSubmit={form.handleSubmit}>
-      <S.Field id="email" label={t('label.email')} error={form.errors.email}>
-        <S.Input id="email" type="email" onChange={form.handleChange} value={form.values.email} />
-      </S.Field>
       <S.Field id="phone" label={t('label.phone')} error={form.errors.phone}>
         <S.PhoneInput onChange={phone => form.setFieldValue('phone', phone)} value={form.values.phone} />
+      </S.Field>
+      <S.Field id="email" label={t('label.email')} error={form.errors.email}>
+        <S.Input id="email" type="email" onChange={form.handleChange} value={form.values.email} />
       </S.Field>
       <S.Field id="publicName" label={t('label.public_name')} error={form.errors.publicName}>
         <S.Input id="publicName" onChange={form.handleChange} value={form.values.publicName} />
