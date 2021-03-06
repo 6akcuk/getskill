@@ -4,6 +4,7 @@ import { ApiResponse, ApiRequest } from '../types'
 
 interface GetVideoLessonsRequestQuery extends NowRequestQuery {
   userId: string
+  skill: string
   page: string
   limit: string
 }
@@ -43,7 +44,17 @@ async function getVideoLessons(request: GetVideoLessonsRequest, response: GetVid
       },
     },
     where: {
-      userId: Number(request.query.userId) || undefined,
+      userId: Number(request.query.userId) || undefined, // use || to avoid NaN
+      tags: request.query.skill
+        ? {
+            some: {
+              tag: {
+                name: request.query.skill,
+                type: 'SKILL',
+              },
+            },
+          }
+        : undefined,
     },
     orderBy: {
       createdAt: 'desc',

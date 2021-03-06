@@ -8,6 +8,7 @@ import { ProfileView } from './profile'
 import { useLocation } from '../hooks'
 import { VideoLessons } from './videoLessons/views/VideoLessons'
 import { Specialists } from './specialists/views/Specialists'
+import { Skills } from './skills'
 
 function Routes() {
   const location = useLocation()
@@ -20,6 +21,7 @@ function Routes() {
         <Route path="/" exact={true} component={Home} />
         <Route path="/videolessons" component={VideoLessons} />
         <Route path="/specialists" component={Specialists} />
+        <Route path="/skills" component={Skills} />
         <Route path="/user/:userId" component={ProfileView} />
         <Route path="/settings" component={ProfileSettings} />
       </Switch>

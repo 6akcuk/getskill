@@ -24,11 +24,7 @@ function WatchLessonContainer() {
       <Player serviceId={data.video.serviceId} />
       <S.Title>{data.name}</S.Title>
       <S.Description>{data.description}</S.Description>
-      <S.SkillsList>
-        {data.tags?.map(serviceTag => (
-          <S.Skill>{serviceTag.tag.name}</S.Skill>
-        ))}
-      </S.SkillsList>
+      <S.SkillsList serviceType="VIDEOLESSON" serviceTags={data.tags} />
     </>
   )
 }

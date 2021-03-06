@@ -1,7 +1,6 @@
 import styled from 'styled-components'
-import { Tag, UserAvatar } from '../../../../components'
+import { UserAvatar, ServiceTagsList } from '../../../../components'
 import { Link } from 'react-router-dom'
-import { Image } from 'cloudinary-react'
 
 const Wrapper = styled.div`
   cursor: pointer;
@@ -22,7 +21,7 @@ const PosterWrapper = styled.div`
   overflow: hidden;
 `
 const Poster = styled.img`
-  width: 100%;
+  height: 100%;
 
   &:hover {
     transformation: scale(1.1);
@@ -44,15 +43,7 @@ const Duration = styled.div`
   font-size: 0.875rem;
 `
 
-const SkillsList = styled.div`
-  margin-top: 0.75rem;
-  line-height: 2rem;
-
-  & > *:not(:last-child) {
-    margin-right: 0.75rem;
-  }
-`
-const Skill = styled(Tag)``
+const SkillsList = styled(ServiceTagsList)``
 const Name = styled.h3`
   margin: 0;
   font-weight: 700;
@@ -91,7 +82,6 @@ export {
   Name,
   Poster,
   PosterWrapper,
-  Skill,
   SkillsList,
   Wrapper,
 }

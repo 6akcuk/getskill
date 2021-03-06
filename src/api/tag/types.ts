@@ -1,8 +1,11 @@
 import { VideoLesson } from '../videoLesson/types'
+import { createEnum, Enum } from '../../utils'
 
-enum TagType {
-  SKILL = 'SKILL',
-}
+const TagType = createEnum({
+  SKILL: 'SKILL',
+})
+
+type TagType = Enum<typeof TagType>
 
 interface Tag<Type = TagType> {
   id: number

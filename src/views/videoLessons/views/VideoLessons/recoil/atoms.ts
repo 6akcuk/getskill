@@ -1,14 +1,8 @@
 import { atom } from 'recoil'
+import { InfiniteEntitiesMeta, InfiniteEntitiesPaginationParams } from '../../../../../hooks'
 
-interface VideoLessonsListState {
-  isEmpty: boolean
-  isReachedEnd: boolean
-}
-
-interface VideoLessonsListFiltersState {
-  page: number
-  limit: number
-}
+type VideoLessonsListState = InfiniteEntitiesMeta
+type VideoLessonsListFiltersState = Required<InfiniteEntitiesPaginationParams>
 
 const videoLessonsListState = atom<VideoLessonsListState>({
   key: 'videoLessonsListState',

@@ -2,16 +2,24 @@ import { useMemo } from 'react'
 import { useSWRInfinite, SWRInfiniteResponseInterface } from 'swr'
 import qs from 'querystring'
 
-interface UseInfiniteEntitiesProps {
-  endpoint: string
-  params?: any
+interface InfiniteEntitiesPaginationParams {
+  page?: number
   limit?: number
 }
-
-interface UseInfiniteEntitiesResult<Entity> extends SWRInfiniteResponseInterface<Entity[]> {
-  entities: Entity[]
+interface InfiniteEntitiesMeta {
   isEmpty: boolean
   isReachedEnd: boolean
+}
+interface UseInfiniteEntitiesParams extends InfiniteEntitiesPaginationParams, Record<string, any> {}
+interface UseInfiniteEntitiesProps {
+  endpoint: string
+  params?: UseInfiniteEntitiesParams
+  limit?: number
+}
+interface UseInfiniteEntitiesResult<Entity>
+  extends SWRInfiniteResponseInterface<Entity[]>,
+    InfiniteEntitiesMeta {
+  entities: Entity[]
 }
 
 function useInfiniteEntities<Entity>(props: UseInfiniteEntitiesProps): UseInfiniteEntitiesResult<Entity> {
@@ -36,4 +44,4 @@ function useInfiniteEntities<Entity>(props: UseInfiniteEntitiesProps): UseInfini
 
 export default useInfiniteEntities
 export { useInfiniteEntities }
-export type { UseInfiniteEntitiesResult }
+export type { InfiniteEntitiesMeta, InfiniteEntitiesPaginationParams, UseInfiniteEntitiesResult }

@@ -38,11 +38,7 @@ function PreviewVideoLesson(props: VideoLessonPreviewProps) {
       <S.ContentWrapper>
         <S.Name>{props.videoLesson.name}</S.Name>
         <S.Description>{props.videoLesson.description}</S.Description>
-        <S.SkillsList>
-          {props.videoLesson.tags?.map(serviceTag => (
-            <S.Skill>{serviceTag.tag.name}</S.Skill>
-          ))}
-        </S.SkillsList>
+        <S.SkillsList serviceType="VIDEOLESSON" serviceTags={props.videoLesson.tags} />
         {!props.hideAuthor && (
           <S.Author to={`/user/${props.videoLesson.userId}`} onClick={e => e.stopPropagation()}>
             <S.AuthorAvatar size="sm" user={props.videoLesson.user} />

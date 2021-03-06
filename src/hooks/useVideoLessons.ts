@@ -3,6 +3,7 @@ import useInfiniteEntities from './useInfiniteEntities'
 
 interface UseVideoLessonsProps {
   userId?: string
+  skill?: string
   limit?: number
 }
 
