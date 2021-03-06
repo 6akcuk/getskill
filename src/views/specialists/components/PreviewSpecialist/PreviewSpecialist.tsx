@@ -22,11 +22,8 @@ function PreviewSpecialist(props: PreviewSpecialistProps) {
           <Transformation {...userAssetTransformations.profile} />
         </S.Avatar>
         <S.Name>{props.specialist.user.profile.publicName}</S.Name>
-        <S.SkillsList>
-          {props.specialist.tags?.map(serviceTag => (
-            <S.Skill>{serviceTag.tag.name}</S.Skill>
-          ))}
-        </S.SkillsList>
+        <S.Description>{props.specialist.user.profile.about}</S.Description>
+        <S.SkillsList serviceType="specialist" serviceTags={props.specialist.tags} />
       </S.ContentWrapper>
     </S.Wrapper>
   )

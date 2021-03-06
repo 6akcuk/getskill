@@ -1,6 +1,8 @@
 import styled from 'styled-components'
+import { SkillSpecialistsList as BaseSkillSpecialistsList } from '../SkillSpecialistsList'
 import { SkillVideoLessonsList as BaseSkillVideoLessonsList } from '../SkillVideoLessonsList'
 
+const SkillSpecialistsList = styled(BaseSkillSpecialistsList)``
 const SkillVideoLessonsList = styled(BaseSkillVideoLessonsList)``
 const Title = styled.h2`
   font-size: 1.875rem;
@@ -10,4 +12,4 @@ const Title = styled.h2`
 `
 const Wrapper = styled.div``
 
-export { SkillVideoLessonsList, Title, Wrapper }
+export { SkillSpecialistsList, SkillVideoLessonsList, Title, Wrapper }

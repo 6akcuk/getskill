@@ -1,6 +1,7 @@
 import React from 'react'
 import * as S from './SkillVideoLessonsList.styles'
 import { useSkillVideoLessonsList } from '../../hooks'
+import { useTranslation } from 'react-i18next'
 
 interface SkillVideoLessonsListProps {
   skill: string
@@ -16,8 +17,11 @@ function ListContainer(props: Pick<SkillVideoLessonsListProps, 'skill'>) {
 }
 
 function SkillVideoLessonsList(props: SkillVideoLessonsListProps) {
+  const { t } = useTranslation('videolesson')
+
   return (
     <S.Wrapper className={props.className}>
+      <S.Title>{t('list.title')}</S.Title>
       <S.ListWrapper>
         <ListContainer skill={props.skill} />
       </S.ListWrapper>

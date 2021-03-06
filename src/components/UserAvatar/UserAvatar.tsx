@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { User, UserAvatar as UserAvatarType, AssetTransformation } from '../../api/types'
 import { UserAvatarStyleProps } from './types'
-import { Image, Transformation } from 'cloudinary-react'
+import { Transformation } from 'cloudinary-react'
 import { userAssetTransformations } from '../../api'
 import * as S from './UserAvatar.styles'
 
@@ -10,6 +10,7 @@ interface UserAvatarProps extends UserAvatarStyleProps {
   publicName?: string
   avatar?: UserAvatarType | null
   transformation?: AssetTransformation
+  className?: string
 }
 
 function UserAvatar(props: UserAvatarProps) {
@@ -24,17 +25,15 @@ function UserAvatar(props: UserAvatarProps) {
   )
 
   const avatar = useMemo(() => props.avatar ?? props.user?.profile.avatar, [props.user, props.avatar])
-
-  const showInitials = !avatar
   const showAvatar = Boolean(avatar)
 
   return (
-    <S.Wrapper size={props.size ?? 'sm'}>
-      {showInitials && <S.InitialsPlaceholder>{initials}</S.InitialsPlaceholder>}
+    <S.Wrapper className={props.className} size={props.size ?? 'sm'}>
+      <S.InitialsPlaceholder>{initials}</S.InitialsPlaceholder>
       {showAvatar && (
-        <Image publicId={avatar?.publicId} version={avatar?.version}>
+        <S.Image publicId={avatar?.publicId} version={avatar?.version}>
           <Transformation {...(props.transformation ?? userAssetTransformations.avatar)} />
-        </Image>
+        </S.Image>
       )}
     </S.Wrapper>
   )

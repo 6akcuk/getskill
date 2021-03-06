@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import { VideoLessonsListWrapper, VideoLessonsList } from '../../../videoLessons'
+import { SpecialistsList, SpecialistsListWrapper } from '../../../specialists'
 
-const List = styled(VideoLessonsList)``
-const ListWrapper = styled(VideoLessonsListWrapper)``
+const List = styled(SpecialistsList)``
+const ListWrapper = styled(SpecialistsListWrapper)``
 const Title = styled.h3`
   font-size: 1.125rem;
   font-weight: 500;

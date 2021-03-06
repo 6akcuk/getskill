@@ -1,9 +1,7 @@
 import { atom } from 'recoil'
+import { InfiniteEntitiesPaginationParams } from '../../../../../hooks'
 
-interface SpecialistsListFiltersState {
-  page: number
-  limit: number
-}
+type SpecialistsListFiltersState = Required<InfiniteEntitiesPaginationParams>
 
 const specialistsListFiltersState = atom<SpecialistsListFiltersState>({
   key: 'specialistsListFiltersState',

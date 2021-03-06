@@ -2,6 +2,7 @@ import { useInfiniteEntities } from '../../hooks'
 import { Specialist } from './types'
 
 interface UseSpecialistsProps {
+  skill?: string
   limit?: number
 }
 

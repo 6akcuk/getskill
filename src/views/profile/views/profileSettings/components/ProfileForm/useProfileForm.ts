@@ -1,8 +1,9 @@
 import * as yup from 'yup'
-import { useFormik } from 'formik'
+import { useFormik, FormikProps } from 'formik'
 import { useCurrentUser } from '../../../../../../hooks'
 import { UserAvatar, useUpdateProfile } from '../../../../../../api'
 import { mutate } from 'swr'
+import { useMemo } from 'react'
 
 interface ProfileFormValues {
   publicName: string
@@ -16,21 +17,27 @@ const profileFormSchema = yup.object<ProfileFormValues>({
   about: yup.string().nullable(),
 })
 
+type ProfileFormHandle = FormikProps<ProfileFormValues>
+
 function useProfileForm() {
   const user = useCurrentUser()
   const [, updateProfile] = useUpdateProfile()
-
-  return useFormik({
-    enableReinitialize: true,
-    validationSchema: profileFormSchema,
-    initialValues: {
+  const initialValues = useMemo<ProfileFormValues>(
+    () => ({
       ...profileFormSchema.default()!,
       ...{
         publicName: user?.profile.publicName ?? '',
         avatar: user?.profile.avatar,
         about: user?.profile.about,
       },
-    },
+    }),
+    [user],
+  )
+
+  return useFormik({
+    enableReinitialize: true,
+    validationSchema: profileFormSchema,
+    initialValues,
     onSubmit: async values => {
       await updateProfile(null, {
         publicName: values.publicName,
@@ -38,10 +45,19 @@ function useProfileForm() {
         about: values.about,
       })
 
-      mutate('/api/me')
+      mutate('/api/me', () => ({
+        ...user,
+        profile: {
+          ...user?.profile,
+          publicName: values.publicName,
+          avatar: values.avatar,
+          about: values.about,
+        },
+      }))
     },
   })
 }
 
 export default useProfileForm
 export { useProfileForm }
+export type { ProfileFormHandle }

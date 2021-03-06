@@ -24,7 +24,7 @@ function WatchLessonContainer() {
       <Player serviceId={data.video.serviceId} />
       <S.Title>{data.name}</S.Title>
       <S.Description>{data.description}</S.Description>
-      <S.SkillsList serviceType="VIDEOLESSON" serviceTags={data.tags} />
+      <S.SkillsList serviceType="videolesson" serviceTags={data.tags} />
     </>
   )
 }

@@ -7,11 +7,12 @@ import {
   UserAvatar as BaseUserAvatar,
 } from '../../../../../../components'
 import BaseAvatarUploader from './AvatarUploader'
+import BaseDeletableAvatar from './DeletableAvatar'
 import FormContainer from '../FormContainer'
 
+const DeletableAvatar = styled(BaseDeletableAvatar)``
 const Form = styled.form``
 const FormContent = styled(FormContainer)``
-
 const Field = styled(BaseField)`
   margin-top: 1.5rem;
 `
@@ -26,4 +27,15 @@ const AvatarUploader = styled(BaseAvatarUploader)`
 `
 const Button = styled(BaseButton)``
 
-export { AvatarUploader, Button, Field, Form, FormContent, Input, TextArea, UserAvatar, UserAvatarWrapper }
+export {
+  AvatarUploader,
+  Button,
+  DeletableAvatar,
+  Field,
+  Form,
+  FormContent,
+  Input,
+  TextArea,
+  UserAvatar,
+  UserAvatarWrapper,
+}

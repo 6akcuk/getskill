@@ -5,7 +5,8 @@ import { createEnum, Enum } from '../../utils'
 import * as S from './ServiceTagsList.styles'
 
 const ServiceTagType = createEnum({
-  VIDEOLESSON: 'VIDEOLESSON',
+  VIDEOLESSON: 'videolesson',
+  SPECIALIST: 'specialist',
 })
 
 type ServiceTagType = Enum<typeof ServiceTagType>
@@ -22,7 +23,7 @@ function ServiceTagsList(props: ServiceTagsListProps) {
     (e: React.MouseEvent, tag: Tag) => {
       e.stopPropagation()
 
-      const service = props.serviceType === 'VIDEOLESSON' ? 'videolesson' : 'all'
+      const service = props.serviceType === 'videolesson' ? 'videolesson' : 'all'
 
       if (tag.type === 'SKILL') {
         history.push(`/skills/${tag.name}?service=${service}`)

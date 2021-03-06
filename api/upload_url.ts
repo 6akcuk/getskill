@@ -81,7 +81,7 @@ async function cloudflareFunc(req: GetUploadUrlRequest, res: ApiResponse) {
   )
 
   const uploadUrlResponse = await generateOneTimeUploadURL({
-    maxDurationSeconds: 600,
+    maxDurationSeconds: 900,
   })
 
   await prisma.video.update({

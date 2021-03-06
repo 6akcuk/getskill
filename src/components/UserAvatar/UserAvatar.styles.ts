@@ -1,3 +1,4 @@
+import { Image as BaseImage } from 'cloudinary-react'
 import styled, { css } from 'styled-components'
 import { UserAvatarStyleProps } from './types'
 
@@ -46,7 +47,11 @@ const size = (props: UserAvatarStyleProps) => {
   }
 }
 
+const Image = styled(BaseImage)`
+  position: absolute;
+`
 const Wrapper = styled.span<UserAvatarStyleProps>`
+  position: relative;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -66,4 +71,4 @@ const InitialsPlaceholder = styled.span`
   color: ${props => props.theme.colors.white};
 `
 
-export { InitialsPlaceholder, Wrapper }
+export { Image, InitialsPlaceholder, Wrapper }

@@ -14,6 +14,7 @@ const TextArea = styled(TextareaAutosize)`
   box-sizing: border-box;
   outline: none;
   box-shadow: ${({ theme }) => theme.shadow.sm};
+  font-family: inherit;
 
   &:focus {
     border-color: ${({ theme }) => theme.colors.primary[500]};

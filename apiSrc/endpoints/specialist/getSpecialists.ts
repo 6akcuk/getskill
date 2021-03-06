@@ -3,6 +3,7 @@ import { PrismaClient, Specialist } from '@prisma/client'
 import { ApiResponse, ApiRequest } from '../types'
 
 interface GetSpecialistsRequestQuery extends NowRequestQuery {
+  skill: string
   page: string
   limit: string
 }
@@ -31,6 +32,15 @@ async function getSpecialists(request: GetSpecialistsRequest, response: GetSpeci
       },
     },
     where: {
+      tags: request.query.skill
+        ? {
+            some: {
+              tag: {
+                name: request.query.skill,
+              },
+            },
+          }
+        : undefined,
       scores: {
         gt: 0,
       },

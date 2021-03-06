@@ -8,6 +8,7 @@ interface FormContainerProps {
   subtitle?: ReactNode
   fields?: ReactNode
   hint?: ReactNode
+  isDirty?: boolean
   isSubmitting?: boolean
 }
 
@@ -26,7 +27,11 @@ function FormContainer(props: FormContainerProps) {
       </S.Body>
       {props.fields && (
         <S.Footer>
-          <S.Button look="primary" type="submit" showSpinner={props.isSubmitting}>
+          <S.Button
+            look="primary"
+            type="submit"
+            disabled={props.isDirty === undefined ? false : !props.isDirty}
+            showSpinner={props.isSubmitting}>
             {t('common.save')}
           </S.Button>
         </S.Footer>

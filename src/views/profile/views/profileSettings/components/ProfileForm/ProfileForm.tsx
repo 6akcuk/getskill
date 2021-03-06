@@ -28,12 +28,15 @@ function ProfileForm() {
             </S.Field>
             <S.Field id="avatar" label={t('form.profile.label.avatar')} error={errors.avatar}>
               <S.UserAvatarWrapper>
-                <S.UserAvatar size="xl" avatar={values.avatar} publicName={values.publicName} />
+                <S.DeletableAvatar form={form}>
+                  <S.UserAvatar size="xl" avatar={values.avatar} publicName={values.publicName} />
+                </S.DeletableAvatar>
                 <S.AvatarUploader form={form} />
               </S.UserAvatarWrapper>
             </S.Field>
           </>
         }
+        isDirty={form.dirty}
         isSubmitting={form.isSubmitting}
       />
     </S.Form>
