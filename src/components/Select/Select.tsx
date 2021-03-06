@@ -20,12 +20,13 @@ interface SelectProps extends Omit<Props, 'onChange' | 'value'> {
 
 function Select(props: SelectProps) {
   const portalTarget = document.getElementById('dropdown')
+  const { onChange } = props
 
   const handleChange = useCallback(
     (value: ValueType<OptionType>) => {
-      props.onChange(value as OptionType)
+      onChange(value as OptionType)
     },
-    [props.onChange],
+    [onChange],
   )
 
   const components = useMemo(

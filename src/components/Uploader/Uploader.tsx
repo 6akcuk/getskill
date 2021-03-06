@@ -37,12 +37,9 @@ function Uploader(props: UploaderProps) {
   }, [file, error])
 
   const { onSuccess, maxSize = 1024 * 1024 * 1024, accept = 'image/*' } = props
-  const handleDrop = useCallback(
-    acceptedFiles => {
-      setFile(acceptedFiles[0])
-    },
-    [onSuccess],
-  )
+  const handleDrop = useCallback(acceptedFiles => {
+    setFile(acceptedFiles[0])
+  }, [])
   const handleRemove = useCallback(() => {
     setFile(undefined)
     setUploadUrl(undefined)

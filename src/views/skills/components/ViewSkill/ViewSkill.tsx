@@ -1,9 +1,9 @@
 import React from 'react'
-import * as S from './ViewSkill.styles'
-import { useParams, useLocation } from 'react-router-dom'
-import { useQuery } from '../../../../hooks'
+import { useParams } from 'react-router-dom'
 import { ServiceTagType } from '../../../../components'
+import { useQuery } from '../../../../hooks'
 import { createEnum, Enum } from '../../../../utils'
+import * as S from './ViewSkill.styles'
 
 const ViewSkillQueryService = createEnum({
   ...ServiceTagType,
@@ -25,8 +25,6 @@ interface ViewSkillRouteParams {
 function ViewSkill(props: ViewSkillProps) {
   const params = useParams<ViewSkillRouteParams>()
   const query = useQuery<ViewSkillQuery>()
-
-  console.log(query)
 
   return (
     <S.Wrapper className={props.className}>

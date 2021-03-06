@@ -12,7 +12,7 @@ interface BannerProps {
 function Banner(props: BannerProps) {
   const handleAction = useCallback(() => {
     props.onAction?.()
-  }, [props.onAction, props.onClose])
+  }, [props.onAction])
 
   return (
     <S.Wrapper>

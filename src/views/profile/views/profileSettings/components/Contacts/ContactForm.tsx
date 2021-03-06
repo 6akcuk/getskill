@@ -7,6 +7,7 @@ import * as S from './ContactForm.styles'
 function ContactForm() {
   const { t } = useTranslation('profile')
   const form = useContactsForm()
+  const { setFieldValue, setValues, values } = form
 
   const errors = useMemo(() => {
     if (Array.isArray(form.errors.contacts) && typeof form.errors.contacts[0] === 'object') {
@@ -17,24 +18,24 @@ function ContactForm() {
   }, [form.errors.contacts])
 
   const handleAdd = useCallback(() => {
-    if (form.values.selectedResource) {
-      form.setValues({
-        ...form.values,
-        contacts: [...form.values.contacts, { resource: form.values.selectedResource, value: '' }],
+    if (values.selectedResource) {
+      setValues({
+        ...values,
+        contacts: [...values.contacts, { resource: values.selectedResource, value: '' }],
       })
 
-      form.setFieldValue('selectedResource', null)
+      setFieldValue('selectedResource', null)
     }
-  }, [form])
+  }, [values, setValues, setFieldValue])
 
   const handleRemove = useCallback(
     (index: number) => {
-      form.setValues({
-        ...form.values,
-        contacts: form.values.contacts.filter((_v, idx) => idx !== index),
+      setValues({
+        ...values,
+        contacts: values.contacts.filter((_v, idx) => idx !== index),
       })
     },
-    [form.setValues, form.values],
+    [setValues, values],
   )
 
   return (

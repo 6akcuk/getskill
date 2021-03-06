@@ -30,7 +30,7 @@ function UserBlock(props: UserBlockProps) {
     localStorage.removeItem(AuthStorageKeys.REFRESH_TOKEN)
 
     setLoggedIn(false)
-  }, [])
+  }, [setLoggedIn])
 
   return (
     <S.Dropdown

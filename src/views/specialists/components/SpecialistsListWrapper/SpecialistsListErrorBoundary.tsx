@@ -1,13 +1,10 @@
-import React, { ReactNode, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ErrorBoundary } from '../../../../components'
+import { ErrorBoundary, EntityListWrapperErrorBoundaryProps } from '../../../../components'
 import { PreviewSpecialistSkeleton } from '../PreviewSpecialist'
 import * as S from './SpecialistsListErrorBoundary.styles'
 
-interface SpecialistsListErrorBoundaryProps {
-  children: ReactNode
-  onRefresh?: () => void
-}
+type SpecialistsListErrorBoundaryProps = EntityListWrapperErrorBoundaryProps
 
 function SpecialistsListErrorBoundary(props: SpecialistsListErrorBoundaryProps) {
   const { t } = useTranslation('specialist')

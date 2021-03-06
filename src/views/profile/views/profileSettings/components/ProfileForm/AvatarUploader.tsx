@@ -14,9 +14,10 @@ const eager = Object.values(userAssetTransformations)
 
 function AvatarUploader(props: AvatarUploaderProps) {
   const { t } = useTranslation('profile')
+  const { setFieldValue } = props.form
   const handleAvatarChange = useCallback(
     (response?: UploadResponse) => {
-      props.form.setFieldValue(
+      setFieldValue(
         'avatar',
         response && {
           publicId: response.public_id,
@@ -24,7 +25,7 @@ function AvatarUploader(props: AvatarUploaderProps) {
         },
       )
     },
-    [props.form.setFieldValue],
+    [setFieldValue],
   )
 
   return (

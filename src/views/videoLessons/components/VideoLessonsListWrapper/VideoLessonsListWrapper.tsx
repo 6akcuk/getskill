@@ -1,33 +1,20 @@
-import React, { useMemo, ReactNode } from 'react'
-import VideoLessonsListErrorBoundary from './VideoLessonsListErrorBoundary'
+import React from 'react'
+import { EntityListWrapperProps } from '../../../../components'
 import { PreviewVideoLessonSkeleton } from '../PreviewVideoLesson'
-import { Suspense } from '../../../../components'
+import VideoLessonsListErrorBoundary from './VideoLessonsListErrorBoundary'
 import * as S from './VideoLessonsListWrapper.styles'
 
-interface VideoLessonsListWrapperProps {
-  children: ReactNode
-  className?: string
-  onRefresh?: () => void
-  gridSize?: number
-  numberOfSkeletons?: number
-}
+type VideoLessonsListWrapperProps = Omit<EntityListWrapperProps, 'skeleton' | 'errorBoundary'>
 
 function VideoLessonsListWrapper(props: VideoLessonsListWrapperProps) {
-  const fallback = useMemo(
-    () =>
-      Array(props.numberOfSkeletons ?? props.gridSize ?? 3)
-        .fill(0)
-        .map((_, index) => <PreviewVideoLessonSkeleton key={index} />),
-    [],
-  )
-
   return (
     <S.Wrapper>
-      <VideoLessonsListErrorBoundary onRefresh={props.onRefresh}>
-        <S.ListWrapper className={props.className} gridSize={props.gridSize}>
-          <Suspense fallback={fallback}>{props.children}</Suspense>
-        </S.ListWrapper>
-      </VideoLessonsListErrorBoundary>
+      <S.ListWrapper
+        skeleton={PreviewVideoLessonSkeleton}
+        errorBoundary={VideoLessonsListErrorBoundary}
+        {...props}>
+        {props.children}
+      </S.ListWrapper>
     </S.Wrapper>
   )
 }

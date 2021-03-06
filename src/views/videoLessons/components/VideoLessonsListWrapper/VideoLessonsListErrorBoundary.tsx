@@ -1,13 +1,10 @@
-import React, { ReactNode, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ErrorBoundary } from '../../../../components'
+import { ErrorBoundary, EntityListWrapperErrorBoundaryProps } from '../../../../components'
 import { PreviewVideoLessonSkeleton } from '../PreviewVideoLesson'
 import * as S from './VideoLessonsListErrorBoundary.styles'
 
-interface VideoLessonsListErrorBoundaryProps {
-  children: ReactNode
-  onRefresh?: () => void
-}
+type VideoLessonsListErrorBoundaryProps = EntityListWrapperErrorBoundaryProps
 
 function VideoLessonsListErrorBoundary(props: VideoLessonsListErrorBoundaryProps) {
   const { t } = useTranslation('videolesson')

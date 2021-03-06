@@ -98,7 +98,7 @@ function UploadHandler(props: UploadHandlerProps) {
     if (!file) {
       cancelable.cancel()
     }
-  }, [uploadUrl, file, onSuccess, onFailure, percentage])
+  }, [uploadUrl, file, onSuccess, onFailure, setNotifications, percentage])
 
   if (!file) {
     return null
