@@ -1,2 +1,2 @@
-export { default } from './WatchLesson'
-export * from './WatchLesson'
+export { default } from './ResponsiveWatchLesson'
+export * from './ResponsiveWatchLesson'

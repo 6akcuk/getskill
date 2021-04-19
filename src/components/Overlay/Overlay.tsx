@@ -1,39 +1,82 @@
-import React, { ReactNode, useState, useRef } from 'react'
-import * as S from './Overlay.styles'
+import { Placement } from '@popperjs/core'
+import React, { ReactNode, useState, useRef, useCallback } from 'react'
+import { usePopper } from 'react-popper'
 import { useClickAway } from 'ahooks'
+import { OverlayPosition } from './types'
+import * as S from './Overlay.styles'
+import { useOverlayOffset } from './useOverlayOffset'
 
-enum OverlayPosition {
-  TOP_LEFT = 'TOP_LEFT',
-  TOP_MIDDLE = 'TOP_MIDDLE',
-  TOP_RIGHT = 'TOP_RIGHT',
-}
+type OverlayTrigger = 'focus' | 'hover' | 'click' | 'none'
 
 interface OverlayProps {
-  position?: OverlayPosition
-  overlay: ReactNode
+  popper: ReactNode
   children: ReactNode
   className?: string
+  trigger?: OverlayTrigger[]
+  showArrow?: boolean
+  placement?: Placement
+  isOpen?: boolean
+  position?: OverlayPosition
 }
 
 function Overlay(props: OverlayProps) {
-  const { position = OverlayPosition.TOP_RIGHT } = props
-  const [showMenu, toggleMenu] = useState(false)
-  const ref = useRef(null)
+  const { showArrow = false, trigger = ['hover', 'focus'] } = props
+  const [isOpen, setIsOpen] = useState(props.isOpen ?? false)
+  const [referenceElement, setReferenceElement] = useState<HTMLDivElement | null>(null)
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null)
+  const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null)
+
+  const wrapperRef = useRef<HTMLDivElement>(null)
+  const handleEnter = useCallback(() => {
+    if (trigger.includes('hover') || trigger.includes('focus')) {
+      setIsOpen(true)
+    }
+  }, [trigger])
+  const handleLeave = useCallback(() => {
+    if (trigger.includes('hover') || trigger.includes('focus')) {
+      setIsOpen(false)
+    }
+  }, [trigger])
+  const handleClick = useCallback(() => {
+    if (trigger.includes('click')) {
+      setIsOpen(isCurrentlyOpen => !isCurrentlyOpen)
+    }
+  }, [trigger])
 
   useClickAway(() => {
-    toggleMenu(false)
-  }, ref)
+    setIsOpen(false)
+  }, wrapperRef)
+
+  const offset = useOverlayOffset(wrapperRef)
+  const { state, styles, attributes } = usePopper(referenceElement, popperElement, {
+    placement: props.placement,
+    modifiers: [
+      { name: 'offset', options: { offset: [offset[0], offset[1]] } },
+      { name: 'arrow', options: { element: arrowElement, padding: 5 } },
+    ],
+  })
 
   return (
-    <S.Wrapper ref={ref} onClick={() => toggleMenu(true)} className={props.className}>
-      {props.children}
-      <S.OverlayWrapper isVisible={showMenu} position={position}>
-        {props.overlay}
-      </S.OverlayWrapper>
+    <S.Wrapper ref={wrapperRef} className={props.className}>
+      <S.Reference
+        ref={setReferenceElement}
+        onPointerEnter={handleEnter}
+        onPointerLeave={handleLeave}
+        onClick={handleClick}>
+        {props.children}
+      </S.Reference>
+      {isOpen && (
+        <S.Popper ref={setPopperElement} style={styles.popper} {...attributes.popper}>
+          {props.popper}
+          {showArrow && (
+            <S.Arrow placement={state?.placement ?? 'bottom'} ref={setArrowElement} style={styles.arrow} />
+          )}
+        </S.Popper>
+      )}
     </S.Wrapper>
   )
 }
 
 export default Overlay
-export { Overlay, OverlayPosition }
+export { Overlay }
 export type { OverlayProps }

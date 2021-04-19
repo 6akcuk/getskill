@@ -1,2 +1,2 @@
-export { default } from './ProfileView'
-export * from './ProfileView'
+export { default } from './ResponsiveProfileView'
+export * from './ResponsiveProfileView'

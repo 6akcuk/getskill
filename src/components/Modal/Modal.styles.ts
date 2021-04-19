@@ -20,7 +20,7 @@ const Backdrop = styled.div`
   right: 0;
   bottom: 0;
   background: ${({ theme }) => theme.colors.backdrop};
-  opacity: 0.7;
+  opacity: 0.8;
 `
 const Content = styled.div`
   min-width: 24rem;

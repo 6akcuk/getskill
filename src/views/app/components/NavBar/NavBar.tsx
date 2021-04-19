@@ -1,6 +1,7 @@
 import React from 'react'
-import * as S from './NavBar.styles'
 import { useTranslation } from 'react-i18next'
+import { createStylableComponent } from '../../../../utils'
+import * as S from './NavBar.styles'
 
 interface NavBarProps {
   className?: string
@@ -19,5 +20,7 @@ function NavBar(props: NavBarProps) {
   )
 }
 
-export default NavBar
-export { NavBar }
+const StylableNavBar = createStylableComponent(S, NavBar)
+
+export default StylableNavBar
+export { StylableNavBar as NavBar }

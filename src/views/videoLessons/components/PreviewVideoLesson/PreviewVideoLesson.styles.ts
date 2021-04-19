@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { UserAvatar, ServiceTagsList } from '../../../../components'
-import { Link } from 'react-router-dom'
+import { ServiceTagsList } from '../../../../components'
+import { VideoLessonAuthor } from '../VideoLessonAuthor'
 
 const Wrapper = styled.div`
   cursor: pointer;
@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 
 const PosterWrapper = styled.div`
   position: relative;
-  height: 14rem;
+  max-height: 14rem;
   border-radius: ${props => `${props.theme.sizes.radius.md} ${props.theme.sizes.radius.md} 0 0`};
   overflow: hidden;
 `
@@ -58,30 +58,8 @@ const Description = styled.div`
   color: ${props => props.theme.colors.text[500]};
 `
 
-const Author = styled(Link)`
-  display: flex;
-  align-items: center;
-  font-size: 0.875rem;
+const Author = styled(VideoLessonAuthor)`
   margin-top: 1rem;
-  text-decoration: none;
-`
-const AuthorAvatar = styled(UserAvatar)``
-const AuthorName = styled.div`
-  margin-left: 0.75rem;
-  font-weight: 500;
-  color: ${props => props.theme.colors.text[700]};
 `
 
-export {
-  Author,
-  AuthorAvatar,
-  AuthorName,
-  ContentWrapper,
-  Description,
-  Duration,
-  Name,
-  Poster,
-  PosterWrapper,
-  SkillsList,
-  Wrapper,
-}
+export { Author, ContentWrapper, Description, Duration, Name, Poster, PosterWrapper, SkillsList, Wrapper }

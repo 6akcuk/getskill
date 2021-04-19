@@ -16,6 +16,7 @@ async function getVideoLesson(request: GetVideoLessonRequest, response: GetVideo
     include: {
       user: {
         select: {
+          id: true,
           profile: {
             select: {
               publicName: true,

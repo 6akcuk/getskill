@@ -31,7 +31,7 @@ const Main = styled.main`
 const MainContainer = styled.div`
   flex: 1;
   z-index: 0;
-  padding: 2.5rem 1.5rem;
+  padding: 3rem 2rem;
   max-width: 70rem;
 `
 

@@ -11,6 +11,7 @@ import _IconFilm from './IconFilm'
 import _IconInstagram from './IconInstagram'
 import _IconLockClosed from './IconLockClosed'
 import _IconLockClosedSolid from './IconLockClosedSolid'
+import _IconMenu from './IconMenu'
 import _IconPlus from './IconPlus'
 import _IconSearch from './IconSearch'
 import _IconSelector from './IconSelector'
@@ -28,6 +29,7 @@ const IconFilm = cssVarsAsProps(_IconFilm)
 const IconInstagram = cssVarsAsProps(_IconInstagram)
 const IconLockClosed = cssVarsAsProps(_IconLockClosed)
 const IconLockClosedSolid = cssVarsAsProps(_IconLockClosedSolid)
+const IconMenu = cssVarsAsProps(_IconMenu)
 const IconPlus = cssVarsAsProps(_IconPlus)
 const IconSearch = cssVarsAsProps(_IconSearch)
 const IconSelector = cssVarsAsProps(_IconSelector)
@@ -46,6 +48,7 @@ export {
   IconInstagram,
   IconLockClosed,
   IconLockClosedSolid,
+  IconMenu,
   IconPlus,
   IconSearch,
   IconSelector,

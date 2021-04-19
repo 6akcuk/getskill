@@ -1,19 +1,13 @@
-import React, { Suspense } from 'react'
-import * as S from './Topbar.styles'
+import React, { useCallback } from 'react'
+import { ResponsiveLayout } from '../../../../components'
+import DesktopTopbar from './DesktopTopbar'
+import MobileTopbar from './MobileTopbar'
 
 function Topbar() {
-  return (
-    <S.Wrapper>
-      <S.Content>
-        <Suspense fallback={<S.SuspenseSpinner />}>
-          <S.Logo to="/">Get-Skill</S.Logo>
-          <S.NavBar />
-          <S.SearchBar />
-          <S.UserControls />
-        </Suspense>
-      </S.Content>
-    </S.Wrapper>
-  )
+  const renderDesktop = useCallback(() => <DesktopTopbar />, [])
+  const renderMobile = useCallback(() => <MobileTopbar />, [])
+
+  return <ResponsiveLayout renderDesktop={renderDesktop} renderMobile={renderMobile} />
 }
 
 export default Topbar

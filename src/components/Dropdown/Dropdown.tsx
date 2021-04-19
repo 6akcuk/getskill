@@ -8,10 +8,10 @@ interface DropdownProps {
 }
 
 function Dropdown(props: DropdownProps) {
-  const overlay = useMemo(() => <S.Menu>{props.items.map(item => item)}</S.Menu>, [props.items])
+  const popper = useMemo(() => <S.Menu>{props.items.map(item => item)}</S.Menu>, [props.items])
 
   return (
-    <S.Overlay overlay={overlay} className={props.className}>
+    <S.Overlay popper={popper} trigger={['click']} className={props.className}>
       {props.children}
     </S.Overlay>
   )

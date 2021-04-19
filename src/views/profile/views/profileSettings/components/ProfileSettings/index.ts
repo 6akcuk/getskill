@@ -1,2 +1,2 @@
-export { default } from './ProfileSettings'
-export * from './ProfileSettings'
+export { default } from './ResponsiveProfileSettings'
+export * from './ResponsiveProfileSettings'

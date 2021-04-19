@@ -14,7 +14,7 @@ export const theme: DefaultTheme = {
 
     border: colors.gray,
     background: colors.gray,
-    backdrop: colors.gray[500],
+    backdrop: colors.gray[900],
     white: '#fff',
   },
   sizes: {

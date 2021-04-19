@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 import { Spinner } from '../../../../components'
 
+const Fallback = styled(Spinner)`
+  width: 48px;
+  height: 48px;
+`
 const Title = styled.h2`
   font-size: 1.875rem;
   font-weight: 700;
@@ -9,11 +13,6 @@ const Title = styled.h2`
   margin: 0;
   margin-bottom: 2rem;
 `
-
 const Wrapper = styled.div``
-const Fallback = styled(Spinner)`
-  width: 48px;
-  height: 48px;
-`
 
 export { Fallback, Title, Wrapper }

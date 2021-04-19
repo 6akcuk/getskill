@@ -2,10 +2,7 @@ import styled from 'styled-components'
 import { Modal as BaseModal, Spinner as BaseSpinner, Button } from '../../../../../../components'
 import BaseVideoLessonFields from '../VideoLessonFields'
 
-const Modal = styled(BaseModal)`
-  width: 100%;
-  max-width: 24rem;
-`
+const Modal = styled(BaseModal)``
 const Spinner = styled(BaseSpinner)`
   width: 48px;
   height: 48px;

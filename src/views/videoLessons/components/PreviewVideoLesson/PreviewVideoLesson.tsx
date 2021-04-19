@@ -40,10 +40,11 @@ function PreviewVideoLesson(props: VideoLessonPreviewProps) {
         <S.Description>{props.videoLesson.description}</S.Description>
         <S.SkillsList serviceType="videolesson" serviceTags={props.videoLesson.tags} />
         {!props.hideAuthor && (
-          <S.Author to={`/user/${props.videoLesson.userId}`} onClick={e => e.stopPropagation()}>
-            <S.AuthorAvatar size="sm" user={props.videoLesson.user} />
-            <S.AuthorName>{props.videoLesson.user.profile.publicName}</S.AuthorName>
-          </S.Author>
+          <S.Author
+            to={`/user/${props.videoLesson.userId}`}
+            onClick={e => e.stopPropagation()}
+            user={props.videoLesson.user}
+          />
         )}
       </S.ContentWrapper>
     </S.Wrapper>

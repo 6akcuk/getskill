@@ -4,13 +4,18 @@ import { PrivateRoute } from '../../../../../../components'
 import { Account } from '../Account'
 import Contacts from '../Contacts'
 import { Verification } from '../../views/verification'
+import { createStylableComponent } from '../../../../../../utils'
 import * as S from './ProfileSettings.styles'
 
-function ProfileSettings() {
+interface ProfileSettingsProps {
+  className?: string
+}
+
+function ProfileSettings(props: ProfileSettingsProps) {
   const { path } = useRouteMatch()
 
   return (
-    <S.Wrapper>
+    <S.Wrapper className={props.className}>
       <S.Navigation />
       <S.Content>
         <Switch>
@@ -26,5 +31,8 @@ function ProfileSettings() {
   )
 }
 
-export default ProfileSettings
-export { ProfileSettings }
+const StylableProfileSettings = createStylableComponent(S, ProfileSettings)
+
+export default StylableProfileSettings
+export { StylableProfileSettings as ProfileSettings }
+export type { ProfileSettingsProps }
